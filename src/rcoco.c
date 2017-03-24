@@ -50,15 +50,7 @@ SEXP c_cocoCloseSuite(SEXP s_suite) {
   return R_NilValue;
 }
 
-SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
-  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
-  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
-  coco_problem_t* problem = coco_suite_get_next_problem(suite, observer);
- 
-  /* if we have no problems left in suite, lets return NULL */
-  if (problem == NULL)
-    return R_NilValue;
-
+SEXP c_cocoCreateProblem(coco_problem_t* problem) {
   const char* p_id = coco_problem_get_id(problem);
   size_t p_index = coco_problem_get_suite_dep_index(problem);
   const char* p_name = coco_problem_get_name(problem);
@@ -94,6 +86,17 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
  
   UNPROTECT(11); /* s_res */
   return s_res;
+}
+
+SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
+  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
+  coco_problem_t* problem = coco_suite_get_next_problem(suite, observer);
+ 
+  /* if we have no problems left in suite, lets return NULL */
+  if (problem == NULL)
+    return R_NilValue;
+  c_cocoCreateProblem(problem);
 }
 
 SEXP c_cocoProblemGetEvaluations(SEXP s_problem) {

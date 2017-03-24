@@ -11,12 +11,12 @@
 #'   Default is \dQuote{bbob}.
 #' @param result.folder [\code{character(1)}]\cr
 #'   Directory for the observer to write the output.
-#'   Default is \dQuote{R_on_<suite.name>}.
 #'   If the directory already exists the observer will automatically append \dQuote{-001} to the name.
+#'   Default is \dQuote{R_on_<suite.name>}.
 #' @return [\code{\link{CocoSuite}}].
 #' @export
 #' @useDynLib rcoco c_cocoOpenSuite
-cocoOpenSuite = function(suite.name = "bbob", observer.name = "bbob") {
+cocoOpenSuite = function(suite.name = "bbob", observer.name = "bbob", result.folder = NULL) {
   assertString(suite.name)
   assertString(observer.name)
   if (is.null(result.folder)) {

@@ -9,7 +9,7 @@
 #' @template ret_problem
 #' @export
 #' @useDynLib rcoco c_cocoSuiteGetNextProblem
-cocoSuiteGetProblem = function(suite, index) {
+cocoSuiteGetProblemByIndex = function(suite, index) {
   assertClass(suite, "CocoSuite")
   p = .Call(c_cocoSuiteGetNextProblem, suite)
   names(p) = c("extptr", "id", "index", "name", "nr.of.objectives", "dimension", "nr.of.constraints", "lower", "upper")

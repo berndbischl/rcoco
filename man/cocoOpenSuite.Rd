@@ -4,7 +4,8 @@
 \alias{cocoOpenSuite}
 \title{Open a coco problem suite.}
 \usage{
-cocoOpenSuite(suite.name = "bbob", observer.name = "bbob")
+cocoOpenSuite(suite.name = "bbob", observer.name = "bbob",
+  result.folder = NULL)
 }
 \arguments{
 \item{suite.name}{[\code{character(1)}]\cr
@@ -14,6 +15,11 @@ Default is \dQuote{bbob}.}
 \item{observer.name}{[\code{character(1)}]\cr
 Name of observer.
 Default is \dQuote{bbob}.}
+
+\item{result.folder}{[\code{character(1)}]\cr
+Directory for the observer to write the output.
+If the directory already exists the observer will automatically append \dQuote{-001} to the name.
+Default is \dQuote{R_on_<suite.name>}.}
 }
 \value{
 [\code{\link{CocoSuite}}].
