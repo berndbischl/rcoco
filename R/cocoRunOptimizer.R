@@ -5,6 +5,8 @@
 #'
 #' @template arg_optimizer
 #' @template arg_problem
+#' @param \ldots [any]\cr
+#'   Passed down to \code{optimizer}.
 #' @return Result object that \code{optimizer} returns.
 #' @export
 cocoRunOptimizer = function(optimizer, problem, ...) {

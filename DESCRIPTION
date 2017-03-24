@@ -1,5 +1,5 @@
 Package: rcoco
-Title: COCO / BBOB framework for benchmarking continuous black-box optimizers.
+Title: COCO / BBOB framework for benchmarking continuous black-box optimizers
 Description: This is an implementation of an R client package for the COCO framework and the BBOB benchmark.
   It allows benchmarking of continuous black-box optimizers on the BBOB functions. 
   You can later run COCO post-processing for standardized evaluation and plots. 
@@ -11,8 +11,9 @@ License: BSD_2_clause + file LICENSE
 Encoding: UTF-8
 Roxygen: list(wrap = FALSE)
 Imports:
+    BBmisc,
     checkmate (>= 1.8.0),
-    BBmisc
+    stats
 Suggests:
     testthat
 LazyData: yes

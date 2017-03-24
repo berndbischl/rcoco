@@ -16,6 +16,9 @@ The dotargs \code{...} are further arguments from above that should be passed on
 
 \item{problem}{[\code{\link{CocoProblem}}]\cr
 Coco problem.}
+
+\item{\ldots}{[any]\cr
+Passed down to \code{optimizer}.}
 }
 \value{
 Result object that \code{optimizer} returns.
