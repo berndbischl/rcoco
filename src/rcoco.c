@@ -88,7 +88,7 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
 
 SEXP c_cocoProblemGetInitialSolution(SEXP s_problem) {
   coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
-  size_t p_dim = INTEGER_VALUE(VECTOR_ELT(s_problem, 4));
+  size_t p_dim = INTEGER_VALUE(VECTOR_ELT(s_problem, 5));
   SEXP s_x = PROTECT(allocVector(REALSXP, p_dim));
   double* x = REAL(s_x);
   coco_problem_get_initial_solution(problem, x);
@@ -110,7 +110,7 @@ SEXP c_cocoProblemGetEvaluations(SEXP s_problem) {
 
 SEXP c_cocoEvaluateFunction(SEXP s_problem, SEXP s_x) {
   coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
-  size_t p_nrobjs = INTEGER_VALUE(VECTOR_ELT(s_problem, 3));
+  size_t p_nrobjs = INTEGER_VALUE(VECTOR_ELT(s_problem, 4));
   double* x = REAL(s_x);
   SEXP s_y = PROTECT(allocVector(REALSXP, p_nrobjs));
   double* y = REAL(s_y);   
