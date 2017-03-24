@@ -1,9 +1,8 @@
-# rcoco - R package for the COCO and BBOB.
+# rcoco - R package for COCO and BBOB.
 
 [![Build Status](https://travis-ci.org/berndbischl/rcoco.svg?branch=master)](https://travis-ci.org/berndbischl/rcoco)
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/rcoco)](https://CRAN.R-project.org/package=rcoco)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/rcoco)](https://cran.rstudio.com/web/packages/rcoco/index.html)
-* [Offical CRAN release site](https://CRAN.R-project.org/package=rcoco)
 * [R Documentation in HTML](http://rpackages.ianhowson.com/cran/rcoco/)
 * Install the development version
 
