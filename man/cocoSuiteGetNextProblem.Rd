@@ -9,9 +9,10 @@ cocoSuiteGetNextProblem(suite)
 \arguments{
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
-
-\item{problem}{[\code{\link{CocoProblem}} | \code{NULL}]\cr
-Coco problem. \code{NULL} is returned if no problems are left.}
+}
+\value{
+problem [\code{\link{CocoProblem}} | \code{NULL}]\cr
+  Coco problem. \code{NULL} is returned if no problems are left.
 }
 \description{
 Can be used to iterate through a complete coco problem suite.
