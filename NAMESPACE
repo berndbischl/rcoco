@@ -2,6 +2,7 @@
 
 S3method(print,CocoProblem)
 S3method(print,CocoSuite)
+export(cocoBenchmarkOptimizer)
 export(cocoCloseSuite)
 export(cocoEvaluateFunction)
 export(cocoOpenSuite)
