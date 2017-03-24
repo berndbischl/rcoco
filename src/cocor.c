@@ -12,16 +12,17 @@ SEXP c_cocoSetLogLevel(SEXP s_level) {
 }
 
 
-SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name) {
+SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_folder) {
   const char* suite_name = STRING_VALUE(s_suite_name);
   const char* observer_name = STRING_VALUE(s_observer_name);
+  const char* result_folder = STRING_VALUE(s_result_folder);
   SEXP s_res = PROTECT(NEW_LIST(4));
 
   /* Set some options for the observer. See documentation for other options. */
   char *observer_options =
-      coco_strdupf("result_folder: RS_on_%s "
+      coco_strdupf("result_folder: %s "
                    "algorithm_name: RS "
-                   "algorithm_info: \"A simple random search algorithm\"", suite_name);
+                   "algorithm_info: \"A simple random search algorithm\"", result_folder);
 
   /* Initialize the suite and observer.
    *
