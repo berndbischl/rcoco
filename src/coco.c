@@ -1,3 +1,7 @@
+#include <R.h>
+#include <Rinternals.h>
+#include <Rdefines.h>
+
 
 /************************************************************************
  * WARNING
@@ -21886,36 +21890,57 @@ void coco_archive_free(coco_archive_t *archive) {
 void coco_error(const char *message, ...) {
   va_list args;
 
-  fprintf(stderr, "COCO FATAL ERROR: ");
+  /* fprintf(stderr, "COCO FATAL ERROR: "); */
+  /* va_start(args, message); */
+  /* vfprintf(stderr, message, args); */
+  /* va_end(args); */
+  /* fprintf(stderr, "\n"); */
+  /* exit(EXIT_FAILURE); */
+
+  char formatted_string[1000L]; 
   va_start(args, message);
-  vfprintf(stderr, message, args);
+  vsprintf(formatted_string, message, args);
   va_end(args);
-  fprintf(stderr, "\n");
-  exit(EXIT_FAILURE);
+  Rf_error("COCO FATAL ERROR: %s", formatted_string);
 }
 
 void coco_warning(const char *message, ...) {
   va_list args;
 
+  /* if (coco_log_level >= COCO_WARNING) { */
+  /*   fprintf(stderr, "COCO WARNING: "); */
+  /*   va_start(args, message); */
+  /*   vfprintf(stderr, message, args); */
+  /*   va_end(args); */
+  /*   fprintf(stderr, "\n"); */
+  /* } */
+  
   if (coco_log_level >= COCO_WARNING) {
-    fprintf(stderr, "COCO WARNING: ");
+    char formatted_string[1000L]; 
     va_start(args, message);
-    vfprintf(stderr, message, args);
+    vsprintf(formatted_string, message, args);
     va_end(args);
-    fprintf(stderr, "\n");
+    Rf_warning("COCO WARNING: %s", formatted_string);
   }
 }
 
 void coco_info(const char *message, ...) {
   va_list args;
 
+  /* if (coco_log_level >= COCO_INFO) { */
+  /*   fprintf(stdout, "COCO INFO: "); */
+  /*   va_start(args, message); */
+  /*   vfprintf(stdout, message, args); */
+  /*   va_end(args); */
+  /*   fprintf(stdout, "\n"); */
+  /*   fflush(stdout); */
+  /* } */
   if (coco_log_level >= COCO_INFO) {
-    fprintf(stdout, "COCO INFO: ");
+    char formatted_string[1000L]; 
     va_start(args, message);
-    vfprintf(stdout, message, args);
+    vsprintf(formatted_string, message, args);
     va_end(args);
-    fprintf(stdout, "\n");
-    fflush(stdout);
+    Rprintf("COCO INFO: %s", formatted_string);
   }
 }
 
@@ -21926,24 +21951,40 @@ void coco_info(const char *message, ...) {
 void coco_info_partial(const char *message, ...) {
   va_list args;
 
+  /* if (coco_log_level >= COCO_INFO) { */
+  /*   va_start(args, message); */
+  /*   vfprintf(stdout, message, args); */
+  /*   va_end(args); */
+  /*   fflush(stdout); */
+  /* } */
+  
   if (coco_log_level >= COCO_INFO) {
+    char formatted_string[1000L]; 
     va_start(args, message);
-    vfprintf(stdout, message, args);
+    vsprintf(formatted_string, message, args);
     va_end(args);
-    fflush(stdout);
+    Rprintf(formatted_string);
   }
 }
 
 void coco_debug(const char *message, ...) {
   va_list args;
 
+  /* if (coco_log_level >= COCO_DEBUG) { */
+  /*   fprintf(stdout, "COCO DEBUG: "); */
+  /*   va_start(args, message); */
+  /*   vfprintf(stdout, message, args); */
+  /*   va_end(args); */
+  /*   fprintf(stdout, "\n"); */
+  /*   fflush(stdout); */
+  /* } */
+
   if (coco_log_level >= COCO_DEBUG) {
-    fprintf(stdout, "COCO DEBUG: ");
+    char formatted_string[1000L]; 
     va_start(args, message);
-    vfprintf(stdout, message, args);
+    vsprintf(formatted_string, message, args);
     va_end(args);
-    fprintf(stdout, "\n");
-    fflush(stdout);
+    Rprintf("COCO DEBUG: %s", formatted_string);
   }
 }
 
