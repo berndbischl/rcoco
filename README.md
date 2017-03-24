@@ -1,7 +1,5 @@
 # cocor - R package for the COCO and BBOB.
 
-
-==========================
 [![Build Status](https://travis-ci.org/berndbischl/cocor.svg?branch=master)](https://travis-ci.org/berndbischl/cocor)
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/cocor)](https://CRAN.R-project.org/package=cocor)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/cocor)](https://cran.rstudio.com/web/packages/cocor/index.html)
