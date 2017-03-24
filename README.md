@@ -17,7 +17,17 @@ This is an experimental implementation of an R client package for the COCO frame
 
 https://github.com/numbbo/coco
 
-It allows to benchmark black-box optimizers on the BBOB functions, the run the COCO post-processing for standardized evaluation. The package implements the C API of COCO.
+It allows benchmarking of continuous black-box optimizers on the BBOB functions. You can later run COCO post-processing for standardized evaluation and plots. The package implements the C API of COCO.
+
+# How to get (newer versions of) coco.c and coco.h
+
+These two files contain the main C code of coco, that we programm against.
+They are located in the "src" subfolder. They are created like this:
+
+1. Clone main coco repo
+1. Run python do.py build-c from the console
+1. Copy coco.{h,c} from code-experiments/build/c/ to the src subdir of this repo
+
 
 
 
