@@ -1,5 +1,5 @@
-cocor.Rcheck
-cocor_*.tar.gz
+rcoco.Rcheck
+rcoco_*.tar.gz
 .Rproj.user
 *.Rproj
 .Rhistory
