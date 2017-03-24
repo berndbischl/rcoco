@@ -21,7 +21,8 @@ Coco problem suite.}
 Passed down to \code{optimizer}.}
 }
 \value{
-Result object that \code{optimizer} returns.
+[\code{list}]. List of results for individual \code{\link{cocoRunOptimizer}} calls.
+  List is named with coco problem ids.
 }
 \description{
 The function is mainly called for its side effect of coco logging of results on disk.
