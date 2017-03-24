@@ -1,8 +1,5 @@
-# cocor
+# cocor - R package for the COCO and BBOB.
 
-This is a experimental implementation of an R package for the for the COCO framework and BBOB benchmark.
-
-https://github.com/numbbo/coco
 
 ==========================
 [![Build Status](https://travis-ci.org/berndbischl/cocor.svg?branch=master)](https://travis-ci.org/berndbischl/cocor)
@@ -15,4 +12,14 @@ https://github.com/numbbo/coco
     ```splus
     devtools::install_github("berndbischl/cocor")
     ```
+
+# General overview
+
+This is an experimental implementation of an R client package for the COCO framework and the BBOB benchmark.
+
+https://github.com/numbbo/coco
+
+It allows to benchmark black-box optimizers on the BBOB functions, the run the COCO post-processing for standardized evaluation. The package implements the C API of COCO.
+
+
 
