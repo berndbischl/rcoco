@@ -1,2 +1,2 @@
 library(testthat)
-test_check("cocor")
+test_check("rcoco")

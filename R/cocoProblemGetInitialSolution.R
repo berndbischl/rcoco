@@ -6,7 +6,7 @@
 #' @template arg_problem
 #' @return [\code{numeric}]. Objective value, of length \code{problem$nr.of.objectives}.
 #' @export
-#' @useDynLib cocor c_cocoProblemGetInitialSolution
+#' @useDynLib rcoco c_cocoProblemGetInitialSolution
 cocoProblemGetInitialSolution = function(problem) {
   assertClass(problem, "CocoProblem")
   .Call(c_cocoProblemGetInitialSolution, problem)

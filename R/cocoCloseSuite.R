@@ -6,7 +6,7 @@
 #' @template arg_suite
 #' @template ret_invnull
 #' @export
-#' @useDynLib cocor c_cocoCloseSuite
+#' @useDynLib rcoco c_cocoCloseSuite
 cocoCloseSuite = function(suite) {
   assertClass(suite, "CocoSuite")
   .Call(c_cocoCloseSuite, suite)

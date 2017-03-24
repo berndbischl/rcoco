@@ -6,7 +6,7 @@
 #' @template arg_problem
 #' @template ret_int
 #' @export
-#' @useDynLib cocor c_cocoProblemGetEvaluations
+#' @useDynLib rcoco c_cocoProblemGetEvaluations
 cocoProblemGetEvaluations = function(problem) {
   assertClass(problem, "CocoProblem")
   .Call(c_cocoProblemGetEvaluations, problem)

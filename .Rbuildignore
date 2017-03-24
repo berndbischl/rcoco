@@ -1,0 +1,12 @@
+^.*tar.gz$
+^.*\.swp$
+.gitignore
+.Rproj.user
+.travis.yml
+exdata
+man-roxygen
+README.md
+appveyor
+^.editorconfig$
+^.*\.Rproj$
+^\.Rproj\.user$

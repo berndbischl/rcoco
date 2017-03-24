@@ -15,8 +15,8 @@
 #'   If the directory already exists the observer will automatically append \code{-001} to the name.
 #' @return [\code{\link{CocoSuite}}].
 #' @export
-#' @useDynLib cocor c_cocoOpenSuite
-cocoOpenSuite = function(suite.name = "bbob", observer.name = "bbob", result.folder = NULL) {
+#' @useDynLib rcoco c_cocoOpenSuite
+cocoOpenSuite = function(suite.name = "bbob", observer.name = "bbob") {
   assertString(suite.name)
   assertString(observer.name)
   if (is.null(result.folder)) {
