@@ -10,7 +10,7 @@
 cocoSuiteGetNextProblem = function(suite) {
   assertClass(suite, "CocoSuite")
   p = .Call(c_cocoSuiteGetNextProblem, suite)
-  names(p) = c("extptr", "id", "name", "nr.of.objectives", "dimension", "nr.of.constraints", "lower", "upper")
+  names(p) = c("extptr", "id", "index", "name", "nr.of.objectives", "dimension", "nr.of.constraints", "lower", "upper")
   class(p) = "CocoProblem"
   return(p)
 }

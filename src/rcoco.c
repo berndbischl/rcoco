@@ -55,17 +55,19 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
   coco_problem_t* problem = coco_suite_get_next_problem(suite, observer);
   
   const char* p_id = coco_problem_get_id(problem);
+  size_t p_index = coco_problem_get_suite_dep_index(problem);
   const char* p_name = coco_problem_get_name(problem);
   size_t p_nrobjs = coco_problem_get_number_of_objectives(problem); 
   size_t p_dim = coco_problem_get_dimension(problem);
   size_t p_nconstraints = coco_problem_get_number_of_constraints(problem);
-  SEXP s_res = PROTECT(NEW_LIST(8));
+  SEXP s_res = PROTECT(NEW_LIST(9));
   SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue))); 
   SET_VECTOR_ELT(s_res, 1, PROTECT(mkString(p_id)));
-  SET_VECTOR_ELT(s_res, 2, PROTECT(mkString(p_name)));
-  SET_VECTOR_ELT(s_res, 3, PROTECT(ScalarInteger(p_nrobjs)));
-  SET_VECTOR_ELT(s_res, 4, PROTECT(ScalarInteger(p_dim)));
-  SET_VECTOR_ELT(s_res, 5, PROTECT(ScalarInteger(p_nconstraints)));
+  SET_VECTOR_ELT(s_res, 2, PROTECT(ScalarInteger(p_index)));
+  SET_VECTOR_ELT(s_res, 3, PROTECT(mkString(p_name)));
+  SET_VECTOR_ELT(s_res, 4, PROTECT(ScalarInteger(p_nrobjs)));
+  SET_VECTOR_ELT(s_res, 5, PROTECT(ScalarInteger(p_dim)));
+  SET_VECTOR_ELT(s_res, 6, PROTECT(ScalarInteger(p_nconstraints)));
 
   const double *p_lower = coco_problem_get_smallest_values_of_interest(problem);
   const double *p_upper = coco_problem_get_largest_values_of_interest(problem);
@@ -77,10 +79,10 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
     lower[i] = p_lower[i];
     upper[i] = p_upper[i];
   }
-  SET_VECTOR_ELT(s_res, 6, s_lower);
-  SET_VECTOR_ELT(s_res, 7, s_upper);
+  SET_VECTOR_ELT(s_res, 7, s_lower);
+  SET_VECTOR_ELT(s_res, 8, s_upper);
  
-  UNPROTECT(9); /* s_res */
+  UNPROTECT(10); /* s_res */
   return s_res;
 }
 

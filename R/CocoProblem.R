@@ -21,6 +21,7 @@ NULL
 print.CocoProblem = function(x, ...) {
   catf("CocoProblem")
   catf("id          : %s", x$id)
+  catf("index       : %s", x$index)
   catf("name        : %s", x$name)
   catf("nobj        : %i", x$nr.of.objectives)
   catf("dim         : %i", x$dimension)
