@@ -1,0 +1,10 @@
+cocor.Rcheck
+cocor_*.tar.gz
+.Rproj.user
+*.Rproj
+.Rhistory
+html
+src/*.so
+src/*.o
+exdata
+tests/testthat/exdata

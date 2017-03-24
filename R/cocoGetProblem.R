@@ -8,7 +8,7 @@
 #'   Problem index.
 #' @template ret_problem
 #' @export
-#' @useDynLib cocor c_cocoSuiteGetNextProblem
+#' @useDynLib rcoco c_cocoSuiteGetNextProblem
 cocoSuiteGetProblem = function(suite, index) {
   assertClass(suite, "CocoSuite")
   p = .Call(c_cocoSuiteGetNextProblem, suite)

@@ -11,7 +11,7 @@
 #'   Default is \dQuote{bbob}.
 #' @return [\code{\link{CocoSuite}}].
 #' @export
-#' @useDynLib cocor c_cocoOpenSuite
+#' @useDynLib rcoco c_cocoOpenSuite
 cocoOpenSuite = function(suite.name = "bbob", observer.name = "bbob") {
   assertString(suite.name)
   assertString(observer.name)

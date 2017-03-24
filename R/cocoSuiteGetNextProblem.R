@@ -6,7 +6,7 @@
 #' @template arg_suite
 #' @template ret_problem
 #' @export
-#' @useDynLib cocor c_cocoSuiteGetNextProblem
+#' @useDynLib rcoco c_cocoSuiteGetNextProblem
 cocoSuiteGetNextProblem = function(suite) {
   assertClass(suite, "CocoSuite")
   p = .Call(c_cocoSuiteGetNextProblem, suite)
