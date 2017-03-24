@@ -13,7 +13,8 @@ The S3 class is a list which stores these elements:
   \item{dimension [\code{integer(1)}}{Dimension of decision space.}
   \item{nr.of.constraints [\code{integer(1)}}{Number of constraints.}
   \item{lower [\code{numeric}]}{Lower box constraints.}
-  \item{upper [\code{numeric}]}{upper box constraints.}
+  \item{upper [\code{numeric}]}{Upper box constraints.}
+  \item{initial.solution [\code{numeric}]}{Initial feasible solution.}
   \item{extptr}{External pointer to C object of coco problem.}
 }
 }

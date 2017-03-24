@@ -13,7 +13,7 @@
 #'   List is named with coco problem ids.
 #' @export
 cocoBenchmarkOptimizer = function(optimizer, suite, ...) {
-  assertFunction(optimizer, c("fn", "start", "problem"))
+  assertFunction(optimizer, c("fn", "problem"))
   assertClass(suite, "CocoSuite")
   res = list()
   while(!is.null(problem <- cocoSuiteGetNextProblem(suite))) {

@@ -10,11 +10,10 @@
 #' @return Result object that \code{optimizer} returns.
 #' @export
 cocoRunOptimizer = function(optimizer, problem, ...) {
-  assertFunction(optimizer, c("fn", "start", "problem"))
+  assertFunction(optimizer, c("fn", "problem"))
   assertClass(problem, "CocoProblem")
   fn = function(x) {
     cocoEvaluateFunction(problem, x)
   }
-  start = cocoProblemGetInitialSolution(problem)
-  optimizer(fn, start, problem, ...)
+  optimizer(fn, problem, ...)
 }

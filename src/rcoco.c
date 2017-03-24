@@ -64,7 +64,7 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
   size_t p_nrobjs = coco_problem_get_number_of_objectives(problem); 
   size_t p_dim = coco_problem_get_dimension(problem);
   size_t p_nconstraints = coco_problem_get_number_of_constraints(problem);
-  SEXP s_res = PROTECT(NEW_LIST(9));
+  SEXP s_res = PROTECT(NEW_LIST(10));
   SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue))); 
   SET_VECTOR_ELT(s_res, 1, PROTECT(mkString(p_id)));
   SET_VECTOR_ELT(s_res, 2, PROTECT(ScalarInteger(p_index)));
@@ -85,22 +85,15 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
   }
   SET_VECTOR_ELT(s_res, 7, s_lower);
   SET_VECTOR_ELT(s_res, 8, s_upper);
+
+  SEXP s_initsol = PROTECT(allocVector(REALSXP, p_dim));
+  double* initsol = REAL(s_initsol);
+  coco_problem_get_initial_solution(problem, initsol);
+  SET_VECTOR_ELT(s_res, 9, s_initsol);
  
-  UNPROTECT(10); /* s_res */
+  UNPROTECT(11); /* s_res */
   return s_res;
 }
-
-SEXP c_cocoProblemGetInitialSolution(SEXP s_problem) {
-  coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
-  size_t p_dim = INTEGER_VALUE(VECTOR_ELT(s_problem, 5));
-  SEXP s_x = PROTECT(allocVector(REALSXP, p_dim));
-  double* x = REAL(s_x);
-  coco_problem_get_initial_solution(problem, x);
-  UNPROTECT(1); /* s_res */
-  return s_x;
-}
-
-
 
 SEXP c_cocoProblemGetEvaluations(SEXP s_problem) {
   coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));

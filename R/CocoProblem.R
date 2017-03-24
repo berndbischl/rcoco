@@ -11,7 +11,8 @@
 #'   \item{dimension [\code{integer(1)}}{Dimension of decision space.}
 #'   \item{nr.of.constraints [\code{integer(1)}}{Number of constraints.}
 #'   \item{lower [\code{numeric}]}{Lower box constraints.}
-#'   \item{upper [\code{numeric}]}{upper box constraints.}
+#'   \item{upper [\code{numeric}]}{Upper box constraints.}
+#'   \item{initial.solution [\code{numeric}]}{Initial feasible solution.}
 #'   \item{extptr}{External pointer to C object of coco problem.}
 #' }
 #' @name CocoProblem
@@ -29,5 +30,6 @@ print.CocoProblem = function(x, ...) {
   catf("constraints : %i", x$nr.of.constraints)
   catf("lower       : %s", collapse(x$lower))
   catf("upper       : %s", collapse(x$upper))
+  catf("init sol    : %s", collapse(x$initial.solution))
 }
 
