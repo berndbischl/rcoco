@@ -99,6 +99,13 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
   c_cocoCreateProblem(problem);
 }
 
+SEXP c_cocoSuiteGetProblem(SEXP s_suite, SEXP s_index) {
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
+  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
+  coco_problem_t* problem = coco_suite_get_problem(suite, INTEGER_VALUE(s_index));
+  c_cocoCreateProblem(problem);
+}
+
 SEXP c_cocoProblemGetEvaluations(SEXP s_problem) {
   coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
   size_t nevals = coco_problem_get_evaluations(problem);
