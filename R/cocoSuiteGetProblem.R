@@ -6,7 +6,7 @@
 #'
 #' @template arg_suite
 #' @param index [\code{integer(1)}]\cr
-#'   Problem index.
+#'   Problem index. Note that coco indices start at 0!
 #' @template ret_problem
 #' @export
 #' @useDynLib rcoco c_cocoSuiteGetProblem
