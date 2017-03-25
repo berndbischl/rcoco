@@ -8,6 +8,7 @@
 #'   \item{suite.extptr}{External pointer to C object of coco suite.}
 #'   \item{observer.name [\code{character(1)}]}{Name of observer.}
 #'   \item{observer.extptr}{External pointer to C object of coco observer.}
+#'   \item{nr.of.problems [\code{integer(1)}}{Number of problems in suite.}
 #' }
 #' @name CocoSuite
 #' @rdname CocoSuite
@@ -18,6 +19,7 @@ print.CocoSuite = function(x, ...) {
   catf("CocoSuite")
   catf("suite       : %s", x$suite.name)
   catf("observer    : %s", x$observer.name)
+  catf("problems    : %i", x$nr.of.problems)
 }
 
 

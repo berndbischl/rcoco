@@ -24,7 +24,7 @@ cocoOpenSuite = function(suite.name = "bbob", observer.name = "bbob", result.fol
   }
   assertPathForOutput(result.folder, overwrite = TRUE)
   s = .Call(c_cocoOpenSuite, suite.name, observer.name, result.folder)
-  names(s) = c("suite.name", "suite.extptr", "observer.name", "observer.extptr")
+  names(s) = c("suite.name", "suite.extptr", "observer.name", "observer.extptr", "nr.of.problems")
   class(s) = "CocoSuite"
   return(s)
 }

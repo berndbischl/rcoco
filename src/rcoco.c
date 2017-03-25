@@ -16,7 +16,7 @@ SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_fold
   const char* suite_name = STRING_VALUE(s_suite_name);
   const char* observer_name = STRING_VALUE(s_observer_name);
   const char* result_folder = STRING_VALUE(s_result_folder);
-  SEXP s_res = PROTECT(NEW_LIST(4));
+  SEXP s_res = PROTECT(NEW_LIST(5));
 
   /* Set some options for the observer. See documentation for other options. */
   char *observer_options =
@@ -38,7 +38,9 @@ SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_fold
   SET_VECTOR_ELT(s_res, 2, PROTECT(mkString(observer_name))); 
   SET_VECTOR_ELT(s_res, 3, PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue))); 
 
-  UNPROTECT(5); /* s_res */
+  SET_VECTOR_ELT(s_res, 4, PROTECT(ScalarInteger(coco_suite_get_number_of_problems(suite)))); 
+
+  UNPROTECT(6); /* s_res */
   return s_res;
 }
 
