@@ -11,11 +11,8 @@
 cocoSuiteGetNextProblem = function(suite) {
   assertClass(suite, "CocoSuite")
   p = .Call(c_cocoSuiteGetNextProblem, suite)
-  if (!is.null(p)) {
-    names(p) = c("extptr", "id", "index", "name", "nr.of.objectives", "dimension", "nr.of.constraints", 
-      "lower", "upper", "initial.solution")
-    class(p) = "CocoProblem"
-  }
+  if (!is.null(p)) 
+    p = createProblem(p)
   return(p)
 }
 

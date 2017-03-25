@@ -53,6 +53,9 @@ SEXP c_cocoCloseSuite(SEXP s_suite) {
 }
 
 SEXP c_cocoCreateProblem(coco_problem_t* problem) {
+  /* if problem not found, lets return NULL */
+  if (problem == NULL)
+    return R_NilValue;
   const char* p_id = coco_problem_get_id(problem);
   size_t p_index = coco_problem_get_suite_dep_index(problem);
   const char* p_name = coco_problem_get_name(problem);
@@ -94,17 +97,19 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
   coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
   coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
   coco_problem_t* problem = coco_suite_get_next_problem(suite, observer);
- 
-  /* if we have no problems left in suite, lets return NULL */
-  if (problem == NULL)
-    return R_NilValue;
   return c_cocoCreateProblem(problem);
 }
 
 SEXP c_cocoSuiteGetProblem(SEXP s_suite, SEXP s_index) {
   coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
-  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
   coco_problem_t* problem = coco_suite_get_problem(suite, INTEGER_VALUE(s_index));
+  return c_cocoCreateProblem(problem);
+}
+
+SEXP c_cocoSuiteGetProblemByFunDimInst(SEXP s_suite, SEXP s_fun, SEXP s_dim, SEXP s_inst) {
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
+  coco_problem_t* problem = coco_suite_get_problem_by_function_dimension_instance(suite,
+    INTEGER_VALUE(s_fun), INTEGER_VALUE(s_dim), INTEGER_VALUE(s_inst));
   return c_cocoCreateProblem(problem);
 }
 

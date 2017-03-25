@@ -4,7 +4,6 @@ test_that("cocoSuiteGetProblem", {
   s = cocoOpenSuite()
   # iterate normal noiseless bbob, 6 dims (d = 2,5,10,20,40) x 24 funs x 15 function instances
   for (i in 1:(6 * 24 * 15)) {
-  # for (i in 1:2) {
     p1 = cocoSuiteGetNextProblem(s)
     p2 = cocoSuiteGetProblem(s, i-1)
     expect_output(print(p1), "CocoProblem", info = i)

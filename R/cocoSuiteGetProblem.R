@@ -73,10 +73,7 @@ cocoSuiteGetProblem = function(suite, index) {
   assertClass(suite, "CocoSuite")
   index = asInt(index, lower = 0, upper = suite$nr.of.problems - 1L)
   p = .Call(c_cocoSuiteGetProblem, suite, index)
-  names(p) = c("extptr", "id", "index", "name", "nr.of.objectives", "dimension", "nr.of.constraints", 
-    "lower", "upper", "initial.solution")
-  class(p) = "CocoProblem"
-  return(p)
+  createProblem(p)
 }
 
 
