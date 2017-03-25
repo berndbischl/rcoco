@@ -11,7 +11,7 @@ cocoSuiteGetProblem(suite, index)
 Coco problem suite.}
 
 \item{index}{[\code{integer(1)}]\cr
-Problem index.}
+Problem index. Note that coco indices start at 0!}
 }
 \value{
 [\code{\link{CocoProblem}}].

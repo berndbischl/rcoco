@@ -13,6 +13,8 @@ Roxygen: list(wrap = FALSE)
 Imports:
     BBmisc,
     checkmate (>= 1.8.0),
+    ParamHelpers,
+    smoof,
     stats
 Suggests:
     testthat
