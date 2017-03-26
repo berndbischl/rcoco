@@ -15,7 +15,8 @@ Imports:
     checkmate (>= 1.8.0),
     ParamHelpers,
     smoof,
-    stats
+    stats,
+    stringi
 Suggests:
     testthat
 LazyData: yes

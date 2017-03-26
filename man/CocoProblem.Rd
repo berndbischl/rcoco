@@ -8,6 +8,8 @@ The S3 class is a list which stores these elements:
 \describe{
   \item{id [\code{character(1)}]}{Short id of problem.}
   \item{index [\code{integer(1)}]}{Index of problem in suite.}
+  \item{fun.nr [\code{integer(1)}]}{Function number.}
+  \item{inst.nr [\code{integer(1)}]}{Instance number.}
   \item{name [\code{character(1)}]}{Longer name of problem.}
   \item{nr.of.objectives [\code{integer(1)}}{Number of objectives.}
   \item{dimension [\code{integer(1)}}{Dimension of decision space.}

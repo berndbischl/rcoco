@@ -6,6 +6,8 @@
 #' \describe{
 #'   \item{id [\code{character(1)}]}{Short id of problem.}
 #'   \item{index [\code{integer(1)}]}{Index of problem in suite.}
+#'   \item{fun.nr [\code{integer(1)}]}{Function number.}
+#'   \item{inst.nr [\code{integer(1)}]}{Instance number.}
 #'   \item{name [\code{character(1)}]}{Longer name of problem.}
 #'   \item{nr.of.objectives [\code{integer(1)}}{Number of objectives.}
 #'   \item{dimension [\code{integer(1)}}{Dimension of decision space.}
@@ -23,8 +25,10 @@ NULL
 print.CocoProblem = function(x, ...) {
   catf("CocoProblem")
   catf("id          : %s", x$id)
-  catf("index       : %s", x$index)
   catf("name        : %s", x$name)
+  catf("index       : %s", x$index)
+  catf("function    : %s", x$fun.nr)
+  catf("instance    : %s", x$inst.nr)
   catf("nobj        : %i", x$nr.of.objectives)
   catf("dim         : %i", x$dimension)
   catf("constraints : %i", x$nr.of.constraints)
