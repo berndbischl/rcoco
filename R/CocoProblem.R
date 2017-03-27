@@ -23,6 +23,13 @@ NULL
 
 #' @export
 print.CocoProblem = function(x, ...) {
+  low = x$lower
+  upp = x$upper
+  # print single nums if bounds are all the same
+  if (length(unique(low)) == 1L) 
+    low = unique(low)
+  if (length(unique(upp)) == 1L) 
+    upp = unique(upp)
   catf("CocoProblem")
   catf("id          : %s", x$id)
   catf("name        : %s", x$name)
@@ -32,8 +39,8 @@ print.CocoProblem = function(x, ...) {
   catf("nobj        : %i", x$nr.of.objectives)
   catf("dim         : %i", x$dimension)
   catf("constraints : %i", x$nr.of.constraints)
-  catf("lower       : %s", collapse(x$lower))
-  catf("upper       : %s", collapse(x$upper))
+  catf("lower       : %s", collapse(low))
+  catf("upper       : %s", collapse(upp))
   catf("init sol    : %s", collapse(x$initial.solution))
 }
 
