@@ -18,7 +18,7 @@ summary.CocoProblemList = function(object, ...) {
 print.SummaryProblemList = function(x, ...) {
   catf("ProblemListOverview: (%i)", x$size)
   catf("dims: %s", collapse(x$dim.range))
-  catf("funs: %s", collapse(x$fun.range))
-  catf("insts: %s", collapse(x$inst.range))
-  print(head(x$tab))
+  catf("funs: %s", toRangeStr(x$fun.range))
+  catf("insts: %s", toRangeStr(x$inst.range))
+  printHead(x$tab)
 }
