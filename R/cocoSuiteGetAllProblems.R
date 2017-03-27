@@ -12,8 +12,7 @@ cocoSuiteGetAllProblems = function(suite) {
   while(!is.null(p <- cocoSuiteGetNextProblem(suite))) {
     problems[[p$id]] = p
   }
-  return(problems)
+  addClasses(problems, "CocoProblemList")
 }
-
 
 

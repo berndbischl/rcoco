@@ -4,21 +4,10 @@
 #' Must be called before problems can be accessed.
 #' For further info on suites, instances and options please see \url{http://numbbo.github.io/coco-doc/C/}.
 #'  
-#' The following text is copied from that page (and slightly adapted):
 #' The suite contains a collection of problems constructed by a Cartesian product of the suite's 
 #' optimization functions, dimensions and instances. The functions and dimensions are defined by the 
-#' suite name, while the instances are defined with the suite_instance parameter. 
-#' The suite can be filtered by specifying functions, dimensions and instances through 
-#' the \code{suite.options} parameter.
-#'
-#' Possible keys and values for \code{suite.instance} are:
-#'
-#' \describe{
-#' \item{either "year: YEAR"}{where YEAR is usually the year of the corresponding BBOB workshop 
-#'   defining the instances used in that year's benchmark, or} 
-#'  \item{"instances: VALUES"}{where VALUES is a list or a range m-n of instances to be included 
-#'    in the suite (starting from 1).}
-#' }
+#' suite name, while the instances are defined with the \code{instances} parameter.
+#' The suite can be filtered by specifying functions, dimensions and instances.
 #'
 #FIXME: this should be unit tested
 #' If both year and instances appear in the \code{suite.instance} string, only the first one 
@@ -34,22 +23,23 @@
 #' @param name [\code{character(1)}]\cr
 #'   Name of coco suite.
 #'   Default is \dQuote{bbob}.
-#' \item{either "year: YEAR"}{where YEAR is usually the year of the corresponding BBOB workshop 
-#'   defining the instances used in that year's benchmark, or} 
+#' @param year [\code{integer(1)}]\cr
+#'   Year of the corresponding BBOB workshop, defining the instances used in that year's benchmark.
+#'   Default is 2017.
 #' @param instances [\code{integer}]\cr
-#'   Selected instances.
-#'   Default is all.
+#'   Instances for the suite, starting from 1.
+#'   Default is all instances chosen in BBOB in \code{year}.
 #' @param dims [\code{integer}]\cr
 #'   Selected dimensions.
 #'   Default is all.
 #' @param dimension.indices [\code{integer}]\cr
-#'   Selected dimension indices to keep in the suite, starting at 1.
+#'   Selected dimension indices to keep in the suite, starting from 1.
 #'   Default is all.
 #' @param function.indices [\code{integer}]\cr
-#'   Selected function indices to keep in the suite, starting at 1.
+#'   Selected function indices to keep in the suite, starting from 1.
 #'   Default is all.
 #' @param instance.indices [\code{integer}]\cr
-#'   Selected instance indices to keep in the suite, starting at 1.
+#'   Selected instance indices to keep in the suite, starting from 1.
 #'   Default is all.
 
 # @param observer.name [\code{character(1)}]\cr
@@ -63,7 +53,7 @@
 #' @return [\code{\link{CocoSuite}}].
 #' @export
 #' @useDynLib rcoco c_cocoOpenSuite
-cocoOpenSuite = function(name = "bbob", year = NULL, instances = NULL, dims = NULL,
+cocoOpenSuite = function(name = "bbob", year = 2017L, instances = NULL, dims = NULL,
   dim.inds = NULL, fun.inds = NULL, inst.inds = NULL) {
   assertString(name)
   mycheck = function(x, key) {

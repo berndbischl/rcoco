@@ -2,6 +2,8 @@
 
 S3method(print,CocoProblem)
 S3method(print,CocoSuite)
+S3method(print,SummaryProblemList)
+S3method(summary,CocoProblemList)
 export(asSmoof)
 export(cocoBenchmarkOptimizer)
 export(cocoCloseSuite)
