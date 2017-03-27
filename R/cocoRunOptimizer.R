@@ -12,7 +12,10 @@
 cocoRunOptimizer = function(optimizer, problem, ...) {
   assertFunction(optimizer, c("fn", "problem"))
   assertClass(problem, "CocoProblem")
+  force(problem)
   fn = function(x) {
+    print(problem)
+    print(x)
     cocoEvaluateFunction(problem, x)
   }
   optimizer(fn, problem, ...)
