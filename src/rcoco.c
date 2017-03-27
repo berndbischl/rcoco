@@ -12,11 +12,12 @@ SEXP c_cocoSetLogLevel(SEXP s_level) {
 }
 
 
-SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_folder) {
-  const char* suite_name = STRING_VALUE(s_suite_name);
-  const char* observer_name = STRING_VALUE(s_observer_name);
-  const char* result_folder = STRING_VALUE(s_result_folder);
-  SEXP s_res = PROTECT(NEW_LIST(5));
+/* SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_folder) { */
+SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_suite_instance, SEXP s_suite_options, SEXP result_folder) {
+  /* const char* suite_name = STRING_VALUE(s_suite_name); */
+  /* const char* observer_name = STRING_VALUE(s_observer_name); */
+  /* const char* result_folder = STRING_VALUE(s_result_folder); */
+  SEXP s_res = PROTECT(NEW_LIST(3));
 
   /* Set some options for the observer. See documentation for other options. */
   char *observer_options =
@@ -29,25 +30,26 @@ SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_fold
    * For more details on how to change the default options, see
    * http://numbbo.github.io/coco-doc/C/#suite-parameters and
    * http://numbbo.github.io/coco-doc/C/#observer-parameters. */
-  coco_suite_t* suite = coco_suite(suite_name, "", "");
-  coco_observer_t* observer = coco_observer(observer_name, observer_options);
+  coco_suite_t* suite = coco_suite(STRING_VALUE(s_suite_name), STRING_VALUE(s_suite_instance),
+      STRING_VALUE(s_suite_options));
+  coco_observer_t* observer = coco_observer("bbob", observer_options);
   coco_free_memory(observer_options);
 
-  SET_VECTOR_ELT(s_res, 0, PROTECT(mkString(suite_name))); 
-  SET_VECTOR_ELT(s_res, 1, PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue))); 
-  SET_VECTOR_ELT(s_res, 2, PROTECT(mkString(observer_name))); 
-  SET_VECTOR_ELT(s_res, 3, PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue))); 
+  /* SET_VECTOR_ELT(s_res, 0, PROTECT(mkString(suite_name))); */ 
+  SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue))); 
+  /* SET_VECTOR_ELT(s_res, 2, PROTECT(mkString(observer_name))); */ 
+  SET_VECTOR_ELT(s_res, 1, PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue))); 
 
-  SET_VECTOR_ELT(s_res, 4, PROTECT(ScalarInteger(coco_suite_get_number_of_problems(suite)))); 
+  SET_VECTOR_ELT(s_res, 2, PROTECT(ScalarInteger(coco_suite_get_number_of_problems(suite)))); 
 
-  UNPROTECT(6); /* s_res */
+  UNPROTECT(4); /* s_res */
   return s_res;
 }
 
 SEXP c_cocoCloseSuite(SEXP s_suite) {
-  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
-  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
-  coco_observer_free(observer);
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 0));
+  /* coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3)); */
+  /* coco_observer_free(observer); */
   coco_suite_free(suite);
   return R_NilValue;
 }
@@ -94,20 +96,36 @@ SEXP c_cocoCreateProblem(coco_problem_t* problem) {
 }
 
 SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
-  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
-  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 3));
+  
+  /* Set some options for the observer. See documentation for other options. */
+  /* char *observer_options = */
+      /* coco_strdupf("result_folder: %s " */
+                   /* "algorithm_name: RS " */
+                   /* "algorithm_info: \"A simple random search algorithm\"", ""); */
+
+  /* Initialize the suite and observer.
+   *
+   * For more details on how to change the default options, see
+   * http://numbbo.github.io/coco-doc/C/#suite-parameters and
+   * http://numbbo.github.io/coco-doc/C/#observer-parameters. */
+  
+  /* coco_observer_t* observer = coco_observer("bbob", observer_options); */
+  /* coco_free_memory(observer_options); */
+
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 0));
+  coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
   coco_problem_t* problem = coco_suite_get_next_problem(suite, observer);
   return c_cocoCreateProblem(problem);
 }
 
 SEXP c_cocoSuiteGetProblem(SEXP s_suite, SEXP s_index) {
-  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 0));
   coco_problem_t* problem = coco_suite_get_problem(suite, INTEGER_VALUE(s_index));
   return c_cocoCreateProblem(problem);
 }
 
 SEXP c_cocoSuiteGetProblemByFunDimInst(SEXP s_suite, SEXP s_fun, SEXP s_dim, SEXP s_inst) {
-  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 1));
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 0));
   coco_problem_t* problem = coco_suite_get_problem_by_function_dimension_instance(suite,
     INTEGER_VALUE(s_fun), INTEGER_VALUE(s_dim), INTEGER_VALUE(s_inst));
   return c_cocoCreateProblem(problem);

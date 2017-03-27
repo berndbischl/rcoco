@@ -4,26 +4,64 @@
 \alias{cocoOpenSuite}
 \title{Open a coco problem suite.}
 \usage{
-cocoOpenSuite(suite.name = "bbob", observer.name = "bbob",
-  result.folder = NULL)
+cocoOpenSuite(name = "bbob", year = NULL, instances = NULL, dims = NULL,
+  dim.inds = NULL, fun.inds = NULL, inst.inds = NULL)
 }
 \arguments{
-\item{suite.name}{[\code{character(1)}]\cr
-Name of coco suite.
-Default is \dQuote{bbob}.}
+\item{name}{[\code{character(1)}]\cr
+  Name of coco suite.
+  Default is \dQuote{bbob}.
+\item{either "year: YEAR"}{where YEAR is usually the year of the corresponding BBOB workshop 
+  defining the instances used in that year's benchmark, or}}
 
-\item{observer.name}{[\code{character(1)}]\cr
-Name of observer.
-Default is \dQuote{bbob}.}
+\item{instances}{[\code{integer}]\cr
+Selected instances.
+Default is all.}
 
-\item{result.folder}{[\code{character(1)}]\cr
-Directory for the observer to write the output.
-If the directory already exists the observer will automatically append \dQuote{-001} to the name.
-Default is \dQuote{R_on_<suite.name>}.}
+\item{dims}{[\code{integer}]\cr
+Selected dimensions.
+Default is all.}
+
+\item{dimension.indices}{[\code{integer}]\cr
+Selected dimension indices to keep in the suite, starting at 1.
+Default is all.}
+
+\item{function.indices}{[\code{integer}]\cr
+Selected function indices to keep in the suite, starting at 1.
+Default is all.}
+
+\item{instance.indices}{[\code{integer}]\cr
+Selected instance indices to keep in the suite, starting at 1.
+Default is all.}
 }
 \value{
 [\code{\link{CocoSuite}}].
 }
 \description{
 Must be called before problems can be accessed.
+For further info on suites, instances and options please see \url{http://numbbo.github.io/coco-doc/C/}.
+ 
+The following text is copied from that page (and slightly adapted):
+The suite contains a collection of problems constructed by a Cartesian product of the suite's 
+optimization functions, dimensions and instances. The functions and dimensions are defined by the 
+suite name, while the instances are defined with the suite_instance parameter. 
+The suite can be filtered by specifying functions, dimensions and instances through 
+the \code{suite.options} parameter.
+
+Possible keys and values for \code{suite.instance} are:
+
+\describe{
+\item{either "year: YEAR"}{where YEAR is usually the year of the corresponding BBOB workshop 
+  defining the instances used in that year's benchmark, or} 
+ \item{"instances: VALUES"}{where VALUES is a list or a range m-n of instances to be included 
+   in the suite (starting from 1).}
+}
+
+If both year and instances appear in the \code{suite.instance} string, only the first one 
+is taken into account. 
+If no \code{suite.instance} is given, it defaults to the year of the current BBOB workshop.
+
+
+If both dimensions and dimension_indices appear in the \code{suite.options} string, 
+only the first one is taken into account.
 }

@@ -4,7 +4,7 @@
 #'
 #' The S3 class is a list which stores these elements:
 #' \describe{
-#'   \item{suite.name [\code{character(1)}]}{Name of suite.}
+#'   \item{name [\code{character(1)}]}{Name of suite.}
 #'   \item{suite.extptr}{External pointer to C object of coco suite.}
 #'   \item{observer.name [\code{character(1)}]}{Name of observer.}
 #'   \item{observer.extptr}{External pointer to C object of coco observer.}
@@ -17,9 +17,12 @@ NULL
 #' @export
 print.CocoSuite = function(x, ...) {
   catf("CocoSuite")
-  catf("suite       : %s", x$suite.name)
-  catf("observer    : %s", x$observer.name)
+  catf("suite       : %s", x$name)
   catf("problems    : %i", x$nr.of.problems)
+  catf("dims        : %s", collapse(x$dims))
+  catf("dim.inds    : %s", collapse(x$dim.inds))
+  catf("fun.inds    : %s", collapse(x$fun.inds))
+  catf("inst.inds   : %s", collapse(x$inst.inds))
 }
 
 
