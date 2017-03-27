@@ -12,7 +12,7 @@ cocoSuiteGetNextProblem = function(suite) {
   assertClass(suite, "CocoSuite")
   p = .Call(c_cocoSuiteGetNextProblem, suite)
   if (!is.null(p)) 
-    p = createProblem(p)
+    p = makeCocoProblem(p)
   return(p)
 }
 

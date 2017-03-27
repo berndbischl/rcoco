@@ -23,7 +23,7 @@ cocoSuiteGetProblemByFunDimInst = function(suite, f, d, i) {
   p = .Call(c_cocoSuiteGetProblemByFunDimInst, suite, f, d, i)
   if (is.null(p))
     stopf("No problem found for: f=%i; d=%i, i=%i", f, d, i)
-  createProblem(p) 
+  makeCocoProblem(p) 
 }
 
 
