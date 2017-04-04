@@ -8,7 +8,6 @@ Authors@R: c(person("Bernd", "Bischl", email = "bernd_bischl@gmx.net", role = c(
 URL: https://github.com/berndbischl/rcoco
 BugReports: https://github.com/berndbischl/rcoco/issues
 License: BSD_2_clause + file LICENSE
-Encoding: UTF-8
 Roxygen: list(wrap = FALSE)
 Imports:
     BBmisc,
@@ -22,8 +21,5 @@ Suggests:
     testthat
 LazyData: yes
 ByteCompile: yes
-Encoding: UTF-8
-VignetteBuilder: knitr
 Version: 1.0
-
-
+RoxygenNote: 6.0.1

@@ -12,3 +12,10 @@ test_that("cocoEvaluateFunction", {
   cocoCloseSuite(s)
 })
 
+test_that("cocoEvaluateFunction", {
+  s = cocoOpenSuite()
+  ps = cocoSuiteGetAllProblems(s)
+  cocoCloseSuite(s)
+})
+
+
