@@ -26,7 +26,7 @@ These two files contain the main C code of coco, that we programm against.
 They are located in the "src" subfolder of the R package. They are created like this:
 
 1. Clone [main coco repository](https://github.com/numbbo/coco)
-1. Run ``python do.py build-c` from the console
+1. Run `python do.py build-c` from the console
 1. Copy coco.{h,c} from code-experiments/build/c/ to the src subdir of this repository
 
 
