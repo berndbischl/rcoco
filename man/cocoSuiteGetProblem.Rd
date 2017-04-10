@@ -23,7 +23,6 @@ problem.
 \details{
 The following is copied from coco.c:
 
-
 General schema for encoding/decoding a problem index. Note that the index depends on the number of
 instances a suite is defined with (it should be called a suite-instance-depending index...).
 Also, while functions, instances and dimensions start from 1, function_idx, instance_idx and dimension_idx

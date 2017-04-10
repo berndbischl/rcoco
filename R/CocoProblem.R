@@ -1,7 +1,6 @@
 #' @title Coco problem object.
 #'
 #' @description
-#'
 #' The S3 class is a list which stores these elements:
 #' \describe{
 #'   \item{id [\code{character(1)}]}{Short id of problem.}
@@ -26,9 +25,9 @@ print.CocoProblem = function(x, ...) {
   low = x$lower
   upp = x$upper
   # print single nums if bounds are all the same
-  if (length(unique(low)) == 1L) 
+  if (length(unique(low)) == 1L)
     low = unique(low)
-  if (length(unique(upp)) == 1L) 
+  if (length(unique(upp)) == 1L)
     upp = unique(upp)
   catf("CocoProblem")
   catf("id          : %s", x$id)
@@ -43,4 +42,3 @@ print.CocoProblem = function(x, ...) {
   catf("upper       : %s", collapse(upp))
   catf("init sol    : %s", collapse(x$initial.solution))
 }
-

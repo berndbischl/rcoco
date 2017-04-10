@@ -6,13 +6,12 @@ summary.CocoProblemList = function(object, ...) {
   insts = extractSubList(object, "inst.nr")
   fids = extractSubList(object, "function.ids")
   tab = data.frame(d = dims, fun = funs, inst = insts)
-  dim.range = sort(unique(tab$d))
+  dim.range = sort(unique(dims))
   fun.range = sort(unique(funs))
   inst.range = sort(unique(insts))
-  makeS3Obj("SummaryProblemList", tab = tab, size = size, 
+  makeS3Obj("SummaryProblemList", tab = tab, size = size,
     dim.range = dim.range, fun.range = fun.range, inst.range = inst.range)
 }
-
 
 #' @export
 print.SummaryProblemList = function(x, ...) {

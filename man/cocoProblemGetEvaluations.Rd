@@ -2,7 +2,7 @@
 % Please edit documentation in R/cocoProblemGetEvaluations.R
 \name{cocoProblemGetEvaluations}
 \alias{cocoProblemGetEvaluations}
-\title{Get number of fevals that were performed for a coco problem.}
+\title{Get number of function evaluations that were performed for a coco problem.}
 \usage{
 cocoProblemGetEvaluations(problem)
 }

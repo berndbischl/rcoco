@@ -1,8 +1,8 @@
 #' @title Run optimizer on complete coco suite.
-#' 
+#'
 #' @description
 #' The function is mainly called for its side effect of coco logging of results on disk.
-#' It is expected that the caller opens the suite with \code{\link{cocoOpenSuite}} and closes the 
+#' It is expected that the caller opens the suite with \code{\link{cocoOpenSuite}} and closes the
 #' suite with \code{\link{cocoCloseSuite}}.
 #'
 #' @template arg_optimizer
@@ -22,5 +22,3 @@ cocoSuiteRun = function(suite, optimizer, ...) {
   }
   return(res)
 }
-
-

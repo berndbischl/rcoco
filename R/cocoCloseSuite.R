@@ -1,5 +1,5 @@
-#' @title Closes coco problem.
-#' 
+#' @title Close a coco problem suite.
+#'
 #' @description
 #' Must be called after all evaluations on problem are finished.
 #'
@@ -12,5 +12,3 @@ cocoCloseSuite = function(suite) {
   .Call(c_cocoCloseSuite, suite)
   return(invisible(NULL))
 }
-
-

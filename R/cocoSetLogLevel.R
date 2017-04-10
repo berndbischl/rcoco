@@ -1,10 +1,10 @@
 #' @title Set log level for coco platform.
-#' 
+#'
 #' @description
 #' See title
 #'
 #' @param level [\code{character(1)}]\cr
-#'   Log level, can be \dQuote{debug}, \dQuote{info}, \dQuote{warn}, \dQuote{error}.
+#'   Log level, can be \dQuote{debug}, \dQuote{info}, \dQuote{warning}, \dQuote{error}.
 #'   Default is \dQuote{info}.
 #' @template ret_invnull
 #' @export
@@ -14,4 +14,3 @@ cocoSetLogLevel = function(level = "info") {
   .Call(c_cocoSetLogLevel, level)
   invisible(NULL)
 }
-

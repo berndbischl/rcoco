@@ -2,7 +2,7 @@
 % Please edit documentation in R/cocoCloseSuite.R
 \name{cocoCloseSuite}
 \alias{cocoCloseSuite}
-\title{Closes coco problem.}
+\title{Close a coco problem suite.}
 \usage{
 cocoCloseSuite(suite)
 }

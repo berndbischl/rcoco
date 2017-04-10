@@ -1,5 +1,5 @@
 #' @title Get specific coco problem.
-#' 
+#'
 #' @description
 #' NB: If the problem index is too large, coco might just issue a warning and return a different
 #' problem.
@@ -7,14 +7,13 @@
 #' @details
 #' The following is copied from coco.c:
 #'
-#'
 #' General schema for encoding/decoding a problem index. Note that the index depends on the number of
 #' instances a suite is defined with (it should be called a suite-instance-depending index...).
 #' Also, while functions, instances and dimensions start from 1, function_idx, instance_idx and dimension_idx
 #' as well as suite_dep_index start from 0!
-#' 
+#'
 #' Showing an example with 2 dimensions (2, 3), 5 instances (6, 7, 8, 9, 10) and 2 functions (1, 2):
-#' 
+#'
 #' \preformatted{
 #'   index | instance | function | dimension
 #'   ------+----------+----------+-----------
@@ -75,5 +74,3 @@ cocoSuiteGetProblem = function(suite, index) {
   p = .Call(c_cocoSuiteGetProblem, suite, index)
   makeCocoProblem(p)
 }
-
-

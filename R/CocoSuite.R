@@ -1,7 +1,6 @@
 #' @title Coco problem suite object.
 #'
 #' @description
-#'
 #' The S3 class is a list which stores these elements:
 #' \describe{
 #'   \item{name [\code{character(1)}]}{Name of suite.}
@@ -24,5 +23,3 @@ print.CocoSuite = function(x, ...) {
   catf("fun.inds    : %s", collapse(x$fun.inds))
   catf("inst.inds   : %s", collapse(x$inst.inds))
 }
-
-

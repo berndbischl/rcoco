@@ -2,7 +2,7 @@
 % Please edit documentation in R/cocoSuiteGetAllProblems.R
 \name{cocoSuiteGetAllProblems}
 \alias{cocoSuiteGetAllProblems}
-\title{Get all problem of a coco suite.}
+\title{Get all problems of a coco suite.}
 \usage{
 cocoSuiteGetAllProblems(suite)
 }

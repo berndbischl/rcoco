@@ -1,9 +1,8 @@
 #' @title Get specific coco problem.
-#' 
+#'
 #' @description
 #' NB: If the problem index is too large, coco might just issue a warning and return a different
 #' problem.
-#'
 #'
 #' @template arg_suite
 #' @param f [\code{integer(1)}]\cr
@@ -23,8 +22,5 @@ cocoSuiteGetProblemByFunDimInst = function(suite, f, d, i) {
   p = .Call(c_cocoSuiteGetProblemByFunDimInst, suite, f, d, i)
   if (is.null(p))
     stopf("No problem found for: f=%i; d=%i, i=%i", f, d, i)
-  makeCocoProblem(p) 
+  makeCocoProblem(p)
 }
-
-
-

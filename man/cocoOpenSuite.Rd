@@ -9,7 +9,7 @@ cocoOpenSuite(name = "bbob", year = 2017L, instances = NULL,
 }
 \arguments{
 \item{name}{[\code{character(1)}]\cr
-Name of coco suite.
+Name of coco problem suite.
 Default is \dQuote{bbob}.}
 
 \item{year}{[\code{integer(1)}]\cr
@@ -24,15 +24,15 @@ Default is all instances chosen in BBOB in \code{year}.}
 Selected dimensions.
 Default is all.}
 
-\item{dimension.indices}{[\code{integer}]\cr
+\item{dim.inds}{[\code{integer}]\cr
 Selected dimension indices to keep in the suite, starting from 1.
 Default is all.}
 
-\item{function.indices}{[\code{integer}]\cr
+\item{fun.inds}{[\code{integer}]\cr
 Selected function indices to keep in the suite, starting from 1.
 Default is all.}
 
-\item{instance.indices}{[\code{integer}]\cr
+\item{inst.inds}{[\code{integer}]\cr
 Selected instance indices to keep in the suite, starting from 1.
 Default is all.}
 }
@@ -42,17 +42,17 @@ Default is all.}
 \description{
 Must be called before problems can be accessed.
 For further info on suites, instances and options please see \url{http://numbbo.github.io/coco-doc/C/}.
- 
-The suite contains a collection of problems constructed by a Cartesian product of the suite's 
-optimization functions, dimensions and instances. The functions and dimensions are defined by the 
+
+The suite contains a collection of problems constructed by a Cartesian product of the suite's
+optimization functions, dimensions and instances. The functions and dimensions are defined by the
 suite name, while the instances are defined with the \code{instances} parameter.
 The suite can be filtered by specifying functions, dimensions and instances.
 
-If both year and instances appear in the \code{suite.instance} string, only the first one 
-is taken into account. 
+If both year and instances appear in the \code{suite.instance} string, only the first one
+is taken into account.
 If no \code{suite.instance} is given, it defaults to the year of the current BBOB workshop.
 
 
-If both dimensions and dimension_indices appear in the \code{suite.options} string, 
+If both dimensions and dimension_indices appear in the \code{suite.options} string,
 only the first one is taken into account.
 }

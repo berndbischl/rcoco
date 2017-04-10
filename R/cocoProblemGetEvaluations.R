@@ -1,5 +1,5 @@
-#' @title Get number of fevals that were performed for a coco problem.
-#' 
+#' @title Get number of function evaluations that were performed for a coco problem.
+#'
 #' @description
 #' See title
 #'
@@ -11,4 +11,3 @@ cocoProblemGetEvaluations = function(problem) {
   assertClass(problem, "CocoProblem")
   .Call(c_cocoProblemGetEvaluations, problem)
 }
-

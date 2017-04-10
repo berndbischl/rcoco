@@ -1,5 +1,5 @@
-#' @title Get all problem of a coco suite.
-#' 
+#' @title Get all problems of a coco suite.
+#'
 #' @description
 #' Iterates through all problems by calling \code{\link{cocoSuiteGetNextProblem}}.
 #'
@@ -14,5 +14,3 @@ cocoSuiteGetAllProblems = function(suite) {
   }
   addClasses(problems, "CocoProblemList")
 }
-
-

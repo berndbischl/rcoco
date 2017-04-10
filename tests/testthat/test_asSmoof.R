@@ -13,7 +13,7 @@ test_that("asSmoof", {
   expect_equal(getUpperBoxConstraints(f), p$upper, check.names = FALSE)
 
   x = c(0, 0)
-  y1 = cocoEvaluateFunction(p, x) 
+  y1 = cocoEvaluateFunction(p, x)
   y2 = f(x)
   expect_equal(y1, y2)
   cocoCloseSuite(s)
