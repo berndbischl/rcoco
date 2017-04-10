@@ -156,3 +156,11 @@ SEXP c_cocoProblemIsFinalTargetHit(SEXP s_problem) {
   UNPROTECT(1); /* s_res */
   return s_res;
 }
+
+SEXP c_cocoSuiteGetNumberOfProblems(SEXP s_suite) {
+  coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 0));
+  size_t nproblems = coco_suite_get_number_of_problems(suite);
+  SEXP s_res = PROTECT(ScalarInteger(nproblems));
+  UNPROTECT(1); /* s_res */
+  return s_res;
+}
