@@ -5,7 +5,8 @@ test_that("cocoRunOptimizer", {
   # global opt y is ca 79.78
   s = cocoOpenSuite()
   p = cocoSuiteGetNextProblem(s)
-  r = cocoRunOptimizer(cocoWrapperOptimNelderMead, p, control = list(maxit = 10L))
+  r = cocoRunOptimizer(cocoWrapperOptimNelderMead, p, control = list(maxit = 100L))
+  expect_flag(cocoProblemIsFinalTargetHit(p))
   expect_lt(r$value, 80)
   cocoCloseSuite(s)
 })

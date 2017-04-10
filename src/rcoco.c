@@ -35,12 +35,12 @@ SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_suite_instance, SEXP s_suite_opti
   coco_observer_t* observer = coco_observer("bbob", observer_options);
   coco_free_memory(observer_options);
 
-  /* SET_VECTOR_ELT(s_res, 0, PROTECT(mkString(suite_name))); */ 
-  SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue))); 
-  /* SET_VECTOR_ELT(s_res, 2, PROTECT(mkString(observer_name))); */ 
-  SET_VECTOR_ELT(s_res, 1, PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue))); 
+  /* SET_VECTOR_ELT(s_res, 0, PROTECT(mkString(suite_name))); */
+  SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue)));
+  /* SET_VECTOR_ELT(s_res, 2, PROTECT(mkString(observer_name))); */
+  SET_VECTOR_ELT(s_res, 1, PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue)));
 
-  SET_VECTOR_ELT(s_res, 2, PROTECT(ScalarInteger(coco_suite_get_number_of_problems(suite)))); 
+  SET_VECTOR_ELT(s_res, 2, PROTECT(ScalarInteger(coco_suite_get_number_of_problems(suite))));
 
   UNPROTECT(4); /* s_res */
   return s_res;
@@ -61,11 +61,11 @@ SEXP c_cocoCreateProblem(coco_problem_t* problem) {
   const char* p_id = coco_problem_get_id(problem);
   size_t p_index = coco_problem_get_suite_dep_index(problem);
   const char* p_name = coco_problem_get_name(problem);
-  size_t p_nrobjs = coco_problem_get_number_of_objectives(problem); 
+  size_t p_nrobjs = coco_problem_get_number_of_objectives(problem);
   size_t p_dim = coco_problem_get_dimension(problem);
   size_t p_nconstraints = coco_problem_get_number_of_constraints(problem);
   SEXP s_res = PROTECT(NEW_LIST(10));
-  SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue))); 
+  SET_VECTOR_ELT(s_res, 0, PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue)));
   SET_VECTOR_ELT(s_res, 1, PROTECT(mkString(p_id)));
   SET_VECTOR_ELT(s_res, 2, PROTECT(ScalarInteger(p_index)));
   SET_VECTOR_ELT(s_res, 3, PROTECT(mkString(p_name)));
@@ -90,13 +90,13 @@ SEXP c_cocoCreateProblem(coco_problem_t* problem) {
   double* initsol = REAL(s_initsol);
   coco_problem_get_initial_solution(problem, initsol);
   SET_VECTOR_ELT(s_res, 9, s_initsol);
- 
+
   UNPROTECT(11); /* s_res */
   return s_res;
 }
 
 SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
-  
+
   /* Set some options for the observer. See documentation for other options. */
   /* char *observer_options = */
       /* coco_strdupf("result_folder: %s " */
@@ -108,7 +108,7 @@ SEXP c_cocoSuiteGetNextProblem(SEXP s_suite) {
    * For more details on how to change the default options, see
    * http://numbbo.github.io/coco-doc/C/#suite-parameters and
    * http://numbbo.github.io/coco-doc/C/#observer-parameters. */
-  
+
   /* coco_observer_t* observer = coco_observer("bbob", observer_options); */
   /* coco_free_memory(observer_options); */
 
@@ -138,18 +138,21 @@ SEXP c_cocoProblemGetEvaluations(SEXP s_problem) {
   UNPROTECT(1); /* s_res */
   return s_res;
 }
-    
-
 
 SEXP c_cocoEvaluateFunction(SEXP s_problem, SEXP s_x) {
   coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
   size_t p_nrobjs = INTEGER_VALUE(VECTOR_ELT(s_problem, 4));
   double* x = REAL(s_x);
   SEXP s_y = PROTECT(allocVector(REALSXP, p_nrobjs));
-  double* y = REAL(s_y);   
+  double* y = REAL(s_y);
   coco_evaluate_function(problem, x, y);
   UNPROTECT(1); /* s_x */
   return s_y;
 }
 
-
+SEXP c_cocoProblemIsFinalTargetHit(SEXP s_problem) {
+  coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
+  SEXP s_res = PROTECT(ScalarLogical(coco_problem_final_target_hit(problem)));
+  UNPROTECT(1); /* s_res */
+  return s_res;
+}
