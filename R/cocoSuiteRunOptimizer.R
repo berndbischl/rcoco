@@ -5,8 +5,8 @@
 #' It is expected that the caller opens the suite with \code{\link{cocoOpenSuite}} and closes the
 #' suite with \code{\link{cocoCloseSuite}}.
 #'
-#' @template arg_optimizer
 #' @template arg_suite
+#' @template arg_optimizer
 #' @template arg_observer
 #' @param \ldots [any]\cr
 #'   Passed down to \code{optimizer}.
@@ -24,10 +24,10 @@
 #'   optim(par = problem$initial.solution, fn = fn, method = "Nelder-Mead", ...)
 #' }
 #'
-#' res = cocoBenchmarkOptimizer(cocoOptimizerNelderMead, suite, observer)
+#' res = cocoSuiteRunOptimizer(suite, cocoOptimizerNelderMead, observer)
 #' cocoCloseSuite(suite)
 #' @export
-cocoBenchmarkOptimizer = function(optimizer, suite, observer, ...) {
+cocoSuiteRunOptimizer = function(suite, optimizer, observer, ...) {
   assertFunction(optimizer, c("fn", "problem"))
   assertClass(suite, "CocoSuite")
   assertClass(observer, "CocoObserver")

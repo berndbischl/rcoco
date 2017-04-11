@@ -20,10 +20,10 @@ opt2 = function(fn, problem, ...) {
 
 
 observer = cocoInitObserver("bbob", result.folder = "neldermead")
-res = cocoBenchmarkOptimizer(opt1, suite, observer)
+res = cocoSuiteRunOptimizer(suite, opt1, observer)
 
 observer = cocoInitObserver("bbob", result.folder = "bfgs")
-res = cocoBenchmarkOptimizer(opt2, suite, observer)
+res = cocoSuiteRunOptimizer(suite, opt2, observer)
 
 cocoCloseSuite(suite)
 

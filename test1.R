@@ -18,7 +18,7 @@ problems = cocoSuiteGetAllProblems(s)
 nprobs = cocoSuiteGetNumberOfProblems(s)
 catf("problems in suite: %i", nprobs)
 
-res = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, s, obs)
+res = cocoSuiteRunOptimizer(s, cocoWrapperOptimNelderMead, obs)
 print(head(names(res)))
 stop(123)
 
@@ -48,7 +48,7 @@ cocoCloseSuite(s)
 
 stop(8473974)
 #print(cocoSuiteGetNumberOfProblems(s))
-z = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, s, obs)
+z = cocoSuiteRunOptimizer(cocoWrapperOptimNelderMead, s, obs)
 print(z)
 
 # s = cocoOpenSuite()
