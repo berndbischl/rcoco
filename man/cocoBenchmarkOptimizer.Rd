@@ -16,8 +16,8 @@ The dotargs \code{...} are further arguments from above that should be passed on
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
 
-\item{observer}{[\code{CocoObserver}]\cr
-Coco observer generated via \code{\link{cocoInitObserver}}.}
+\item{observer}{[\code{character(1)}]\cr
+Coco observer.}
 
 \item{\ldots}{[any]\cr
 Passed down to \code{optimizer}.}
