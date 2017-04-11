@@ -4,7 +4,7 @@
 \alias{cocoBenchmarkOptimizer}
 \title{Run optimizer on complete coco suite.}
 \usage{
-cocoBenchmarkOptimizer(optimizer, suite, ...)
+cocoBenchmarkOptimizer(optimizer, suite, observer, ...)
 }
 \arguments{
 \item{optimizer}{[\code{function(fn, problem, ...)}]\cr
@@ -15,6 +15,9 @@ The dotargs \code{...} are further arguments from above that should be passed on
 
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
+
+\item{observer}{[\code{character(1)}]\cr
+Coco observer.}
 
 \item{\ldots}{[any]\cr
 Passed down to \code{optimizer}.}

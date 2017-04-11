@@ -7,6 +7,7 @@
 #'
 #' @template arg_optimizer
 #' @template arg_suite
+#' @template arg_observer
 #' @param \ldots [any]\cr
 #'   Passed down to \code{optimizer}.
 #' @return [\code{list}]. List of results for individual \code{\link{cocoRunOptimizer}} calls.
@@ -22,13 +23,20 @@
 #'   z = cocoBenchmarkOptimizer(cocoOptimizerNelderMead, suite)
 #'   cocoCloseSuite(suite)
 #' @export
-cocoBenchmarkOptimizer = function(optimizer, suite, ...) {
+cocoBenchmarkOptimizer = function(optimizer, suite, observer, ...) {
   assertFunction(optimizer, c("fn", "problem"))
   assertClass(suite, "CocoSuite")
-  res = list()
-  while(!is.null(problem <- cocoSuiteGetNextProblem(suite))) {
-    r = cocoRunOptimizer(optimizer, problem, ...)
-    res[[problem$id]] = r
-  }
+  assertClass(observer, "CocoObserver")
+
+  problems = cocoSuiteGetAllProblems(suite, observer)
+  n = length(problems)
+  problem.inds = BBmisc::extractSubList(problems, "index")
+
+  res = parallelMap(function(ind) {
+    problem = cocoSuiteGetProblem(s, ind)
+    cocoRunOptimizer(optimizer, problem, ...)
+  }, problem.inds)
+  names(res) = names(problems)
+
   return(res)
 }
