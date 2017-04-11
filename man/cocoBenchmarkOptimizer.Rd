@@ -4,7 +4,7 @@
 \alias{cocoBenchmarkOptimizer}
 \title{Run optimizer on complete coco suite.}
 \usage{
-cocoBenchmarkOptimizer(optimizer, suite, ...)
+cocoBenchmarkOptimizer(optimizer, suite, observer, ...)
 }
 \arguments{
 \item{optimizer}{[\code{function(fn, problem, ...)}]\cr
@@ -15,6 +15,9 @@ The dotargs \code{...} are further arguments from above that should be passed on
 
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
+
+\item{observer}{[\code{CocoObserver}]\cr
+Coco observer generated via \code{\link{cocoInitObserver}}.}
 
 \item{\ldots}{[any]\cr
 Passed down to \code{optimizer}.}
@@ -29,13 +32,17 @@ It is expected that the caller opens the suite with \code{\link{cocoOpenSuite}} 
 suite with \code{\link{cocoCloseSuite}}.
 }
 \examples{
-  suite = cocoOpenSuite("bbob", instances = 10:20, dims = c(2, 3), inst.inds = 1:3)
+  # init test suite
+  suite = cocoOpenSuite("bbob", instances = 10:13, dims = c(2, 3), inst.inds = 1:3)
+
+  # set up observer
+  observer = cocoInitObserver("bbob", result.folder = "R_NelderMead")
 
   # simple wrapper for Nelder-Mead
   cocoOptimizerNelderMead = function(fn, problem, ...) {
     optim(par = problem$initial.solution, fn = fn, method = "Nelder-Mead", ...)
   }
 
-  z = cocoBenchmarkOptimizer(cocoOptimizerNelderMead, suite)
+  res = cocoBenchmarkOptimizer(cocoOptimizerNelderMead, suite, observer)
   cocoCloseSuite(suite)
 }

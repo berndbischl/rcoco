@@ -71,12 +71,12 @@ cocoOpenSuite = function(name = "bbob", year = 2017L, instances = NULL, dims = N
   zdi = mycheck(dim.inds, "dimension_indices")
   zfi = mycheck(fun.inds, "function_indices")
   zii = mycheck(inst.inds, "instance_indices")
-  result.folder = sprintf("R_on_%s", name)
-  assertPathForOutput(result.folder, overwrite = TRUE)
+  #result.folder = sprintf("R_on_%s", name)
+  #assertPathForOutput(result.folder, overwrite = TRUE)
   suite.instance = sprintf("%s%s", zy$string, zinsts$string)
   suite.options = sprintf("%s%s%s%s", zdims$string, zdi$string, zfi$string, zii$string)
-  s = .Call(c_cocoOpenSuite, name, suite.instance, suite.options, result.folder)
-  names(s) = c("suite.extptr", "observer.extptr", "nr.of.problems")
+  s = .Call(c_cocoOpenSuite, name, suite.instance, suite.options)#, result.folder)
+  names(s) = c("suite.extptr", "nr.of.problems") #"observer.extptr",
   class(s) = "CocoSuite"
   s$name = name
   s$instances = zinsts$vals

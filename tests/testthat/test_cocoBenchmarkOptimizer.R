@@ -6,7 +6,8 @@ test_that("cocoBenchmarkOptimizer", {
   dims = c(2, 3, 5)
   inst.inds = 1:5
   suite = cocoOpenSuite("bbob", instances = instances, fun.inds = 1:5, dims = dims, inst.inds = inst.inds)
-  res = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, suite)
+  observer = cocoInitObserver("bbob")
+  res = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, suite, observer)
   expect_list(res, types = "list", any.missing = FALSE, all.missing = FALSE)
   expect_length(res, length(fun.inds) * length(dims) * length(inst.inds))
   cocoCloseSuite(suite)

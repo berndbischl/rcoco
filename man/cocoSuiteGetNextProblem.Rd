@@ -4,11 +4,14 @@
 \alias{cocoSuiteGetNextProblem}
 \title{Get next coco problem.}
 \usage{
-cocoSuiteGetNextProblem(suite)
+cocoSuiteGetNextProblem(suite, observer)
 }
 \arguments{
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
+
+\item{observer}{[\code{CocoObserver}]\cr
+Coco observer generated via \code{\link{cocoInitObserver}}.}
 }
 \value{
 problem [\code{\link{CocoProblem}} | \code{NULL}]\cr
