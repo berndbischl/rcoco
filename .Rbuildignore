@@ -1,5 +1,7 @@
 ^.*tar.gz$
 ^.*\.swp$
+^test.R
+^test2.R
 .gitignore
 .Rproj.user
 .travis.yml
