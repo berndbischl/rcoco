@@ -164,3 +164,10 @@ SEXP c_cocoSuiteGetNumberOfProblems(SEXP s_suite) {
   UNPROTECT(1); /* s_res */
   return s_res;
 }
+
+SEXP c_cocoProblemGetBestObservedFValue(SEXP s_problem) {
+  coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
+  SEXP s_res = PROTECT(ScalarReal(coco_problem_get_best_observed_fvalue1(problem)));
+  UNPROTECT(1); /* s_res */
+  return s_res;
+}
