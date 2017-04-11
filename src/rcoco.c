@@ -125,6 +125,11 @@ SEXP c_cocoSuiteGetProblem(SEXP s_suite, SEXP s_index) {
   return c_cocoCreateProblem(problem);
 }
 
+void c_cocoProblemFree(SEXP s_problem) {
+  coco_problem_t* problem = (coco_problem_t*) R_ExternalPtrAddr(VECTOR_ELT(s_problem, 0));
+  coco_problem_free(problem);
+}
+
 SEXP c_cocoSuiteGetProblemByFunDimInst(SEXP s_suite, SEXP s_fun, SEXP s_dim, SEXP s_inst) {
   coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(VECTOR_ELT(s_suite, 0));
   coco_problem_t* problem = coco_suite_get_problem_by_function_dimension_instance(suite,

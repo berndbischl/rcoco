@@ -4,14 +4,11 @@
 \alias{cocoSuiteGetAllProblems}
 \title{Get all problems of a coco suite.}
 \usage{
-cocoSuiteGetAllProblems(suite, observer)
+cocoSuiteGetAllProblems(suite)
 }
 \arguments{
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
-
-\item{observer}{[\code{character(1)}]\cr
-Coco observer.}
 }
 \value{
 [\code{list} of \code{\link{CocoProblem}}]. Named with coco problem ids.

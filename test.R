@@ -1,28 +1,56 @@
 library(roxygen2)
 library(devtools)
+library(parallelMap)
 roxygenize()
 load_all()
 
+unlink("exdata", recursive = TRUE)
 
-cocoSetLogLevel("info")
-# s = cocoOpenSuite()
-# print(s)
-# p = cocoSuiteGetNextProblem(s)
+cocoSetLogLevel("warning")
 
-# s = cocoOpenSuite() 
-# s = cocoOpenSuite(dims = 2) 
-# print(s)
-# s = cocoOpenSuite(dims = c(2, 3, 5, 10, 20), dim.inds = 2, fun.inds = 1, inst.inds = 1) 
-s = cocoOpenSuite(instances = 1:2, dims = 2, fun.inds = 1:2) 
-ps = cocoSuiteGetAllProblems(s)
-spl = summary(ps)
-print(spl)
-# print(ps)
-# print(length(ps))
-# s = cocoOpenSuite("bbob", instances = 10:20, dims = c(2, 3, 5, 10, 20), inst.inds = 1:5) 
-# z = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, s)
-# cocoCloseSuite(s)
-  
+s = cocoOpenSuite("bbob", instances = 10:20, dims = c(2, 3, 5, 10, 20), inst.inds = 1:5)
+print(s)
+
+obs = cocoInitObserver("bbob", result.folder = "RCOCO_result")
+print(obs)
+
+problems = cocoSuiteGetAllProblems(s)
+nprobs = cocoSuiteGetNumberOfProblems(s)
+catf("problems in suite: %i", nprobs)
+
+res = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, s, obs)
+print(head(names(res)))
+stop(123)
+
+
+# res = list()
+# for (ind in problem.inds) {
+#   p = cocoSuiteGetProblem(s, ind)
+#   res[[p$id]] = cocoRunOptimizer(cocoWrapperOptimNelderMead, p)
+# }
+
+cocoCloseSuite(s)
+stop(999)
+
+
+stop(999)
+# p = cocoSuiteGetNextProblem(s, obs)
+# print(p)
+
+# res = cocoRunOptimizer(cocoWrapperOptimNelderMead, p)
+# p = cocoSuiteGetNextProblem(s, obs)
+# print(p)
+res = list()
+while(!is.null(problem <- cocoSuiteGetNextProblem(s, obs))) {
+  res[[problem$id]] = cocoRunOptimizer(cocoWrapperOptimNelderMead, problem)
+}
+cocoCloseSuite(s)
+
+stop(8473974)
+#print(cocoSuiteGetNumberOfProblems(s))
+z = cocoBenchmarkOptimizer(cocoWrapperOptimNelderMead, s, obs)
+print(z)
+
 # s = cocoOpenSuite()
 # ps = cocoSuiteGetAllProblems(s)
 
@@ -51,5 +79,5 @@ print(spl)
 #   y = cocoEvaluateFunction(p, p$initial.solution)
 #   print(y)
 # }
-cocoCloseSuite(s)
+#cocoCloseSuite(s)
 
