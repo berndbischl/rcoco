@@ -13,19 +13,19 @@
 #' @return [\code{list}]. List of results for individual \code{\link{cocoRunOptimizer}} calls.
 #'   List is named with coco problem ids.
 #' @examples
-#'   # init test suite
-#'   suite = cocoOpenSuite("bbob", instances = 10:13, dims = c(2, 3), inst.inds = 1:3)
+#' # init test suite
+#' suite = cocoOpenSuite("bbob", instances = 10:13, dims = c(2, 3), inst.inds = 1:3)
 #'
-#'   # set up observer
-#'   observer = cocoInitObserver("bbob", result.folder = "R_NelderMead")
+#' # set up observer
+#' observer = cocoInitObserver("bbob", result.folder = "R_NelderMead")
 #'
-#'   # simple wrapper for Nelder-Mead
-#'   cocoOptimizerNelderMead = function(fn, problem, ...) {
-#'     optim(par = problem$initial.solution, fn = fn, method = "Nelder-Mead", ...)
-#'   }
+#' # simple wrapper for Nelder-Mead
+#' cocoOptimizerNelderMead = function(fn, problem, ...) {
+#'   optim(par = problem$initial.solution, fn = fn, method = "Nelder-Mead", ...)
+#' }
 #'
-#'   res = cocoBenchmarkOptimizer(cocoOptimizerNelderMead, suite, observer)
-#'   cocoCloseSuite(suite)
+#' res = cocoBenchmarkOptimizer(cocoOptimizerNelderMead, suite, observer)
+#' cocoCloseSuite(suite)
 #' @export
 cocoBenchmarkOptimizer = function(optimizer, suite, observer, ...) {
   assertFunction(optimizer, c("fn", "problem"))
