@@ -4,6 +4,9 @@
 #' The function is mainly called for its side effect of coco logging of results on disk.
 #' It is expected that the caller opens the suite with \code{\link{cocoOpenSuite}} and closes the
 #' suite with \code{\link{cocoCloseSuite}}.
+#' This function can be parallelized via various back-ends, e.g., multicore, via \pkg{parallelMap}.
+#' For details on the usage see the [parallelMap github page](https://github.com/berndbischl/parallelMap#readme),
+#' which offers a nice tutorial and describes all possible back-ends thoroughly.
 #'
 #' @template arg_suite
 #' @template arg_optimizer
