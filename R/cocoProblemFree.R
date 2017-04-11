@@ -1,7 +1,11 @@
-#' @title Free the given coco problem
+#' @title Free the given coco problem.
 #'
 #' @description
-#' See title
+#' This function is needed if one manually iterates over the problems of a
+#' \code{\link{CocoSuite}} and wraps these with a \code{CocoObserver} since the
+#' current observer needs to be closed before a new one is stared. This function
+#' is used internally by \code{\link{cocoBenchmarkOptimizer}} and will rarely be
+#' needed.
 #'
 #' @template arg_problem
 #' @template ret_invnull

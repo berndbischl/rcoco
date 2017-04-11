@@ -2,7 +2,7 @@
 % Please edit documentation in R/cocoProblemFree.R
 \name{cocoProblemFree}
 \alias{cocoProblemFree}
-\title{Free the given coco problem}
+\title{Free the given coco problem.}
 \usage{
 cocoProblemFree(problem)
 }
@@ -14,5 +14,9 @@ Coco problem.}
 [\code{invisible(NULL)}]
 }
 \description{
-See title
+This function is needed if one manually iterates over the problems of a
+\code{\link{CocoSuite}} and wraps these with a \code{CocoObserver} since the
+current observer needs to be closed before a new one is stared. This function
+is used internally by \code{\link{cocoBenchmarkOptimizer}} and will rarely be
+needed.
 }

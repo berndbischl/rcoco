@@ -1,7 +1,10 @@
 #' @title Init coco observer.
 #'
 #' @description
-#' See title
+#' An observer is basically a wrapper around a \code{\link{CocoProblem}}, which
+#' keeps track of the optimization process. In order to use the coco postprocessing
+#' functionality an observer is mandatory.
+#'
 #' @param observer.name [\code{character(1)}]\cr
 #'   Name of observer.
 #'   Default is \dQuote{bbob}.
