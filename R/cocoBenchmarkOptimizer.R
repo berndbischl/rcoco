@@ -39,10 +39,11 @@ cocoBenchmarkOptimizer = function(optimizer, suite, observer, ...) {
     p = problems[[id]]
     # wrap function with observer
     p = cocoProblemAddObserver(p, observer)
-    cocoRunOptimizer(cocoWrapperOptimNelderMead, p, ...)
+    opt.res = cocoRunOptimizer(cocoWrapperOptimNelderMead, p, ...)
     # the next line is of utmost importance! Otherwise we get:
     # COCO FATAL ERROR: The current bbob_logger (observer) must be closed before a new one is opened
     cocoProblemFree(p) # free memory of problem (and observer)
+    return(opt.res)
   }, problem.ids)
   names(res) = problem.ids
   return(res)
