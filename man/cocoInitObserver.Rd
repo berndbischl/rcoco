@@ -5,7 +5,10 @@
 \title{Init coco observer.}
 \usage{
 cocoInitObserver(observer.name = "bbob", algorithm.name = "R_algo",
-  algorithm.info = "", result.folder = paste0("R_on_", observer.name))
+  algorithm.info = NULL, number.target.triggers = 100L,
+  target.precision = 1e+08, number.evaluation.triggers = 20,
+  base.evaluation.triggers = c(1, 2, 5), precision.x = 8L,
+  precision.f = 15L, result.folder = paste0("R_on_", observer.name))
 }
 \arguments{
 \item{observer.name}{[\code{character(1)}]\cr
@@ -13,12 +16,37 @@ Name of observer.
 Default is \dQuote{bbob}.}
 
 \item{algorithm.name}{[\code{character(1)}]\cr
-Name of the algorithm.
+Name of the algorithm to be used in output.
 Default is \dQuote{R_algo}.}
 
 \item{algorithm.info}{[\code{character(1)}]\cr
-Optional description of the algorithm.
+Additional information on the algorithm to be used in output.
 Default is the empty character string.}
+
+\item{number.target.triggers}{[\code{integer(1)}]\cr
+The number of targets between each 10**i and 10^(i+1).
+Default is 100.}
+
+\item{target.precision}{[\code{numeric}]\cr
+The number of targets between each 10**i and 10^(i+1).
+Default is 1e8.}
+
+\item{number.evaluation.triggers}{[\code{integer}]\cr
+The number of triggers between each 10**i and 10^(i+1) evaluation number.
+Default is 20.}
+
+\item{base.evaluation.triggers}{[\code{integer}]\cr
+defines the base evaluations used to produce an additional evaluation-based logging.
+The numbers of evaluations that trigger logging are every base_evaluation * dimension * (10^i).
+Default is \code{c(1, 2, 5)}.}
+
+\item{precision.x}{[\code{numeric}]\cr
+Output precision for decision variables.
+Default is 8.}
+
+\item{precision.f}{[\code{numeric}]\cr
+Output precision for function values.
+Default is 15.}
 
 \item{result.folder}{[\code{character(1)}]\cr
 Directory for the observer to write the output.
