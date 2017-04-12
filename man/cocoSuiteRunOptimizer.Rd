@@ -16,7 +16,7 @@ Runs an optimizer on a coco problem, verly likely a mini-wrapper for your optimi
 \code{problem} is a \code{link{CocoProblem}} that the optimizer can access for box constraints, initial solution and other info (or ignore).
 The dotargs \code{...} are further arguments from above that should be passed on to the optimizer.}
 
-\item{observer}{[\code{character(1)}]\cr
+\item{observer}{[\code{\link{CocoObserver}}]\cr
 Coco observer.}
 
 \item{\ldots}{[any]\cr

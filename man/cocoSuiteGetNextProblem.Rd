@@ -10,7 +10,7 @@ cocoSuiteGetNextProblem(suite, observer)
 \item{suite}{[\code{\link{CocoSuite}}]\cr
 Coco problem suite.}
 
-\item{observer}{[\code{character(1)}]\cr
+\item{observer}{[\code{\link{CocoObserver}}]\cr
 Coco observer.}
 }
 \value{

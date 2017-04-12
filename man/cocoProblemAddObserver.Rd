@@ -10,7 +10,7 @@ cocoProblemAddObserver(problem, observer)
 \item{problem}{[\code{\link{CocoProblem}}]\cr
 Coco problem.}
 
-\item{observer}{[\code{character(1)}]\cr
+\item{observer}{[\code{\link{CocoObserver}}]\cr
 Coco observer.}
 }
 \value{

@@ -17,9 +17,9 @@
 #' @param number.target.triggers [\code{integer(1)}]\cr
 #'   The number of targets between each 10**i and 10^(i+1).
 #'   Default is 100.
-#' @param target.precision [\code{numeric}]\cr
-#'   The number of targets between each 10**i and 10^(i+1).
-#'   Default is 1e8.
+#' @param target.precision [\code{numeric(1)}]\cr
+#'   Pprecision used for targets
+#'   Default is 1e-8.
 #' @param number.evaluation.triggers [\code{integer}]\cr
 #'   The number of triggers between each 10**i and 10^(i+1) evaluation number.
 #'   Default is 20.
@@ -37,15 +37,15 @@
 #'   Directory for the observer to write the output.
 #'   If the directory already exists the observer will automatically append \dQuote{-001} to the name.
 #'   Default is \dQuote{R_on_<observer.name>}.
-#' @return [\code{CocoObserver}].
+#' @return [\code{\link{CocoObserver}}].
 #' @export
 #' @useDynLib rcoco c_cocoInitObserver
 cocoInitObserver = function(observer.name = "bbob",
   algorithm.name = "R_algo", algorithm.info = NULL,
   number.target.triggers = 100L,
-  target.precision = 1e8,
-  number.evaluation.triggers = 20,
-  base.evaluation.triggers = c(1, 2, 5),
+  target.precision = 1e-8,
+  number.evaluation.triggers = 20L,
+  base.evaluation.triggers = c(1L, 2L, 5L),
   precision.x = 8L,
   precision.f = 15L,
   result.folder = paste0("R_on_", observer.name)
@@ -80,6 +80,7 @@ cocoInitObserver = function(observer.name = "bbob",
 
   observer = .Call(c_cocoInitObserver, observer.name, observer.options2)
   names(observer) = "observer.extptr"
+  observer$observer.name = observer.name
   observer = c(observer, observer.options)
   class(observer) = "CocoObserver"
   return(observer)
