@@ -4,7 +4,7 @@
 \alias{cocoSuiteRunOptimizer}
 \title{Run optimizer on complete coco suite.}
 \usage{
-cocoSuiteRunOptimizer(suite, optimizer, observer, ...)
+cocoSuiteRunOptimizer(suite, optimizer, observer, show.info = TRUE, ...)
 }
 \arguments{
 \item{suite}{[\code{\link{CocoSuite}}]\cr
@@ -18,6 +18,10 @@ The dotargs \code{...} are further arguments from above that should be passed on
 
 \item{observer}{[\code{\link{CocoObserver}}]\cr
 Coco observer.}
+
+\item{show.info}{[\code{logical(1)}]\cr
+Print short log message for each problem?
+Default is \code{TRUE}.}
 
 \item{\ldots}{[any]\cr
 Passed down to \code{optimizer}.}

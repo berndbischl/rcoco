@@ -11,6 +11,9 @@
 #' @template arg_suite
 #' @template arg_optimizer
 #' @template arg_observer
+#' @param show.info [\code{logical(1)}]\cr
+#'   Print short log message for each problem?
+#'   Default is \code{TRUE}.
 #' @param \ldots [any]\cr
 #'   Passed down to \code{optimizer}.
 #' @return [\code{list}]. List of results for individual \code{\link{cocoRunOptimizer}} calls.
@@ -30,16 +33,19 @@
 #' res = cocoSuiteRunOptimizer(suite, cocoOptimizerNelderMead, observer)
 #' cocoCloseSuite(suite)
 #' @export
-cocoSuiteRunOptimizer = function(suite, optimizer, observer, ...) {
+cocoSuiteRunOptimizer = function(suite, optimizer, observer, show.info = TRUE, ...) {
   assertFunction(optimizer, c("fn", "problem"))
   assertClass(suite, "CocoSuite")
   assertClass(observer, "CocoObserver")
+  assertFlag(show.info)
 
   problems = cocoSuiteGetAllProblems(suite)
   problem.ids = names(problems)
 
   res = parallelMap(function(id) {
     p = problems[[id]]
+    if (show.info)
+      catf("Optimizing function: %s", p$id)
     # wrap function with observer
     p = cocoProblemAddObserver(p, observer)
     opt.res = cocoRunOptimizer(optimizer, p, ...)
