@@ -1,2 +1,2 @@
-#' @param observer [\code{character(1)}]\cr
+#' @param observer [\code{\link{CocoObserver}}]\cr
 #'   Coco observer.
