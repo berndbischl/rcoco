@@ -51,9 +51,13 @@ cocoInitObserver = function(suite,
 
   observer.name = suite$name
 
-  if (is.null(result.folder)) {
-    result.folder = paste(suite$result.folder, algorithm.name, sep = "/")
-  }
+  if (is.null(result.folder))
+    result.folder = file.path(suite$result.folder, algorithm.name)
+
+  # abs.pat
+  #FIXME: normalizePath(result.folder) does not work, since the algorithm.name
+  # subfolder does not exist at this moment.
+  catf("Observer '%s': Storing result to %s", observer.name, result.folder)
 
   assertChoice(observer.name, c("toy", "bbob")) # LATER: "bbob-biobj", "bbob-biobj-ext", "bbob-largescale"
   assertString(algorithm.name)

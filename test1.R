@@ -8,17 +8,17 @@ unlink("exdata", recursive = TRUE)
 
 cocoSetLogLevel("warning")
 
-s = cocoOpenSuite("bbob", instances = 10:20, dims = c(2, 3, 5, 10, 20), inst.inds = 1:5)
+s = cocoOpenSuite("bbob", result.folder = "exdata/", instances = 10:20, dims = c(2, 3, 5, 10, 20), inst.inds = 1:5)
 print(s)
 
-obs = cocoInitObserver("bbob", result.folder = "RCOCO_result")
+obs = cocoInitObserver(s, algorithm.name = "NelderMead")
 print(obs)
 
 problems = cocoSuiteGetAllProblems(s)
 nprobs = cocoSuiteGetNumberOfProblems(s)
 catf("problems in suite: %i", nprobs)
 
-res = cocoSuiteRunOptimizer(s, cocoWrapperOptimNelderMead, obs)
+res = cocoSuiteRunOptimizer(s, cocoWrapperOptimNelderMead, observer = obs)
 print(head(names(res)))
 stop(123)
 

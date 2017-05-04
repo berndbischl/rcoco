@@ -10,11 +10,11 @@
 #'
 #' @template arg_suite
 #' @template arg_optimizer
-#' @param name [\code{character(1)}]\cr
-#'   Name of the \code{optimizer}.
 #' @param observer [\code{\link{CocoObserver}}]\cr
 #'   Optional \code{\link{CocoObserver}}.
 #'   Default to the default observer for the suite, e.g., \dQuote{bbob} for suite \dQuote{bbob}.
+#' @param name [\code{character(1)}]\cr
+#'   Name of the \code{optimizer}.
 #' @param show.info [\code{logical(1)}]\cr
 #'   Print short log message for each problem?
 #'   Default is \code{TRUE}.
@@ -37,10 +37,10 @@
 #' res = cocoSuiteRunOptimizer(suite, cocoOptimizerNelderMead, observer)
 #' cocoCloseSuite(suite)
 #' @export
-cocoSuiteRunOptimizer = function(suite, optimizer, name = NULL, observer = NULL, show.info = TRUE, ...) {
+cocoSuiteRunOptimizer = function(suite, optimizer, observer = NULL, name = NULL, show.info = TRUE, ...) {
   assertClass(suite, "CocoSuite")
   assertFunction(optimizer, c("fn", "problem"))
-  assertString(name)
+  assertString(name, null.ok = TRUE)
   assertFlag(show.info)
 
   if (is.null(observer)) {

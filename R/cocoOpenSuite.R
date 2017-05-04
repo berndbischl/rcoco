@@ -72,7 +72,6 @@ cocoOpenSuite = function(name = "bbob", result.folder = "exdata/", year = 2017L,
   zdi = mycheck(dim.inds, "dimension_indices")
   zfi = mycheck(fun.inds, "function_indices")
   zii = mycheck(inst.inds, "instance_indices")
-  #result.folder = sprintf("R_on_%s", name)
   #assertPathForOutput(result.folder, overwrite = TRUE)
   suite.instance = sprintf("%s%s", zy$string, zinsts$string)
   suite.options = sprintf("%s%s%s%s", zdims$string, zdi$string, zfi$string, zii$string)

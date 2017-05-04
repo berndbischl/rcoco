@@ -4,7 +4,7 @@
 \alias{cocoSuiteRunOptimizer}
 \title{Run optimizer on complete coco suite.}
 \usage{
-cocoSuiteRunOptimizer(suite, optimizer, name = NULL, observer = NULL,
+cocoSuiteRunOptimizer(suite, optimizer, observer = NULL, name = NULL,
   show.info = TRUE, ...)
 }
 \arguments{
@@ -17,12 +17,12 @@ Runs an optimizer on a coco problem, verly likely a mini-wrapper for your optimi
 \code{problem} is a \code{link{CocoProblem}} that the optimizer can access for box constraints, initial solution and other info (or ignore).
 The dotargs \code{...} are further arguments from above that should be passed on to the optimizer.}
 
-\item{name}{[\code{character(1)}]\cr
-Name of the \code{optimizer}.}
-
 \item{observer}{[\code{\link{CocoObserver}}]\cr
 Optional \code{\link{CocoObserver}}.
 Default to the default observer for the suite, e.g., \dQuote{bbob} for suite \dQuote{bbob}.}
+
+\item{name}{[\code{character(1)}]\cr
+Name of the \code{optimizer}.}
 
 \item{show.info}{[\code{logical(1)}]\cr
 Print short log message for each problem?
