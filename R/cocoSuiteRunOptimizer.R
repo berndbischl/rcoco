@@ -10,8 +10,10 @@
 #'
 #' @template arg_suite
 #' @template arg_optimizer
+#' @param name [\code{character(1)}]\cr
+#'   Name of the \code{optimizer}.
 #' @param observer [\code{\link{CocoObserver}}]\cr
-#'   Coco observer.
+#'   Optional \code{\link{CocoObserver}}.
 #'   Default to the default observer for the suite, e.g., \dQuote{bbob} for suite \dQuote{bbob}.
 #' @param show.info [\code{logical(1)}]\cr
 #'   Print short log message for each problem?
@@ -35,13 +37,14 @@
 #' res = cocoSuiteRunOptimizer(suite, cocoOptimizerNelderMead, observer)
 #' cocoCloseSuite(suite)
 #' @export
-cocoSuiteRunOptimizer = function(suite, optimizer, observer = NULL, show.info = TRUE, ...) {
-  assertFunction(optimizer, c("fn", "problem"))
+cocoSuiteRunOptimizer = function(suite, optimizer, name = NULL, observer = NULL, show.info = TRUE, ...) {
   assertClass(suite, "CocoSuite")
+  assertFunction(optimizer, c("fn", "problem"))
+  assertString(name)
   assertFlag(show.info)
 
   if (is.null(observer)) {
-    observer = cocoInitObserver(suite$name)
+    observer = cocoInitObserver(suite, algorithm.name = name)
     if (show.info)
       messagef("No observer passed! Initializing default observer '%s' for suite '%s'.\nSaving results to folder: '%s'.",
         suite$name, observer$observer.name, observer$result.folder)

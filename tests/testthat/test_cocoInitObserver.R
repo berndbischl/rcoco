@@ -2,7 +2,8 @@ context("cocoInitObserver")
 
 test_that("cocoInitObserver", {
   expect_error(cocoInitObserver("unknown"))
-  observer = cocoInitObserver("bbob", algorithm.name = "mbo")
+  suite = cocoOpenSuite()
+  observer = cocoInitObserver(suite, algorithm.name = "mbo")
   expect_class(observer, "CocoObserver")
   expect_output(print(observer), "CocoObserver")
   expect_equal(observer$observer.name, "bbob")

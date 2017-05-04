@@ -4,16 +4,15 @@
 \alias{cocoInitObserver}
 \title{Init coco observer.}
 \usage{
-cocoInitObserver(observer.name = "bbob", algorithm.name = "R_algo",
+cocoInitObserver(suite, algorithm.name = "R_algorithm",
   algorithm.info = NULL, number.target.triggers = 100L,
   target.precision = 1e-08, number.evaluation.triggers = 20L,
   base.evaluation.triggers = c(1L, 2L, 5L), precision.x = 8L,
-  precision.f = 15L, result.folder = paste0("R_on_", observer.name))
+  precision.f = 15L, result.folder = NULL)
 }
 \arguments{
-\item{observer.name}{[\code{character(1)}]\cr
-Name of observer.
-Default is \dQuote{bbob}.}
+\item{suite}{[\code{\link{CocoSuite}}]\cr
+Coco problem suite.}
 
 \item{algorithm.name}{[\code{character(1)}]\cr
 Name of the algorithm to be used in output.
@@ -50,8 +49,8 @@ Default is 15.}
 
 \item{result.folder}{[\code{character(1)}]\cr
 Directory for the observer to write the output.
-If the directory already exists the observer will automatically append \dQuote{-001} to the name.
-Default is \dQuote{R_on_<observer.name>}.}
+Default is \dQuote{<suite$result.folder>/<algorithm.name>}.
+If the directory already exists the observer will automatically append \dQuote{-001} to the name.}
 }
 \value{
 [\code{\link{CocoObserver}}].
