@@ -29,7 +29,7 @@
  * It is the authoritative reference, if any function deviates from the documented behavior it is considered
  * a bug. See the function definitions for their detailed descriptions.
  */
- 
+
 #ifndef __COCO_H__
 #define __COCO_H__
 
@@ -922,7 +922,7 @@ struct coco_suite_s {
  * that need these definitions should include this file before any system headers.
  */
 
-#ifndef __COCO_PLATFORM__ 
+#ifndef __COCO_PLATFORM__
 #define __COCO_PLATFORM__
 
 #include <stddef.h>
@@ -2814,7 +2814,7 @@ static int coco_problem_best_parameter_not_zero(const coco_problem_t *problem) {
 int coco_problem_final_target_hit(const coco_problem_t *problem) {
   assert(problem != NULL);
   if (coco_problem_get_number_of_objectives(problem) != 1 ||
-      coco_problem_get_evaluations(problem) < 1) 
+      coco_problem_get_evaluations(problem) < 1)
     return 0;
   if (problem->best_value == NULL)
     return 0;
@@ -3160,7 +3160,7 @@ static void coco_problem_stacked_free(coco_problem_t *problem) {
 
 /**
  * @brief Allocates a problem constructed by stacking two COCO problems.
- * 
+ *
  * This is particularly useful for generating multi-objective problems, e.g. a bi-objective problem from two
  * single-objective problems. The stacked problem must behave like a normal COCO problem accepting the same
  * input. The region of interest in the decision space is defined by parameters smallest_values_of_interest
@@ -4672,17 +4672,17 @@ static double **ls_allocate_blockmatrix(const size_t n, const size_t* block_size
   size_t idx_blocksize;
   size_t i;
   size_t sum_block_sizes;
-  
+
   sum_block_sizes = 0;
   for (i = 0; i < nb_blocks; i++){
     sum_block_sizes += block_sizes[i];
   }
   assert(sum_block_sizes == n);
-  
+
   matrix = (double **) coco_allocate_memory(sizeof(double *) * n);
   idx_blocksize = 0;
   next_bs_change = block_sizes[idx_blocksize];
-  
+
   for (i = 0; i < n; ++i) {
     if (i >= next_bs_change) {
       idx_blocksize++;
@@ -4690,7 +4690,7 @@ static double **ls_allocate_blockmatrix(const size_t n, const size_t* block_size
     }
     current_blocksize=block_sizes[idx_blocksize];
     matrix[i] = coco_allocate_vector(current_blocksize);
-    
+
   }
   return matrix;
 }
@@ -4726,7 +4726,7 @@ static void ls_compute_blockrotation(double **B, long seed, size_t n, size_t *bl
   size_t idx_block, current_blocksize,cumsum_prev_block_sizes, sum_block_sizes;
   size_t nb_entries;
   coco_random_state_t *rng = coco_random_new((uint32_t) seed);
-  
+
   nb_entries = 0;
   sum_block_sizes = 0;
   for (i = 0; i < nb_blocks; i++){
@@ -4734,7 +4734,7 @@ static void ls_compute_blockrotation(double **B, long seed, size_t n, size_t *bl
     nb_entries += block_sizes[i] * block_sizes[i];
   }
   assert(sum_block_sizes == n);
-  
+
   cumsum_prev_block_sizes = 0;/* shift in rows to account for the previous blocks */
   for (idx_block = 0; idx_block < nb_blocks; idx_block++) {
     current_blocksize = block_sizes[idx_block];
@@ -4744,7 +4744,7 @@ static void ls_compute_blockrotation(double **B, long seed, size_t n, size_t *bl
         current_block[i][j] = coco_random_normal(rng);
       }
     }
-    
+
     for (i = 0; i < current_blocksize; i++) {
       for (j = 0; j < i; j++) {
         prod = 0;
@@ -4763,14 +4763,14 @@ static void ls_compute_blockrotation(double **B, long seed, size_t n, size_t *bl
         current_block[k][i] /= sqrt(prod);
       }
     }
-    
+
     /* now fill the block matrix*/
     for (i = 0 ; i < current_blocksize; i++) {
       for (j = 0; j < current_blocksize; j++) {
         B[i + cumsum_prev_block_sizes][j]=current_block[i][j];
       }
     }
-    
+
     cumsum_prev_block_sizes+=current_blocksize;
     /*current_gvect_pos += current_blocksize * current_blocksize;*/
     ls_free_block_matrix(current_block, current_blocksize);
@@ -4785,7 +4785,7 @@ static void ls_compute_blockrotation(double **B, long seed, size_t n, size_t *bl
 static double **ls_copy_block_matrix(const double *const *B, const size_t dimension, const size_t *block_sizes, const size_t nb_blocks) {
   double **dest;
   size_t i, j, idx_blocksize, current_blocksize, next_bs_change;
-  
+
   dest = ls_allocate_blockmatrix(dimension, block_sizes, nb_blocks);
   idx_blocksize = 0;
   current_blocksize = block_sizes[idx_blocksize];
@@ -4864,7 +4864,7 @@ static void ls_compute_truncated_uniform_swap_permutation(size_t *P, long seed, 
     idx_order[i] = (size_t) i;
     ls_random_data[i] = coco_random_uniform(rng);
   }
-  
+
   if (swap_range > 0) {
     /*sort the random data in random_data and arange idx_order accordingly*/
     /*did not use ls_compute_random_permutation to only use the seed once*/
@@ -4898,7 +4898,7 @@ static void ls_compute_truncated_uniform_swap_permutation(size_t *P, long seed, 
       /* generate random permutation instead */
       ls_compute_random_permutation(P, seed, n);
     }
-    
+
   }
   coco_random_free(rng);
 }
@@ -4911,10 +4911,10 @@ static void ls_compute_truncated_uniform_swap_permutation(size_t *P, long seed, 
 size_t *coco_duplicate_size_t_vector(const size_t *src, const size_t number_of_elements) {
   size_t i;
   size_t *dst;
-  
+
   assert(src != NULL);
   assert(number_of_elements > 0);
-  
+
   dst = coco_allocate_vector_size_t(number_of_elements);
   for (i = 0; i < number_of_elements; ++i) {
     dst[i] = src[i];
@@ -4931,7 +4931,7 @@ size_t *ls_get_block_sizes(size_t *nb_blocks, size_t dimension){
   size_t *block_sizes;
   size_t block_size;
   int i;
-  
+
   block_size = coco_double_to_size_t(bbob2009_fmin((double)dimension / 4, 100));
   *nb_blocks = dimension / block_size + ((dimension % block_size) > 0);
   block_sizes = coco_allocate_vector_size_t(*nb_blocks);
@@ -4983,7 +4983,7 @@ static void transform_vars_permblockdiag_evaluate(coco_problem_t *problem, const
   size_t i, j, current_blocksize, first_non_zero_ind;
   transform_vars_permblockdiag_t *data;
   coco_problem_t *inner_problem;
-  
+
   if (coco_vector_contains_nan(x, coco_problem_get_dimension(problem))) {
   	coco_vector_set_to_nan(y, coco_problem_get_number_of_objectives(problem));
   	return;
@@ -4991,7 +4991,7 @@ static void transform_vars_permblockdiag_evaluate(coco_problem_t *problem, const
 
   data = (transform_vars_permblockdiag_t *) coco_problem_transformed_get_data(problem);
   inner_problem = coco_problem_transformed_get_inner_problem(problem);
-  
+
   for (i = 0; i < inner_problem->number_of_variables; ++i) {
     current_blocksize = data->block_size_map[data->P2[i]];/*the block_size is that of the permuted line*/
     first_non_zero_ind = data->first_non_zero_map[data->P2[i]];
@@ -5002,9 +5002,9 @@ static void transform_vars_permblockdiag_evaluate(coco_problem_t *problem, const
     }
     if (data->x[i] > 100 || data->x[i] < -100 || 1) {
     }
-    
+
   }
-  
+
   coco_evaluate_function(inner_problem, data->x, y);
   assert(y[0] + 1e-13 >= problem->best_value[0]);
 }
@@ -5050,7 +5050,7 @@ static coco_problem_t *transform_vars_permblockdiag(coco_problem_t *inner_proble
   data->nb_blocks = nb_blocks;
   data->block_size_map = coco_allocate_vector_size_t(number_of_variables);
   data->first_non_zero_map = coco_allocate_vector_size_t(number_of_variables);
-  
+
   idx_blocksize = 0;
   next_bs_change = block_sizes[idx_blocksize];
   for (i = 0; i < number_of_variables; i++) {
@@ -5062,7 +5062,7 @@ static coco_problem_t *transform_vars_permblockdiag(coco_problem_t *inner_proble
     data->block_size_map[i] = current_blocksize;
     data->first_non_zero_map[i] = next_bs_change - current_blocksize;/* next_bs_change serves also as a cumsum for blocksizes*/
   }
-  
+
   problem = coco_problem_transformed_allocate(inner_problem, data, transform_vars_permblockdiag_free, "transform_vars_permblockdiag");
   problem->evaluate_function = transform_vars_permblockdiag_evaluate;
   return problem;
@@ -5201,17 +5201,17 @@ static coco_problem_t *f_ellipsoid_permblockdiag_bbob_problem_allocate(const siz
   size_t nb_blocks;
   size_t swap_range;
   size_t nb_swaps;
-  
+
   block_sizes = ls_get_block_sizes(&nb_blocks, dimension);
   swap_range = ls_get_swap_range(dimension);
   nb_swaps = ls_get_nb_swaps(dimension);
 
   /*printf("f:%zu  n:%zu  i:%zu  bs:[%zu,...,%zu,%zu]  sR:%zu\n", function, dimension, instance, block_sizes[0], block_sizes[0],block_sizes[nb_blocks-1], swap_range);*/
-  
+
   xopt = coco_allocate_vector(dimension);
   bbob2009_compute_xopt(xopt, rseed, dimension);
   fopt = bbob2009_compute_fopt(function, instance);
-  
+
   B = ls_allocate_blockmatrix(dimension, block_sizes, nb_blocks);
   B_copy = (const double *const *)B;/*TODO: silences the warning, not sure if it prevents the modification of B at all levels*/
 
@@ -5219,7 +5219,7 @@ static coco_problem_t *f_ellipsoid_permblockdiag_bbob_problem_allocate(const siz
   ls_compute_truncated_uniform_swap_permutation(P1, rseed + 2000000, dimension, nb_swaps, swap_range);
   ls_compute_truncated_uniform_swap_permutation(P2, rseed + 3000000, dimension, nb_swaps, swap_range);
 
-  
+
   problem = f_ellipsoid_allocate(dimension);
   problem = transform_vars_oscillate(problem);
   problem = transform_vars_permblockdiag(problem, B_copy, P1, P2, dimension, block_sizes, nb_blocks);
@@ -5234,7 +5234,7 @@ static coco_problem_t *f_ellipsoid_permblockdiag_bbob_problem_allocate(const siz
   coco_free_memory(P1);
   coco_free_memory(P2);
   coco_free_memory(block_sizes);
-  
+
   return problem;
 }
 
@@ -7267,7 +7267,7 @@ static coco_problem_t *f_step_ellipsoid_bbob_problem_allocate(const size_t funct
   bbob2009_compute_rotation(data->rot2, rseed, dimension);
 
   problem->data = data;
-  
+
   /* Compute best solution
    *
    * OME: Dirty hack for now because I did not want to invert the
@@ -7812,7 +7812,7 @@ static double mo_get_distance_to_ROI(const double *normalized_y, const size_t nu
  *
  * @note Because this file is used for automatically retrieving the existing best hypervolume values for
  * pre-processing purposes, its formatting should not be altered. This means that there must be exactly one
- * string per line, the first string appearing on the next line after "static const char..." (no comments 
+ * string per line, the first string appearing on the next line after "static const char..." (no comments
  * allowed in between). Nothing should be placed on the last line (line with };).
  */
 static const char *suite_biobj_best_values_hyp[] = { /* Best values on 29.01.2017 16:30:00, copied from: best values current data, 10.07.2016 */
@@ -9675,7 +9675,7 @@ static const char *suite_biobj_best_values_hyp[] = { /* Best values on 29.01.201
   "bbob-biobj_f21_i10_d05 0.979604346471867",
   "bbob-biobj_f21_i10_d10 0.977275303898697",
   "bbob-biobj_f21_i10_d20 0.972982656541522",
-  "bbob-biobj_f21_i10_d40 0.997081448699098",  
+  "bbob-biobj_f21_i10_d40 0.997081448699098",
   "bbob-biobj_f21_i11_d02 1.0",
   "bbob-biobj_f21_i11_d03 1.0",
   "bbob-biobj_f21_i11_d05 1.0",
@@ -16543,8 +16543,8 @@ static const size_t suite_biobj_ext_instances[][3] = {
     { 13, 27, 28 },
     { 14, 29, 30 },
     { 15, 31, 34 }
-}; 
- 
+};
+
 /**
  * @brief The bbob-biobj-ext suite data type.
  */
@@ -16626,13 +16626,13 @@ static coco_problem_t *suite_biobj_ext_get_problem(coco_suite_t *suite,
                                                const size_t dimension_idx,
                                                const size_t instance_idx) {
 
-  
+
   const size_t num_bbob_functions = 10;
   /* Functions from the bbob suite that are used to construct the original bbob-biobj suite. */
   const size_t bbob_functions[] = { 1, 2, 6, 8, 13, 14, 15, 17, 20, 21 };
   /* All functions from the bbob suite for later use during instance generation. */
   const size_t all_bbob_functions[] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24 };
-  
+
   coco_problem_t *problem1, *problem2, *problem = NULL;
   size_t instance1 = 0, instance2 = 0;
   size_t function1_idx, function2_idx;
@@ -16648,7 +16648,7 @@ static coco_problem_t *suite_biobj_ext_get_problem(coco_suite_t *suite,
 
   double *smallest_values_of_interest = coco_allocate_vector_with_value(dimension, -100);
   double *largest_values_of_interest = coco_allocate_vector_with_value(dimension, 100);
-  
+
   /* First, create all problems from the bbob-biobj suite */
   if (function_idx < 55) {
     /* A "magic" formula to compute the BBOB function index from the bi-objective function index */
@@ -16657,7 +16657,7 @@ static coco_problem_t *suite_biobj_ext_get_problem(coco_suite_t *suite,
             floor(-0.5 + sqrt(0.25 + 2.0 * (double) (55 - function_idx - 1)))) - 1;
     function2_idx = function_idx - (function1_idx * num_bbob_functions) +
         (function1_idx * (function1_idx + 1)) / 2;
-        
+
   } else {
     /* New 41 functions extending the bbob-biobj suite,
      * unfortunately, there is not a simple "magic" formula anymore. */
@@ -16772,9 +16772,9 @@ static coco_problem_t *suite_biobj_ext_get_problem(coco_suite_t *suite,
     } else if (function_idx == 91) {
         function1_idx = 22;
         function2_idx = 23;
-    } 
+    }
   }
-      
+
   /* First search for instance in suite_biobj_ext_instances */
   for (i = 0; i < num_existing_instances; i++) {
     if (suite_biobj_ext_instances[i][0] == instance) {
@@ -16830,17 +16830,17 @@ static coco_problem_t *suite_biobj_ext_get_problem(coco_suite_t *suite,
     instance1 = 2 * instance + 1;
     instance2 = suite_biobj_ext_get_new_instance(suite, instance, instance1, 24, all_bbob_functions);
   }
-  
-  if (function_idx < 55) {  
+
+  if (function_idx < 55) {
     problem1 = coco_get_bbob_problem(bbob_functions[function1_idx], dimension, instance1);
     problem2 = coco_get_bbob_problem(bbob_functions[function2_idx], dimension, instance2);
   } else {
     problem1 = coco_get_bbob_problem(all_bbob_functions[function1_idx], dimension, instance1);
     problem2 = coco_get_bbob_problem(all_bbob_functions[function2_idx], dimension, instance2);
   }
-  
+
   problem = coco_problem_stacked_allocate(problem1, problem2, smallest_values_of_interest, largest_values_of_interest);
-    
+
   problem->suite_dep_function = function;
   problem->suite_dep_instance = instance;
   problem->suite_dep_index = coco_suite_encode_problem_index(suite, function_idx, dimension_idx, instance_idx);
@@ -16865,7 +16865,7 @@ static coco_problem_t *suite_biobj_ext_get_problem(coco_suite_t *suite,
  * instances given should break the search for new instances in
  * suite_biobj_ext_get_new_instance(...).
  */
-static int check_consistency_of_instances(const size_t dimension, 
+static int check_consistency_of_instances(const size_t dimension,
                                           size_t function1,
                                           size_t instance1,
                                           size_t function2,
@@ -16876,7 +16876,7 @@ static int check_consistency_of_instances(const size_t dimension,
   double norm;
   double *smallest_values_of_interest, *largest_values_of_interest;
   const double apart_enough = 1e-4;
-  
+
   problem1 = coco_get_bbob_problem(function1, dimension, instance1);
   problem2 = coco_get_bbob_problem(function2, dimension, instance2);
 
@@ -16919,7 +16919,7 @@ static int check_consistency_of_instances(const size_t dimension,
   return break_search;
 
 }
-  
+
 /**
  * @brief Computes the instance number of the second problem/objective so that the resulting bi-objective
  * problem has more than a single optimal solution.
@@ -16945,7 +16945,7 @@ static size_t suite_biobj_ext_get_new_instance(coco_suite_t *suite,
   size_t d, f1, f2, i;
   size_t function1, function2, dimension;
   const size_t reduced_bbob_functions[] = { 1, 2, 6, 8, 13, 14, 15, 17, 20, 21 };
-  
+
   suite_biobj_ext_t *data;
   assert(suite->data);
   data = (suite_biobj_ext_t *) suite->data;
@@ -16958,40 +16958,40 @@ static size_t suite_biobj_ext_get_new_instance(coco_suite_t *suite,
     /* An instance is "appropriate" if the ideal and nadir points in the objective space and the two
      * extreme optimal points in the decisions space are apart enough for all problems (all dimensions
      * and function combinations); therefore iterate over all dimensions and function combinations  */
-     
+
     for (f1 = 0; (f1 < num_bbob_functions-1) && !break_search; f1++) {
       function1 = bbob_functions[f1];
       for (f2 = f1+1; (f2 < num_bbob_functions) && !break_search; f2++) {
         function2 = bbob_functions[f2];
         for (d = 0; (d < suite->number_of_dimensions) && !break_search; d++) {
           dimension = suite->dimensions[d];
-          
+
           if (dimension == 0) {
             if (!warning_produced)
               coco_warning("suite_biobj_ext_get_new_instance(): remove filtering of dimensions to get generally acceptable instances!");
             warning_produced = 1;
             continue;
           }
-          
+
           break_search = check_consistency_of_instances(dimension, function1, instance1, function2, instance2);
         }
       }
     }
-    
+
     /* Finally, check all functions (f,f) with f in {f1, f2, f6, f8, f13, f14, f15, f17, f20, f21}: */
     for (f1 = 0; (f1 < 10) && !break_search; f1++) {
       function1 = reduced_bbob_functions[f1];
       function2 = reduced_bbob_functions[f1];
       for (d = 0; (d < suite->number_of_dimensions) && !break_search; d++) {
         dimension = suite->dimensions[d];
-        
+
         if (dimension == 0) {
             if (!warning_produced)
               coco_warning("suite_biobj_ext_get_new_instance(): remove filtering of dimensions to get generally acceptable instances!");
             warning_produced = 1;
             continue;
           }
-          
+
         break_search = check_consistency_of_instances(dimension, function1, instance1, function2, instance2);
       }
     }
@@ -17150,7 +17150,7 @@ static coco_suite_t *coco_suite_allocate(const char *suite_name,
  * @brief Sets the dimensions and default instances for the bbob large-scale suite.
  */
 static coco_suite_t *suite_largescale_initialize(void) {
-  
+
   coco_suite_t *suite;
   /*const size_t dimensions[] = { 8, 16, 32, 64, 128, 256,512,1024};*/
   const size_t dimensions[] = { 40, 80, 160, 320, 640, 1280};
@@ -17197,19 +17197,19 @@ static coco_problem_t *suite_largescale_get_problem(coco_suite_t *suite,
                                                     const size_t function_idx,
                                                     const size_t dimension_idx,
                                                     const size_t instance_idx) {
-  
+
   coco_problem_t *problem = NULL;
-  
+
   const size_t function = suite->functions[function_idx];
   const size_t dimension = suite->dimensions[dimension_idx];
   const size_t instance = suite->instances[instance_idx];
-  
+
   problem = coco_get_largescale_problem(function, dimension, instance);
-  
+
   problem->suite_dep_function = function;
   problem->suite_dep_instance = instance;
   problem->suite_dep_index = coco_suite_encode_problem_index(suite, function_idx, dimension_idx, instance_idx);
-  
+
   return problem;
 }
 #line 23 "code-experiments/src/coco_suite.c"
@@ -17752,7 +17752,7 @@ static int coco_suite_is_next_dimension_found(coco_suite_t *suite) {
  * - "bbob-biobj" contains 55 <a href="http://numbbo.github.io/coco-doc/bbob-biobj/functions">bi-objective
  * functions</a> in 6 dimensions (2, 3, 5, 10, 20, 40)
  * - "bbob-biobj-ext" as an extension of "bbob-biobj" contains 92
- * <a href="http://numbbo.github.io/coco-doc/bbob-biobj/functions">bi-objective functions</a> in 6 dimensions 
+ * <a href="http://numbbo.github.io/coco-doc/bbob-biobj/functions">bi-objective functions</a> in 6 dimensions
  * (2, 3, 5, 10, 20, 40)
  * - "bbob-largescale" contains 24 <a href="http://coco.lri.fr/downloads/download15.03/bbobdocfunctions.pdf">
  * single-objective functions</a> in 6 large dimensions (40, 80, 160, 320, 640, 1280)
@@ -18781,7 +18781,7 @@ static void logger_bbob_initialize(logger_bbob_data_t *logger, coco_problem_t *i
   char *tmpc_dim; /* serves to extract the dimension as a char *. There should be a better way of doing this! */
   char indexFile_prefix[10] = "bbobexp"; /* TODO (minor): make the prefix bbobexp a parameter that the user can modify */
   size_t str_length_funId, str_length_dim;
-  
+
   str_length_funId = coco_double_to_size_t(bbob2009_fmax(1, ceil(log10((double) coco_problem_get_suite_dep_function(inner_problem)))));
   str_length_dim = coco_double_to_size_t(bbob2009_fmax(1, ceil(log10((double) inner_problem->number_of_variables))));
   tmpc_funId = coco_allocate_string(str_length_funId);
@@ -21897,7 +21897,7 @@ void coco_error(const char *message, ...) {
   /* fprintf(stderr, "\n"); */
   /* exit(EXIT_FAILURE); */
 
-  char formatted_string[1000L]; 
+  char formatted_string[1000L];
   va_start(args, message);
   vsprintf(formatted_string, message, args);
   va_end(args);
@@ -21914,9 +21914,9 @@ void coco_warning(const char *message, ...) {
   /*   va_end(args); */
   /*   fprintf(stderr, "\n"); */
   /* } */
-  
+
   if (coco_log_level >= COCO_WARNING) {
-    char formatted_string[1000L]; 
+    char formatted_string[1000L];
     va_start(args, message);
     vsprintf(formatted_string, message, args);
     va_end(args);
@@ -21936,7 +21936,7 @@ void coco_info(const char *message, ...) {
   /*   fflush(stdout); */
   /* } */
   if (coco_log_level >= COCO_INFO) {
-    char formatted_string[1000L]; 
+    char formatted_string[1000L];
     va_start(args, message);
     vsprintf(formatted_string, message, args);
     va_end(args);
@@ -21957,9 +21957,9 @@ void coco_info_partial(const char *message, ...) {
   /*   va_end(args); */
   /*   fflush(stdout); */
   /* } */
-  
+
   if (coco_log_level >= COCO_INFO) {
-    char formatted_string[1000L]; 
+    char formatted_string[1000L];
     va_start(args, message);
     vsprintf(formatted_string, message, args);
     va_end(args);
@@ -21980,7 +21980,7 @@ void coco_debug(const char *message, ...) {
   /* } */
 
   if (coco_log_level >= COCO_DEBUG) {
-    char formatted_string[1000L]; 
+    char formatted_string[1000L];
     va_start(args, message);
     vsprintf(formatted_string, message, args);
     va_end(args);

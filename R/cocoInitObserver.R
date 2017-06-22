@@ -53,13 +53,18 @@ cocoInitObserver = function(suite,
 
   observer.name = getDefaultObserver(suite$name)
 
+  # for R output
+  result.folder.prefix = normalizePath("exdata/")
+  if (is.null(result.folder))
+    result.folder.prefix = file.path(result.folder.prefix, suite$result.folder)
+  else
+    result.folder.prefix = file.path(result.folder.prefix, result.folder)
+
+  catf("Observer '%s': Storing results to subfolder of '%s'", observer.name, result.folder.prefix)
+
+  # for the C observer
   if (is.null(result.folder))
     result.folder = file.path(suite$result.folder, algorithm.name)
-
-  # abs.pat
-  #FIXME: normalizePath(result.folder) does not work, since the algorithm.name
-  # subfolder does not exist at this moment.
-  catf("Observer '%s': Storing result to %s", observer.name, result.folder)
 
   assertChoice(observer.name, c("bbob")) # LATER: "bbob-biobj", "bbob-biobj-ext", "bbob-largescale"
   assertString(algorithm.name)
@@ -89,6 +94,10 @@ cocoInitObserver = function(suite,
   }), sep = " ")
 
   observer = .Call(c_cocoInitObserver, observer.name, observer.options2)
+
+  # final.result.folder = .Call("c_cocoObserverGetResultFolder", observer)
+  # catf("Result goes to: %s", final.result.folder)
+
   names(observer) = "observer.extptr"
   observer$observer.name = observer.name
   observer = c(observer, observer.options)
