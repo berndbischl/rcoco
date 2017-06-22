@@ -54,7 +54,7 @@ cocoInitObserver = function(suite,
   observer.name = getDefaultObserver(suite$name)
 
   # for R output
-  result.folder.prefix = normalizePath("exdata/")
+  result.folder.prefix = file.path(getwd(), "exdata/")
   if (is.null(result.folder))
     result.folder.prefix = file.path(result.folder.prefix, suite$result.folder)
   else
