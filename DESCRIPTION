@@ -19,8 +19,11 @@ Imports:
     stats,
     stringi
 Suggests:
-    testthat
+    testthat,
+    knitr,
+    rmarkdown
 LazyData: yes
 ByteCompile: yes
 Version: 1.0
 RoxygenNote: 6.0.1
+VignetteBuilder: knitr
