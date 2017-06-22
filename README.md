@@ -2,7 +2,7 @@
 
 [![CRAN Status Badge](http://www.r-pkg.org/badges/version/rcoco)](https://CRAN.R-project.org/package=rcoco)
 [![CRAN Downloads](http://cranlogs.r-pkg.org/badges/rcoco)](https://cran.rstudio.com/web/packages/rcoco/index.html)
-[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/ecr?color=orange)](http://cran.rstudio.com/web/packages/rcoco/index.html)
+[![CRAN Downloads](http://cranlogs.r-pkg.org/badges/grand-total/rcoco?color=orange)](http://cran.rstudio.com/web/packages/rcoco/index.html)
 [![Build Status](https://travis-ci.org/berndbischl/rcoco.svg?branch=master)](https://travis-ci.org/berndbischl/rcoco)
 
 This is an experimental implementation of an R client package for the [COCO framework](https://github.com/numbbo/coco) and the BBOB benchmark.
