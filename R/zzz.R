@@ -5,4 +5,5 @@
 #' @import smoof
 #' @import stats
 #' @import stringi
+#' @useDynLib rcoco
 NULL
