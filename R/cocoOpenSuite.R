@@ -42,18 +42,10 @@
 #' @param inst.inds [\code{integer}]\cr
 #'   Selected instance indices to keep in the suite, starting from 1.
 #'   Default is all.
-# @param observer.name [\code{character(1)}]\cr
-#   Name of observer.
-#   Default is \dQuote{bbob}.
-# @param result.folder [\code{character(1)}]\cr
-#   Directory for the observer to write the output.
-#   If the directory already exists the observer will automatically append \dQuote{-001} to the name.
-#   Default is \dQuote{R_on_<name>}.
-
 #' @return [\code{\link{CocoSuite}}].
 #' @export
 #' @useDynLib rcoco c_cocoOpenSuite
-cocoOpenSuite = function(name = "bbob", result.folder = "exdata/", year = 2017L, instances = NULL, dims = NULL,
+cocoOpenSuite = function(name = "bbob", result.folder = "cocoexp/", year = 2017L, instances = NULL, dims = NULL,
   dim.inds = NULL, fun.inds = NULL, inst.inds = NULL) {
   assertString(name)
   assertString(result.folder)

@@ -4,7 +4,7 @@
 \alias{cocoOpenSuite}
 \title{Open a coco problem suite.}
 \usage{
-cocoOpenSuite(name = "bbob", result.folder = "exdata/", year = 2017L,
+cocoOpenSuite(name = "bbob", result.folder = "cocoexp/", year = 2017L,
   instances = NULL, dims = NULL, dim.inds = NULL, fun.inds = NULL,
   inst.inds = NULL)
 }

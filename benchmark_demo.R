@@ -12,7 +12,7 @@ runPostProcessing = function(suite) {
   system2(paste0("python -m cocopp ", result.folder))
 }
 
-unlink("exdata", recursive = TRUE)
+#unlink("exdata", recursive = TRUE)
 
 suite = cocoOpenSuite("bbob", instances = 10:12, dims = c(2, 3), inst.inds = 1:3)
 

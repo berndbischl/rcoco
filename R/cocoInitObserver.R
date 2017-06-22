@@ -2,27 +2,28 @@
 #'
 #' @description
 #' An observer is basically a wrapper around a \code{\link{CocoProblem}}, which
-#' keeps track of the optimization process. In order to use the coco postprocessing
+#' keeps track of the optimization process and writes the optimization trace alongside
+#' other information to folder on the hard disc. In order to use the coco postprocessing
 #' functionality an observer is mandatory.
 #'
 #' @template arg_suite
 #' @param algorithm.name [\code{character(1)}]\cr
 #'   Name of the algorithm to be used in output.
-#'   Default is \dQuote{R_algo}.
+#'   Default is \dQuote{R_algorithm}.
 #' @param algorithm.info [\code{character(1)}]\cr
 #'   Additional information on the algorithm to be used in output.
 #'   Default is the empty character string.
 #' @param number.target.triggers [\code{integer(1)}]\cr
-#'   The number of targets between each 10**i and 10^(i+1).
+#'   The number of targets between each 10^i and 10^(i+1).
 #'   Default is 100.
 #' @param target.precision [\code{numeric(1)}]\cr
-#'   Pprecision used for targets
+#'   Precision used for targets.
 #'   Default is 1e-8.
 #' @param number.evaluation.triggers [\code{integer}]\cr
-#'   The number of triggers between each 10**i and 10^(i+1) evaluation number.
+#'   The number of triggers between each 10^i and 10^(i+1) evaluation number.
 #'   Default is 20.
 #' @param base.evaluation.triggers [\code{integer}]\cr
-#'   defines the base evaluations used to produce an additional evaluation-based logging.
+#'   Defines the base evaluations used to produce an additional evaluation-based logging.
 #'   The numbers of evaluations that trigger logging are every base_evaluation * dimension * (10^i).
 #'   Default is \code{c(1, 2, 5)}.
 #' @param precision.x [\code{numeric}]\cr
@@ -33,8 +34,9 @@
 #'   Default is 15.
 #' @param result.folder [\code{character(1)}]\cr
 #'   Directory for the observer to write the output.
-#'   Default is \dQuote{<suite$result.folder>/<algorithm.name>}.
-#'   If the directory already exists the observer will automatically append \dQuote{-001} to the name.
+#'   Default is \dQuote{exdata/<suite$result.folder>/<algorithm.name>}.
+#'   Note: If the subdirectory <algorithm.name> already exists <algorithm.name>-001
+#'   will tried, next <algorithm.name>-002 and so on.
 #' @return [\code{\link{CocoObserver}}].
 #' @export
 #' @useDynLib rcoco c_cocoInitObserver
@@ -49,7 +51,7 @@ cocoInitObserver = function(suite,
   result.folder = NULL
   ) {
 
-  observer.name = suite$name
+  observer.name = getDefaultObserver(suite$name)
 
   if (is.null(result.folder))
     result.folder = file.path(suite$result.folder, algorithm.name)
@@ -59,7 +61,7 @@ cocoInitObserver = function(suite,
   # subfolder does not exist at this moment.
   catf("Observer '%s': Storing result to %s", observer.name, result.folder)
 
-  assertChoice(observer.name, c("toy", "bbob")) # LATER: "bbob-biobj", "bbob-biobj-ext", "bbob-largescale"
+  assertChoice(observer.name, c("bbob")) # LATER: "bbob-biobj", "bbob-biobj-ext", "bbob-largescale"
   assertString(algorithm.name)
   assertString(algorithm.info, null.ok = TRUE)
   assertString(result.folder)
@@ -92,4 +94,14 @@ cocoInitObserver = function(suite,
   observer = c(observer, observer.options)
   class(observer) = "CocoObserver"
   return(observer)
+}
+
+getDefaultObserver = function(suite.name) {
+  default.observers = list(
+    "bbob" = "bbob",
+    "bbob-biobj" = 'bbob-biobj',
+    "bbob-biobj-ext" = 'bbob-biobj',
+    "bbob-constrained" = 'bbob',
+    "bbob-largescale" = 'bbob')
+  return(default.observers[[suite.name]])
 }

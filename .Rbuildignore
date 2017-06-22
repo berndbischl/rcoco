@@ -12,3 +12,4 @@ appveyor
 ^.editorconfig$
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^docs$
