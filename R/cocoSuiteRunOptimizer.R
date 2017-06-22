@@ -27,7 +27,7 @@
 #' suite = cocoOpenSuite("bbob", instances = 10:13, dims = c(2, 3), inst.inds = 1:3)
 #'
 #' # set up observer
-#' observer = cocoInitObserver("bbob", result.folder = "R_NelderMead")
+#' observer = cocoInitObserver(suite, algorithm.name = "R_NelderMead")
 #'
 #' # simple wrapper for Nelder-Mead
 #' cocoOptimizerNelderMead = function(fn, problem, ...) {
