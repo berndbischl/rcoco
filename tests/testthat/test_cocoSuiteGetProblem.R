@@ -2,7 +2,7 @@ context("cocoSuiteGetProblem")
 
 test_that("cocoSuiteGetProblem", {
   s = cocoOpenSuite()
-  o = cocoInitObserver()
+  o = cocoInitObserver(s)
   # iterate normal noiseless bbob, 6 dims (d = 2,5,10,20,40) x 24 funs x 15 function instances
   for (i in 1:(6 * 24 * 15)) {
     p1 = cocoSuiteGetNextProblem(s, o)

@@ -2,7 +2,7 @@ context("cocoEvaluateFunction")
 
 test_that("cocoEvaluateFunction", {
   s = cocoOpenSuite()
-  o = cocoInitObserver("bbob")
+  o = cocoInitObserver(s)
   p = cocoSuiteGetNextProblem(s, o)
   expect_equal(cocoProblemGetEvaluations(p), 0L)
   x = c(0, 0)

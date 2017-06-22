@@ -4,8 +4,8 @@
 \alias{cocoSuiteRunOptimizer}
 \title{Run optimizer on complete coco suite.}
 \usage{
-cocoSuiteRunOptimizer(suite, optimizer, observer = NULL, show.info = TRUE,
-  ...)
+cocoSuiteRunOptimizer(suite, optimizer, observer = NULL, name = NULL,
+  show.info = TRUE, ...)
 }
 \arguments{
 \item{suite}{[\code{\link{CocoSuite}}]\cr
@@ -18,8 +18,11 @@ Runs an optimizer on a coco problem, verly likely a mini-wrapper for your optimi
 The dotargs \code{...} are further arguments from above that should be passed on to the optimizer.}
 
 \item{observer}{[\code{\link{CocoObserver}}]\cr
-Coco observer.
+Optional \code{\link{CocoObserver}}.
 Default to the default observer for the suite, e.g., \dQuote{bbob} for suite \dQuote{bbob}.}
+
+\item{name}{[\code{character(1)}]\cr
+Name of the \code{optimizer}.}
 
 \item{show.info}{[\code{logical(1)}]\cr
 Print short log message for each problem?
@@ -45,7 +48,7 @@ which offers a nice tutorial and describes all possible back-ends thoroughly.
 suite = cocoOpenSuite("bbob", instances = 10:13, dims = c(2, 3), inst.inds = 1:3)
 
 # set up observer
-observer = cocoInitObserver("bbob", result.folder = "R_NelderMead")
+observer = cocoInitObserver(suite, algorithm.name = "R_NelderMead")
 
 # simple wrapper for Nelder-Mead
 cocoOptimizerNelderMead = function(fn, problem, ...) {

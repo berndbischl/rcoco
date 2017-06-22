@@ -19,10 +19,11 @@
 #' If both dimensions and dimension_indices appear in the \code{suite.options} string,
 #' only the first one is taken into account.
 #'
-
 #' @param name [\code{character(1)}]\cr
 #'   Name of coco problem suite.
 #'   Default is \dQuote{bbob}.
+#' @param result.folder [\code{character(1)}]\cr
+#'   Prefix for the folder the actual coco output is written to.
 #' @param year [\code{integer(1)}]\cr
 #'   Year of the corresponding BBOB workshop, defining the instances used in that year's benchmark.
 #'   Default is 2017.
@@ -41,21 +42,13 @@
 #' @param inst.inds [\code{integer}]\cr
 #'   Selected instance indices to keep in the suite, starting from 1.
 #'   Default is all.
-
-# @param observer.name [\code{character(1)}]\cr
-#   Name of observer.
-#   Default is \dQuote{bbob}.
-# @param result.folder [\code{character(1)}]\cr
-#   Directory for the observer to write the output.
-#   If the directory already exists the observer will automatically append \dQuote{-001} to the name.
-#   Default is \dQuote{R_on_<name>}.
-
 #' @return [\code{\link{CocoSuite}}].
 #' @export
 #' @useDynLib rcoco c_cocoOpenSuite
-cocoOpenSuite = function(name = "bbob", year = 2017L, instances = NULL, dims = NULL,
+cocoOpenSuite = function(name = "bbob", result.folder = "cocoexp/", year = 2017L, instances = NULL, dims = NULL,
   dim.inds = NULL, fun.inds = NULL, inst.inds = NULL) {
   assertString(name)
+  assertString(result.folder)
   mycheck = function(x, key) {
     if (is.null(x)) {
       s = ""
@@ -71,7 +64,6 @@ cocoOpenSuite = function(name = "bbob", year = 2017L, instances = NULL, dims = N
   zdi = mycheck(dim.inds, "dimension_indices")
   zfi = mycheck(fun.inds, "function_indices")
   zii = mycheck(inst.inds, "instance_indices")
-  #result.folder = sprintf("R_on_%s", name)
   #assertPathForOutput(result.folder, overwrite = TRUE)
   suite.instance = sprintf("%s%s", zy$string, zinsts$string)
   suite.options = sprintf("%s%s%s%s", zdims$string, zdi$string, zfi$string, zii$string)
@@ -84,5 +76,6 @@ cocoOpenSuite = function(name = "bbob", year = 2017L, instances = NULL, dims = N
   s$dim.inds = zdi$vals
   s$fun.inds = zfi$vals
   s$inst.inds = zii$vals
+  s$result.folder = result.folder
   return(s)
 }

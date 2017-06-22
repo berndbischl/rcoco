@@ -5,12 +5,20 @@
 #include "macros.h"
 #include "coco.h"
 
-
 SEXP c_cocoSetLogLevel(SEXP s_level) {
   coco_set_log_level(STRING_VALUE(s_level));
   return R_NilValue;
 }
 
+// SEXP c_cocoObserverGetResultFolder(SEXP s_observer) {
+//   coco_observer_t* observer = (coco_observer_t*) R_ExternalPtrAddr(VECTOR_ELT(s_observer, 0));
+
+//   char* result_folder = observer->result_folder; //"fuck";
+//   SEXP s_res = PROTECT(mkString(result_folder));
+
+//   UNPROTECT(1); // s_res
+//   return s_res;
+// }
 
 /* SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_observer_name, SEXP s_result_folder) { */
 // SEXP c_cocoOpenSuite(SEXP s_suite_name, SEXP s_suite_instance, SEXP s_suite_options, SEXP result_folder) {

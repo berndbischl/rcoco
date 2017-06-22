@@ -4,13 +4,17 @@
 \alias{cocoOpenSuite}
 \title{Open a coco problem suite.}
 \usage{
-cocoOpenSuite(name = "bbob", year = 2017L, instances = NULL,
-  dims = NULL, dim.inds = NULL, fun.inds = NULL, inst.inds = NULL)
+cocoOpenSuite(name = "bbob", result.folder = "cocoexp/", year = 2017L,
+  instances = NULL, dims = NULL, dim.inds = NULL, fun.inds = NULL,
+  inst.inds = NULL)
 }
 \arguments{
 \item{name}{[\code{character(1)}]\cr
 Name of coco problem suite.
 Default is \dQuote{bbob}.}
+
+\item{result.folder}{[\code{character(1)}]\cr
+Prefix for the folder the actual coco output is written to.}
 
 \item{year}{[\code{integer(1)}]\cr
 Year of the corresponding BBOB workshop, defining the instances used in that year's benchmark.
