@@ -1,0 +1,27 @@
+
+* fix all lintr problems
+
+* start all R funs with RF
+
+* do we have to copy the coco C files
+
+* create makevars -- do we have to? check checkmate
+
+* create unit tests
+
+* funs for optimum values
+
+* enablle fun val logging in coco 
+
+* run coco visualization
+
+* iterate DESC file
+
+* create proper roxygen docs
+
+* do we want or need some arg checks when the coco fun is evaled
+use checmkate C code
+
+
+
+
