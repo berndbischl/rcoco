@@ -1,6 +1,6 @@
 #' @title COCO Problem R6 Class
 #' @description
-#' R6 class for creating and managing COCO optimization problems.
+#' Represents a COCO optimization problem.
 #' @export
 CocoProblem = R6::R6Class("CocoProblem",
   public = list(

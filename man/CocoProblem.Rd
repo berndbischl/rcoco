@@ -4,7 +4,7 @@
 \alias{CocoProblem}
 \title{COCO Problem R6 Class}
 \description{
-R6 class for creating and managing COCO optimization problems.
+Represents a COCO optimization problem.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}

@@ -27,7 +27,7 @@ CocoSuite = R6::R6Class("CocoSuite",
       assert_string(instance)
       assert_string(options, null.ok = TRUE)
       
-      result = .Call("c_coco_suite", name, instance, options, self)
+      .Call("c_coco_suite", name, instance, options, self)
       self$name = name
       self$instance = instance
       self$options = options

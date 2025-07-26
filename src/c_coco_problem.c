@@ -21,12 +21,26 @@ SEXP c_coco_eval(SEXP s_problem, SEXP s_x) {
     return s_y;
 }
 
+
+void problem_finalizer(SEXP extptr) {
+    coco_problem_t *p = R_ExternalPtrAddr(extptr);
+    if (p != NULL) {
+        coco_problem_free(p);
+        R_ClearExternalPtr(extptr);  // avoid double free
+    }
+}
+
 SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
+    // get suite
     SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr");
     const int problem_idx = asInteger(s_problem_idx);
     coco_suite_t* suite = (coco_suite_t*) R_ExternalPtrAddr(s_suite_ptr);
+    // create problem + external pointer
     coco_problem_t *problem = coco_suite_get_problem(suite, problem_idx);
     if (problem == NULL) error("Failed to create COCO problem");
+    SEXP s_problem = PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue));
+    R_RegisterCFinalizer(s_problem, (R_CFinalizer_t) problem_finalizer);
+    // get problem info and set members
     const char* name = coco_problem_get_name(problem);
     const char* id = coco_problem_get_id(problem);
     const char* type = coco_problem_get_type(problem);
@@ -34,19 +48,15 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
     const size_t n_obj = coco_problem_get_number_of_objectives(problem);
     const size_t n_constr = coco_problem_get_number_of_constraints(problem);
     const size_t n_int = coco_problem_get_number_of_integer_variables(problem);
-    // create problem
-    SEXP s_problem = PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue));
-    R_RegisterCFinalizer(s_problem, (R_CFinalizer_t) coco_problem_free);
-
     set_r6_member(s_self, "problem_ptr", s_problem);
-    set_r6_member(s_self, "name", mkString(name));
-    set_r6_member(s_self, "id", mkString(id));
-    set_r6_member(s_self, "type", mkString(type));
-    set_r6_member(s_self, "dim", ScalarInteger(dim));
-    set_r6_member(s_self, "n_obj", ScalarInteger(n_obj));
-    set_r6_member(s_self, "n_constr", ScalarInteger(n_constr));
-    set_r6_member(s_self, "n_int", ScalarInteger(n_int));
-    UNPROTECT(1); // s_problem
+    set_r6_member(s_self, "name", PROTECT(mkString(name)));
+    set_r6_member(s_self, "id", PROTECT(mkString(id)));
+    set_r6_member(s_self, "type", PROTECT(mkString(type)));
+    set_r6_member(s_self, "dim", PROTECT(ScalarInteger(dim)));
+    set_r6_member(s_self, "n_obj", PROTECT(ScalarInteger(n_obj)));
+    set_r6_member(s_self, "n_constr", PROTECT(ScalarInteger(n_constr)));
+    set_r6_member(s_self, "n_int", PROTECT(ScalarInteger(n_int)));
+    UNPROTECT(8); // s_problem, 7x members
     return R_NilValue;
 }
 
