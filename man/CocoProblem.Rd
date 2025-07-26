@@ -26,6 +26,14 @@ Represents a COCO optimization problem.
 \item{\code{n_constr}}{Number of constraints}
 
 \item{\code{n_int}}{Number of integer variables}
+
+\item{\code{lower}}{Lower bounds of decision space}
+
+\item{\code{upper}}{Upper bounds of decision space}
+
+\item{\code{target}}{Target value for the first objective}
+
+\item{\code{fupper}}{Upper bounds of objective space, only for multi-objective problems}
 }
 \if{html}{\out{</div>}}
 }

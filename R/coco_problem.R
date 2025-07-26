@@ -22,6 +22,14 @@ CocoProblem = R6::R6Class("CocoProblem",
     n_constr = NULL,
     #' @field n_int Number of integer variables
     n_int = NULL,
+    #' @field lower Lower bounds of decision space
+    lower = NULL,
+    #' @field upper Upper bounds of decision space
+    upper = NULL,
+    #' @field target Target value for the first objective
+    target = NULL,
+    #' @field fupper Upper bounds of objective space, only for multi-objective problems
+    fupper = NULL,
 
     #' @description
     #' Initialize a new COCO Problem
@@ -53,6 +61,7 @@ CocoProblem = R6::R6Class("CocoProblem",
       catf("* Objectives: %i", self$n_obj)
       catf("* Constraints: %i", self$n_constr)
       catf("* Integer vars: %i", self$n_int)
+      catf("* Target: %g", self$target)
     }
   )
 )

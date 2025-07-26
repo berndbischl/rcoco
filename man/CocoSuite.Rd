@@ -13,8 +13,6 @@ R6 class for creating and managing COCO optimization suites.
 
 \item{\code{instance}}{The instance identifier}
 
-\item{\code{options}}{Additional options for the suite}
-
 \item{\code{suite_ptr}}{Internal pointer to the C suite object}
 
 \item{\code{n_problems}}{Number of problems in the suite}
@@ -37,7 +35,7 @@ R6 class for creating and managing COCO optimization suites.
 \subsection{Method \code{new()}}{
 Initialize a new COCO Suite
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CocoSuite$new(name, instance, options = NULL)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CocoSuite$new(name, instance)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -46,8 +44,6 @@ Initialize a new COCO Suite
 \item{\code{name}}{The name of the suite}
 
 \item{\code{instance}}{The instance identifier}
-
-\item{\code{options}}{Additional options (optional)}
 }
 \if{html}{\out{</div>}}
 }
