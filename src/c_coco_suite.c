@@ -1,3 +1,4 @@
+#define R_NO_REMAP
 #include <R.h>
 #include <Rinternals.h>
 #include <Rmath.h>
@@ -19,11 +20,11 @@ void suite_finalizer(SEXP extptr) {
  SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_options, SEXP s_self) {
     const char* name = CHAR(STRING_ELT(s_name, 0));
     const char* instance = CHAR(STRING_ELT(s_instance, 0));
-    const char* options = isNull(s_options) ? NULL : CHAR(STRING_ELT(s_options, 0));
+    const char* options = Rf_isNull(s_options) ? NULL : CHAR(STRING_ELT(s_options, 0));
  
     // create suite and get number of problems
     coco_suite_t* suite = coco_suite(name, instance, options);
-    if (suite == NULL) error("Failed to create COCO suite");
+    if (suite == NULL) Rf_error("Failed to create COCO suite");
     // make sure free is called when the external pointer is garbage collected
     SEXP s_ptr = PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue));
     R_RegisterCFinalizer(s_ptr, (R_CFinalizer_t) suite_finalizer);

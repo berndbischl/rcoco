@@ -1,4 +1,4 @@
-* do arg checks for suite and suite-instance names
+* do arg checks instance names
 
 * fix all lintr problems
 
@@ -14,10 +14,12 @@
 
 * check cocosuite options. we dont want to subset dims by string
 
+* check in prob-eval if values are in bounds
+
 ------------------------------
 
-* do we want or need some arg checks when the coco fun is evaled
-use checmkate C code
+* suite-options and restrictions to certain funs and dims ---
+--> not sure if we need this for now. use can simply select problems himself
 
 * run coco visualization
 
