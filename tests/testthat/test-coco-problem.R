@@ -9,6 +9,9 @@ test_problem = function(suite, problem_idx) {
   expect_integer(p$n_obj)
   expect_integer(p$n_constr)
   expect_integer(p$n_int)
+  x = runif(p$dim)
+  y = p$eval(x)
+  expect_numeric(y, len = p$n_obj) 
 }
 
 test_problems_first = function(suite) {
@@ -51,4 +54,11 @@ test_that("CocoProblem handles garbage collection properly", {
       gc()
     }
   })
+})
+
+test_that("CocoProblem eval method checks input correctly", {
+  suite = CocoSuite$new("bbob", "year: 2009")
+  p = CocoProblem$new(suite, 1)
+  x = runif(p$dim + 1)
+  expect_error(p$eval(x), "does not match problem dimension")
 })
