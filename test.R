@@ -3,13 +3,17 @@ library(roxygen2)
 roxygenize()
 load_all()
 
-s = CocoSuite$new("bbob", "year: 2009")
+# s = CocoSuite$new("bbob", "year: 2009")
+s = CocoSuite$new("bbob-biobj", "year: 2009")
+  expect_true(inherits(s, "CocoSuite"))
+  expect_equal(s$name, "bbob-biobj")
+
 print(s)
 
-p = CocoProblem$new(s, 1)
+#p = CocoProblem$new(s, 1)
 
-print(p)
-print(p$eval(c(1, 2)))
+#print(p)
+#print(p$eval(c(1, 2)))
 
 # ff = coco_fun(s, 1, 2, 1)
 

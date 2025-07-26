@@ -8,6 +8,14 @@
 #include "rcoco_helpers.h"
 
 
+void suite_finalizer(SEXP extptr) {
+    coco_suite_t *s = R_ExternalPtrAddr(extptr);
+    if (s != NULL) {
+        coco_suite_free(s);
+        R_ClearExternalPtr(extptr);  // avoid double free
+    }
+}
+
  SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_options, SEXP s_self) {
     const char* name = CHAR(STRING_ELT(s_name, 0));
     const char* instance = CHAR(STRING_ELT(s_instance, 0));
@@ -18,7 +26,7 @@
     if (suite == NULL) error("Failed to create COCO suite");
     // make sure free is called when the external pointer is garbage collected
     SEXP s_ptr = PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue));
-    R_RegisterCFinalizer(s_ptr, (R_CFinalizer_t) coco_suite_free);
+    R_RegisterCFinalizer(s_ptr, (R_CFinalizer_t) suite_finalizer);
     size_t n_problems = coco_suite_get_number_of_problems(suite);
     
     // loop through all problems to extract information
@@ -41,7 +49,7 @@
         INTEGER(s_inst)[i] = coco_suite_get_instance_from_instance_index(suite, inst_idx);
     }
 
-    // create data
+    // // create data
     const char* data_col_names[] = {"problem_idx",  "fun_idx", "fun", 
         "dim_idx", "dim", "inst_idx", "inst"};
     SEXP s_data = s_df_create_PROTECT( n_problems, 7, data_col_names);
@@ -52,6 +60,7 @@
     SET_VECTOR_ELT(s_data, 4, s_dim);
     SET_VECTOR_ELT(s_data, 5, s_inst_idx);
     SET_VECTOR_ELT(s_data, 6, s_inst);
+
     // set results
     set_r6_member(s_self, "suite_ptr", s_ptr);
     SEXP s_n_problems = s_int_create_PROTECT((int) n_problems);

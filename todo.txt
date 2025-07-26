@@ -7,21 +7,21 @@
 
 * create makevars -- do we have to? check checkmate
 
-* create unit tests
-
 * funs for optimum values
 
 * enablle fun val logging in coco 
 
-* run coco visualization
+* check cocosuite options. we dont want to subset dims by string
 
-* iterate DESC file
-
-* create proper roxygen docs
+------------------------------
 
 * do we want or need some arg checks when the coco fun is evaled
 use checmkate C code
 
 
+* do arg checks for suite and suite-instance names
 
+* run coco visualization
+
+* iterate DESC file
 
