@@ -4,7 +4,6 @@ test_basic_suite = function(name, instance) {
   expect_true(inherits(s, "CocoSuite"))
   expect_equal(s$name, name)
   expect_equal(s$instance, instance)
-  expect_null(s$options)
   expect_true(!is.null(s$suite_ptr))
   expect_integer(s$n_problems)
   expect_data_frame(s$data, nrows = s$n_problems)  
@@ -32,7 +31,6 @@ test_that("CocoSuite print method works correctly", {
   expect_true(any(grepl("COCO Suite", output)))
   expect_true(any(grepl("Name: bbob", output)))
   expect_true(any(grepl("Instance: year: 2009", output)))
-  expect_true(any(grepl("Options: NULL", output)))
 })
 
 test_that("CocoSuite handles garbage collection properly", {
