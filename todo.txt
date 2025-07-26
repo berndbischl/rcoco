@@ -14,6 +14,10 @@
 
 * check in prob-eval if values are in bounds
 
+* check how observers work and add them
+
+* get target value --> for some reason they have removed this from the header? simply rename the header fun?
+
 ------------------------------
 
 * suite-options and restrictions to certain funs and dims ---
@@ -22,4 +26,22 @@
 * run coco visualization
 
 * iterate DESC file
+
+---------------------
+
+* @brief Returns the number of objective function evaluations done on the problem.
+ */
+size_t coco_problem_get_evaluations(const coco_problem_t *problem);
+
+/**
+ * @brief Returns the number of constraint function evaluations done on the problem.
+ */
+size_t coco_problem_get_evaluations_constraints(const coco_problem_t *problem);
+
+/**
+ * @brief Returns 1 if the final target was hit, 0 otherwise.
+ */
+int coco_problem_final_target_hit(const coco_problem_t *problem);
+
+
 

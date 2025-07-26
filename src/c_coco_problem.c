@@ -41,6 +41,7 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
     if (problem == NULL) Rf_error("Failed to create COCO problem");
     SEXP s_problem = PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue));
     R_RegisterCFinalizer(s_problem, (R_CFinalizer_t) problem_finalizer);
+    
     // get problem info and set members
     const char* name = coco_problem_get_name(problem);
     const char* id = coco_problem_get_id(problem);
@@ -49,6 +50,15 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
     const size_t n_obj = coco_problem_get_number_of_objectives(problem);
     const size_t n_constr = coco_problem_get_number_of_constraints(problem);
     const size_t n_int = coco_problem_get_number_of_integer_variables(problem);
+
+    // get bounds and target
+    const double *lower = coco_problem_get_smallest_values_of_interest(problem);
+    const double *upper = coco_problem_get_largest_values_of_interest(problem);
+    SEXP s_lower = s_vecdbl_create_init_PROTECT(dim, lower);
+    SEXP s_upper = s_vecdbl_create_init_PROTECT(dim, upper);
+    double target = coco_problem_get_final_target_fvalue1(problem);
+    SEXP s_target = PROTECT(Rf_ScalarReal(target));
+
     set_r6_member(s_self, "problem_ptr", s_problem);
     set_r6_member(s_self, "name", PROTECT(Rf_mkString(name)));
     set_r6_member(s_self, "id", PROTECT(Rf_mkString(id)));
@@ -57,7 +67,18 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
     set_r6_member(s_self, "n_obj", PROTECT(Rf_ScalarInteger(n_obj)));
     set_r6_member(s_self, "n_constr", PROTECT(Rf_ScalarInteger(n_constr)));
     set_r6_member(s_self, "n_int", PROTECT(Rf_ScalarInteger(n_int)));
-    UNPROTECT(8); // s_problem, 7x members
+    set_r6_member(s_self, "lower", s_lower);
+    set_r6_member(s_self, "upper", s_upper);
+    set_r6_member(s_self, "target", s_target);
+
+    // get fupper if problem is multi-objective
+    if (n_obj > 1) {
+        const double *fupper = coco_problem_get_largest_fvalues_of_interest(problem);
+        SEXP s_fupper = s_vecdbl_create_init_PROTECT(n_obj, fupper);
+        set_r6_member(s_self, "fupper", s_fupper);
+        UNPROTECT(1); // s_fupper
+    }
+    UNPROTECT(11); // s_problem, 7x members, s_lower, s_upper, s_target
     return R_NilValue;
 }
 

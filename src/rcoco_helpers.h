@@ -20,6 +20,9 @@ SEXP s_vecint_create_PROTECT(int n);
 // create doublevec with n elements
 SEXP s_vecdbl_create_PROTECT(int n);
 
+// create doublevec with n elements and initialize with values
+SEXP s_vecdbl_create_init_PROTECT(int n, const double *values);
+
 // create named list with n elements and names
 SEXP s_list_create_PROTECT(int n, const char** names);
 

@@ -32,6 +32,12 @@ SEXP s_vecdbl_create_PROTECT(int n) {
     return s_res;
 }
 
+SEXP s_vecdbl_create_init_PROTECT(int n, const double *values) {
+    SEXP s_res = PROTECT(allocVector(REALSXP, n));
+    memcpy(REAL(s_res), values, n * sizeof(double));
+    return s_res;
+}
+
 SEXP s_list_create_PROTECT(int n, const char** names) {
     SEXP s_res = PROTECT(allocVector(VECSXP, n));
     set_names(s_res, n, names);

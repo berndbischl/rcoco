@@ -5,9 +5,9 @@ load_all()
 
 s = CocoSuite$new("bbob", "year: 2009")
 print(s)
-p = CocoProblem$new(s, 1)
+p = CocoProblem$new(s, 2000)
 print(p)
-print(p$eval(c(1, 2)))
+#print(p$eval(c(1, 2)))
 
 # ff = coco_fun(s, 1, 2, 1)
 
