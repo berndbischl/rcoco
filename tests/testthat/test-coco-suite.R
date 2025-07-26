@@ -11,10 +11,9 @@ test_basic_suite = function(name, instance) {
 }
 
 test_that("Basic tests for all coco suites", {
-  test_basic_suite("bbob", "year: 2009")
-  test_basic_suite("bbob-biobj", "year: 2009")
-  test_basic_suite("bbob-constrained", "year: 2009")
-  test_basic_suite("bbob-largescale", "year: 2009")
+  for (name in coco_suites) {
+    test_basic_suite(name, "year: 2009")
+  }
 })
 
 # test_that("CocoSuite initialization with options works", {

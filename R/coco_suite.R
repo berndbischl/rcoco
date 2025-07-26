@@ -23,7 +23,7 @@ CocoSuite = R6::R6Class("CocoSuite",
     #' @param instance The instance identifier
     #' @param options Additional options (optional)
     initialize = function(name, instance, options = NULL) {
-      assert_string(name)
+      assert_choice(name, coco_suites)
       assert_string(instance)
       assert_string(options, null.ok = TRUE)
       
