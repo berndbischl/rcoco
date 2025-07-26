@@ -2,8 +2,6 @@
 
 * fix all lintr problems
 
-* start all R funs with RF
-
 * do we have to copy the coco C files
 
 * create makevars -- do we have to? check checkmate
