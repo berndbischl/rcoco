@@ -12,6 +12,10 @@
 
 * in bbotk create a converter for objective
 
+* init and free the noisy functions
+
+* unit test noisy
+
 ------------------------------
 
 * suite-options and restrictions to certain funs and dims ---

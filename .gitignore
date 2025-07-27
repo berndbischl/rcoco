@@ -8,3 +8,4 @@ src/*.o
 exdata
 .RData
 ..Rcheck
+bbob.v15.03
