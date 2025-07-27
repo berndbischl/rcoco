@@ -15,9 +15,15 @@ R6 class for creating and managing COCO optimization suites.
 
 \item{\code{suite_ptr}}{Internal pointer to the C suite object}
 
+\item{\code{observer_ptr}}{Internal pointer to the C observer object}
+
 \item{\code{n_problems}}{Number of problems in the suite}
 
 \item{\code{data}}{Data frame with problem information}
+
+\item{\code{observer_name}}{The name of the COCO observer}
+
+\item{\code{observer_options}}{Options for the COCO observer}
 }
 \if{html}{\out{</div>}}
 }
@@ -35,7 +41,7 @@ R6 class for creating and managing COCO optimization suites.
 \subsection{Method \code{new()}}{
 Initialize a new COCO Suite
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CocoSuite$new(name, instance)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CocoSuite$new(name, instance, observer_name = NULL, observer_options = "")}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -44,6 +50,10 @@ Initialize a new COCO Suite
 \item{\code{name}}{The name of the suite}
 
 \item{\code{instance}}{The instance identifier}
+
+\item{\code{observer_name}}{The name of the COCO observer}
+
+\item{\code{observer_options}}{Options for the COCO observer}
 }
 \if{html}{\out{</div>}}
 }

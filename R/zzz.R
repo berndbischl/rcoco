@@ -14,3 +14,9 @@ coco_suites = c(
     "bbob-biobj-mixint",
     "bbob-constrained"
 )
+
+coco_observers = c(
+    "bbob",
+    "bbob-biobj",
+    "toy"
+)

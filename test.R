@@ -3,11 +3,11 @@ library(roxygen2)
 roxygenize()
 load_all()
 
-s = CocoSuite$new("bbob", "year: 2009")
+s = CocoSuite$new("bbob", "year: 2009", observer_name = "bbob", observer_options = "")
 print(s)
-p = CocoProblem$new(s, 2000)
+p = CocoProblem$new(s, 1)
 print(p)
-#print(p$eval(c(1, 2)))
+print(p$eval(c(1, 2)))
 
 # ff = coco_fun(s, 1, 2, 1)
 
