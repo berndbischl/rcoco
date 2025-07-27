@@ -15,15 +15,6 @@ test_that("Basic tests for all coco suites", {
   }
 })
 
-# test_that("CocoSuite initialization with options works", {
-#   suite = CocoSuite$new("bbob", "year: 2009", "dimensions: 2,3,5,10")
-#   expect_s3_class(suite, "CocoSuite")
-#   expect_equal(suite$name, "bbob")
-#   expect_equal(suite$instance, "year: 2009")
-#   expect_equal(suite$options, "dimensions: 2,3,5,10")
-# })
-
-
 test_that("CocoSuite print method works correctly", {
   suite = CocoSuite$new("bbob", "year: 2009")
   output = capture.output(result <- print(suite))
@@ -39,11 +30,17 @@ test_that("CocoSuite handles garbage collection properly", {
     # Return nothing to allow garbage collection
     return(NULL)
   }
+  create_and_destroy2 = function() {
+    suite = CocoSuite$new("bbob", "year: 2009", observer_name = "bbob", observer_options = "")
+    return(NULL)
+  }
   
   # This should not cause any errors
   expect_no_error({
     for (i in 1:5) {
       create_and_destroy()
+      gc()
+      create_and_destroy2()
       gc()
     }
   })

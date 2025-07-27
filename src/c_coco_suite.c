@@ -13,8 +13,8 @@ void suite_finalizer(SEXP s_suite) {
     SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr");
     SEXP s_observer_ptr = get_r6_member(s_suite, "observer_ptr");
     coco_suite_t *suite = R_ExternalPtrAddr(s_suite_ptr);
-    coco_observer_t *observer = R_ExternalPtrAddr(s_observer_ptr);
-    if (observer != NULL) {
+    if(!Rf_isNull(s_observer_ptr)) {
+        coco_observer_t *observer = R_ExternalPtrAddr(s_observer_ptr);
         coco_observer_free(observer);
         R_ClearExternalPtr(s_observer_ptr);  // avoid double free
     }
@@ -75,8 +75,8 @@ void suite_finalizer(SEXP s_suite) {
     set_r6_member(s_self, "data", s_data);
 
     // create observer -- if requested
-    const char *observer_name = CHAR(STRING_ELT(s_observer_name, 0));
-    if (observer_name != NULL) {
+    if (!Rf_isNull(s_observer_name)) {
+        const char *observer_name = CHAR(STRING_ELT(s_observer_name, 0));
         const char *observer_options = CHAR(STRING_ELT(s_observer_options, 0));
         coco_observer_t *observer = coco_observer(observer_name, observer_options);
         SEXP s_observer_ptr = PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue));
