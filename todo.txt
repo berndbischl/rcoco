@@ -6,13 +6,11 @@
 
 * create makevars -- do we have to? check checkmate
 
-* check in prob-eval if values are in bounds
-
-* make it possible log all evals into an R df
-
 * doc which fields are read-only
 
 * test the coco observer. we probably also need to be able to remove it
+
+* in bbotk create a converter for objective
 
 ------------------------------
 
@@ -26,7 +24,28 @@
 ---------------------
 
 
+❯ checking compiled code ... WARNING
+  File ‘rcoco/libs/rcoco.so’:
+    Found ‘__vsprintf_chk’, possibly from ‘vsprintf’ (C)
+      Object: ‘coco.o’
+    Found ‘exit’, possibly from ‘exit’ (C)
+      Object: ‘coco.o’
+    Found ‘stderr’, possibly from ‘stderr’ (C)
+      Object: ‘coco.o’
+    Found ‘stdout’, possibly from ‘stdout’ (C)
+      Object: ‘coco.o’
+  
+  Compiled code should not call entry points which might terminate R nor
+  write to stdout/stderr instead of to the console, nor use Fortran I/O
+  nor system RNGs nor [v]sprintf.
+  
+  See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
 
+❯ checking compilation flags used ... NOTE
+  Compilation used the following non-portable flag(s):
+    ‘-mno-omit-leaf-frame-pointer’
+
+------------------------------------------------------
 
 /**
 * observer   

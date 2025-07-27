@@ -4,16 +4,16 @@
 \name{rcoco-package}
 \alias{rcoco}
 \alias{rcoco-package}
-\title{rcoco: Black-Box Optimization Toolkit}
+\title{rcoco: R Connector for the COCO Framework for Black-Box Optimization}
 \description{
-Features highly configurable search spaces via the 'paradox' package and optimizes every user-defined objective function. The package includes several optimization algorithms e.g. Random Search, Iterated Racing, Bayesian Optimization (in 'mlr3mbo') and Hyperband (in 'mlr3hyperband'). bbotk is the base package of 'mlr3tuning', 'mlr3fselect' and 'miesmuschel'.
+This Provides access to the COCO framework for black-box optimization. This includes multiple benchmark suites and functions for single and multi-objective optimization. For more information see the COCO website.
 }
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://bbotk.mlr-org.com}
-  \item \url{https://github.com/mlr-org/bbotk}
-  \item Report bugs at \url{https://github.com/mlr-org/bbotk/issues}
+  \item \url{https://github.com/berndbischl/rcoco/}
+  \item \url{https://coco.gforge.inria.fr/}
+  \item Report bugs at \url{https://github.com/berndbischl/rcoco/issues}
 }
 
 }

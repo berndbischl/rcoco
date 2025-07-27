@@ -1,28 +1,20 @@
 Package: rcoco
-Title: Black-Box Optimization Toolkit
-Version: 1.6.0.9000
+Title: R Connector for the COCO Framework for Black-Box Optimization
+Description: This Provides access to the COCO framework for black-box optimization.
+    This includes multiple benchmark suites and functions for single and multi-objective optimization.
+    For more information see the COCO website.
+Version: 0.1
 Authors@R: c(
     person("Bernd", "Bischl", , "bernd_bischl@gmx.net", role =  c("cre", "aut"),
            comment = c(ORCID = "0000-0001-6002-6980"))
   )
-Description: Features highly configurable search spaces via the 'paradox'
-    package and optimizes every user-defined objective function. The
-    package includes several optimization algorithms e.g. Random Search,
-    Iterated Racing, Bayesian Optimization (in 'mlr3mbo') and Hyperband
-    (in 'mlr3hyperband'). bbotk is the base package of 'mlr3tuning',
-    'mlr3fselect' and 'miesmuschel'.
 License: LGPL-3
-URL: https://bbotk.mlr-org.com, https://github.com/mlr-org/bbotk
-BugReports: https://github.com/mlr-org/bbotk/issues
+URL: https://github.com/berndbischl/rcoco/, https://coco.gforge.inria.fr/
+BugReports: https://github.com/berndbischl/rcoco/issues
 Depends:
-    paradox (>= 1.0.0),
-    R (>= 3.1.0)
+    R (>= 4.0.0)
 Imports:
     checkmate (>= 2.0.0),
-    cli,
-    data.table,
-    lgr,
-    methods,
     mlr3misc (>= 0.15.1),
     R6
 Suggests:
