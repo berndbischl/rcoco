@@ -1,4 +1,5 @@
 * do arg checks instance names
+--> check what happens if we use wrong name
 
 * fix all lintr problems
 
@@ -15,6 +16,17 @@
 * init and free the noisy functions
 
 * unit test noisy
+
+* for the noisy fun it is a bit weird what we store in the 
+problem_idx slot
+
+* in the noisy suite the entries for the field are not correct
+
+* if we have multiple noisy suites, will the init code be run multiple times?
+maybe we should do this onload and free on unload?
+
+
+* we have to watch out that noisy funs start with index 0
 
 ------------------------------
 

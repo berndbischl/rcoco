@@ -6,11 +6,15 @@
 extern SEXP c_coco_suite(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP c_coco_problem(SEXP, SEXP, SEXP);
 extern SEXP c_coco_eval(SEXP, SEXP);
+extern SEXP c_coco_suite_noisy(SEXP);
+extern SEXP c_coco_eval_noisy(SEXP, SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
     {"c_coco_suite", (DL_FUNC) &c_coco_suite, 5},
     {"c_coco_problem", (DL_FUNC) &c_coco_problem, 3},
     {"c_coco_eval", (DL_FUNC) &c_coco_eval, 2},
+    {"c_coco_suite_noisy", (DL_FUNC) &c_coco_suite_noisy, 1},   
+    {"c_coco_eval_noisy", (DL_FUNC) &c_coco_eval_noisy, 2},
     {NULL, NULL, 0}
 };
 

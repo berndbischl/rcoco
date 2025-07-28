@@ -5,7 +5,7 @@
 
 #include "bbobStructures.h"
 #include "benchmarksnoisy.h"
-
+#include "benchmarkshelper.h"
 
 #define R_NO_REMAP
 #include <R.h>
@@ -20,11 +20,17 @@
  //     Noisy functions testbed. All functions are ranged in [-5, 5]^DIM."
  
 
+ SEXP c_coco_suite_noisy(SEXP s_suite) {
+    Rprintf("c_coco_suite_noisy: initbenchmarksnoisy\n");
+    initbenchmarkshelper();
+    initbenchmarksnoisy();
+    return R_NilValue;
+}
+
 SEXP c_coco_eval_noisy(SEXP s_fun_idx, SEXP s_x) {
     //if (Rf_length(s_x) != dim) {
     //    Rf_error("Input vector length %d does not match problem dimension %u", Rf_length(s_x), dim);
     //}
-
     int fun_idx = Rf_asInteger(s_fun_idx);
     bbobFunction f = handlesNoisy[fun_idx];
     double *x = REAL(s_x);

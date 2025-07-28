@@ -47,7 +47,7 @@ CocoSuite = R6::R6Class("CocoSuite",
       catf("* Name: %s", self$name)
       catf("* Instance: %s", self$instance)
       catf("* Number of problems: %i", self$n_problems)
-      catf("* Observer name: %s", self$observer_name)
+      catf("* Observer name: %s", ifelse(is.null(self$observer_name), "none", self$observer_name))
       catf("* Observer options: %s", self$observer_options)
       print(head(self$data))
     }
