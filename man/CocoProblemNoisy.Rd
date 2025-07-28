@@ -30,7 +30,7 @@ Represents a COCO optimization problem.
 \subsection{Method \code{new()}}{
 Initialize a new COCO Problem
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CocoProblemNoisy$new(fun_idx, dim)}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CocoProblemNoisy$new(suite, problem_idx)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{
@@ -38,7 +38,9 @@ Initialize a new COCO Problem
 \describe{
 \item{\code{suite}}{The COCO suite}
 
-\item{\code{problem_idx}}{The index of the problem in the suite}
+\item{\code{fun_idx}}{The index of the problem in the suite}
+
+\item{\code{dim}}{The dimension of the problem}
 }
 \if{html}{\out{</div>}}
 }

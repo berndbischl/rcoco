@@ -20,10 +20,22 @@
  //     Noisy functions testbed. All functions are ranged in [-5, 5]^DIM."
  
 
- SEXP c_coco_suite_noisy(SEXP s_suite) {
-    Rprintf("c_coco_suite_noisy: initbenchmarksnoisy\n");
+// Package initialization function
+SEXP c_coco_init_noisy() {
     initbenchmarkshelper();
     initbenchmarksnoisy();
+    return R_NilValue;
+}
+
+// Package cleanup function
+SEXP c_coco_finit_noisy() {
+    finibenchmarkshelper();
+    finibenchmarksnoisy();
+    return R_NilValue;
+}
+
+SEXP c_coco_suite_noisy(SEXP s_suite) {
+    // Initialization is now handled during package load
     return R_NilValue;
 }
 

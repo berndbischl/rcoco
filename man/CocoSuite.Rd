@@ -41,7 +41,12 @@ R6 class for creating and managing COCO optimization suites.
 \subsection{Method \code{new()}}{
 Initialize a new COCO Suite
 \subsection{Usage}{
-\if{html}{\out{<div class="r">}}\preformatted{CocoSuite$new(name, instance, observer_name = NULL, observer_options = "")}\if{html}{\out{</div>}}
+\if{html}{\out{<div class="r">}}\preformatted{CocoSuite$new(
+  name,
+  instance = "year: 2009",
+  observer_name = NULL,
+  observer_options = ""
+)}\if{html}{\out{</div>}}
 }
 
 \subsection{Arguments}{

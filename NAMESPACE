@@ -3,7 +3,6 @@
 export(CocoProblem)
 export(CocoProblemNoisy)
 export(CocoSuite)
-export(CocoSuiteNoisy)
 import(R6)
 import(checkmate)
 import(mlr3misc)

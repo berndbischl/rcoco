@@ -19,9 +19,7 @@ load_all()
 # y = ff$eval(c(1, 2, 3, 4, 5))
 # print(y)
 
-s = CocoSuiteNoisy$new()
-#print(s)
-p = CocoProblemNoisy$new(fun_idx = 0, dim = 2)
-#print(p)
-print(p$eval(c(1, 2)))
-
+s = CocoSuite$new("bbob-noisy")
+print(s)
+p = CocoProblemNoisy$new(s, 0)
+print(p)

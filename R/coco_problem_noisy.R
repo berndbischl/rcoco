@@ -8,13 +8,21 @@ CocoProblemNoisy = R6::R6Class("CocoProblemNoisy", inherit = CocoProblem,
     #' @description
     #' Initialize a new COCO Problem
     #' @param suite The COCO suite
-    #' @param problem_idx The index of the problem in the suite
-    initialize = function(fun_idx, dim) {
-      self$problem_idx = fun_idx
-      self$name = sprintf("bbobnoisy_f%03i_d%02i", fun_idx, dim)
-      self$id = sprintf("bbobnoisy_f%03i_d%02i", fun_idx, dim)
+    #' @param fun_idx The index of the problem in the suite
+    #' @param dim The dimension of the problem
+    initialize = function(suite, problem_idx) {
+      assert_class(suite, "CocoSuite")
+      if (suite$name != "bbob-noisy") {
+        stop("Can only initialize noisy problems with bbob-noisy suite")
+      }
+      assert_int(problem_idx, lower = 0, upper = suite$n_problems - 1)
+      self$problem_idx = problem_idx
+      row = suite$data[problem_idx + 1, ]
+      id = sprintf("bbobnoisy_%s_d%02i", row$fun_id, row$dim)
+      self$id = id
+      self$name = id
       self$type = "single-objective:noisy"
-      self$dim = dim
+      self$dim = row$dim
       self$n_obj = 1
       self$n_constr = 0
       self$n_int = 0
@@ -27,6 +35,5 @@ CocoProblemNoisy = R6::R6Class("CocoProblemNoisy", inherit = CocoProblem,
     eval = function(x) {
       .Call("c_coco_eval_noisy", self$problem_idx, x)
     }
-
   )
 )

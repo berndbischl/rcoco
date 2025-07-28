@@ -37,6 +37,9 @@ CocoProblem = R6::R6Class("CocoProblem",
     #' @param problem_idx The index of the problem in the suite
     initialize = function(suite, problem_idx) {
       assert_class(suite, "CocoSuite")
+      if (suite$name == "bbob-noisy") {
+        stop("Cannot initialize noisy problems with this suite")
+      }
       assert_int(problem_idx, lower = 0, upper = suite$n_problems - 1)
       self$problem_idx = problem_idx
       .Call("c_coco_problem", suite, problem_idx, self)

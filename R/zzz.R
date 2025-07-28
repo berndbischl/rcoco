@@ -20,3 +20,11 @@ coco_observers = c(
     "bbob-biobj",
     "toy"
 )
+
+.onLoad = function(libname, pkgname) {
+    .Call("c_coco_init_noisy")
+}
+
+.onUnload = function(libpath) {
+    .Call("c_coco_finit_noisy")
+}
