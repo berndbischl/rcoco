@@ -21,6 +21,8 @@ Represents a COCO optimization problem.
 
 \item{\code{dim}}{Problem dimension}
 
+\item{\code{fun_idx}}{Function index}
+
 \item{\code{n_obj}}{Number of objectives}
 
 \item{\code{n_constr}}{Number of constraints}

@@ -20,6 +20,11 @@ load_all()
 # print(y)
 
 s = CocoSuite$new("bbob-noisy")
-print(s)
+#print(s)
 p = CocoProblemNoisy$new(s, 0)
-print(p)
+#print(p)
+print(p$eval(c(1, 2)))
+
+p = CocoProblemNoisy$new(s, 30)
+#print(p)
+print(p$eval(c(1, 2, 3)))

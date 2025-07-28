@@ -23,6 +23,7 @@ CocoProblemNoisy = R6::R6Class("CocoProblemNoisy", inherit = CocoProblem,
       self$name = id
       self$type = "single-objective:noisy"
       self$dim = row$dim
+      self$fun_idx = row$fun_idx
       self$n_obj = 1
       self$n_constr = 0
       self$n_int = 0
@@ -33,7 +34,7 @@ CocoProblemNoisy = R6::R6Class("CocoProblemNoisy", inherit = CocoProblem,
     #' @param x The point to evaluate
     #' @return The function value at x
     eval = function(x) {
-      .Call("c_coco_eval_noisy", self$problem_idx, x)
+      .Call("c_coco_eval_noisy", self$fun_idx, self$dim, x)
     }
   )
 )

@@ -22,7 +22,9 @@
 * bbob noisy funs return 2 values
 
 * noisy: how is the dim of the fun determined in C code
+--> DIM is a stupid global var apparently
 
+* non-noisy: check that fun_idx is also set in problem
 
 ------------------------------
 

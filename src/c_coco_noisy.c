@@ -15,6 +15,8 @@
 #include "coco.h"
 #include "rcoco_helpers.h"
 
+extern int DIM;
+
 
  // from bbob (old code version) :
  //     Noisy functions testbed. All functions are ranged in [-5, 5]^DIM."
@@ -39,13 +41,15 @@ SEXP c_coco_suite_noisy(SEXP s_suite) {
     return R_NilValue;
 }
 
-SEXP c_coco_eval_noisy(SEXP s_fun_idx, SEXP s_x) {
-    //if (Rf_length(s_x) != dim) {
-    //    Rf_error("Input vector length %d does not match problem dimension %u", Rf_length(s_x), dim);
-    //}
+SEXP c_coco_eval_noisy(SEXP s_fun_idx, SEXP s_dim, SEXP s_x) {
     int fun_idx = Rf_asInteger(s_fun_idx);
     bbobFunction f = handlesNoisy[fun_idx];
+    int dim = Rf_asInteger(s_dim);
+    if (Rf_length(s_x) != dim) {
+        Rf_error("Input vector length %d does not match problem dimension %u", Rf_length(s_x), dim);
+    }
     double *x = REAL(s_x);
+    DIM = dim;
     TwoDoubles res = f(x);
     SEXP s_y = s_vecdbl_create_PROTECT(2);
     REAL(s_y)[0] = res.Ftrue;
