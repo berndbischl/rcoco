@@ -21,6 +21,18 @@ coco_observers = c(
     "toy"
 )
 
+#' Set COCO Log Level
+#' 
+#' Sets the logging level for COCO operations. Valid levels are "error", "warning", "info", and "debug".
+#' 
+#' @param log_level A character string specifying the log level. Valid values are "error", "warning", "info", "debug", or "" (empty string to not change the level).
+#' @return The previous log level as a character string.
+#' @export
+coco_set_log_level = function(log_level) {
+    assert_choice(log_level, c("error", "warning", "info", "debug", ""))
+    .Call("c_coco_set_log_level", log_level)
+}
+
 .onLoad = function(libname, pkgname) {
     .Call("c_coco_init_noisy")
 }

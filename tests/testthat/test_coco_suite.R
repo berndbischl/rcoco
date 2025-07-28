@@ -45,3 +45,4 @@ test_that("CocoSuite handles garbage collection properly", {
     }
   })
 })
+
