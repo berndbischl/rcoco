@@ -16,6 +16,8 @@ CocoProblem = R6::R6Class("CocoProblem",
     type = NULL,
     #' @field dim Problem dimension
     dim = NULL,
+    #' @field fun_idx Function index
+    fun_idx = NULL,
     #' @field n_obj Number of objectives
     n_obj = NULL,
     #' @field n_constr Number of constraints
