@@ -1,15 +1,10 @@
 
-* if we pass in a completely invalid "instance" this gives a warning but then simply ignores it
-
-
 * we need to replace this here:
 "Generic COCO runtime implementation for the C language."
 
 * actually there seems to be some bbob noisy code in the new code.....
 
 * fix all lintr problems
-
-* control coco log-level
 
 * do we have to copy the coco C files
 

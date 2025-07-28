@@ -29,7 +29,7 @@ CocoSuite = R6::R6Class("CocoSuite",
     #' @param observer_options Options for the COCO observer
     initialize = function(name, instance = "year: 2009", observer_name = NULL, observer_options = "") {
       assert_choice(name, coco_suites)
-      assert_string(instance)
+      assert_string(instance, pattern = "^year: \\d{4}$")
       assert_choice(observer_name, coco_observers, null.ok = TRUE)
       assert_string(observer_options, null.ok = TRUE)
 
