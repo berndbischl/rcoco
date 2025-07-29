@@ -4,10 +4,22 @@
 --> i have provided c_coco_r_runtime for this
 should somehow doc that this required a manual edit to coco.c :( 
 
+* i currently see this here in the unit tests
+COCO INFO: Results will be output to folder exdata/default-0040
+---> but the obersever shoould be e off by default?
+
+* for the noisy funs, check that there are 2 vals returned?
 
 * actually there seems to be some bbob noisy code in the new code.....
 
 * fix all lintr problems
+
+* noisy: how is seeding actually controlled??
+currently the seed seems to be fixed so i get always the same value?
+
+* in eval: nochmal checken dass es ein double 
+
+* evalBatch noch mit matrix
 
 * do we have to copy the coco C files
 
