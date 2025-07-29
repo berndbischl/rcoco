@@ -33,10 +33,10 @@ coco_set_log_level = function(log_level) {
     .Call("c_coco_set_log_level", log_level)
 }
 
-.onLoad = function(libname, pkgname) {
-    .Call("c_coco_init_noisy")
-}
+# .onLoad = function(libname, pkgname) {
+#     .Call("c_coco_init_noisy")
+# }
 
-.onUnload = function(libpath) {
-    .Call("c_coco_finit_noisy")
-}
+# .onUnload = function(libpath) {
+#     .Call("c_coco_finit_noisy")
+# }
