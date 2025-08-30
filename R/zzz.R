@@ -25,7 +25,6 @@ coco_observers = c(
 #'
 #' @description
 #' Sets the logging level for COCO operations. 
-#' Valid levels are "error", "warning", "info", and "debug".
 #'
 #' @param log_level `[character(1)]`\cr
 #'   A character string specifying the log level. 

@@ -5,37 +5,52 @@
 \title{COCO Problem R6 Class}
 \description{
 Represents a COCO optimization problem.
+This is simply a mathematical test function you can evaluate at a given points.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{problem_ptr}}{Internal pointer to the C problem object}
+\item{\code{problem_ptr}}{\code{(externalptr)}\cr
+Pointer to the C problem object}
 
-\item{\code{problem_idx}}{The index of the problem in the suite}
+\item{\code{problem_idx}}{(\code{integer(1)})\cr
+The index of the problem in the suite}
 
-\item{\code{name}}{Problem name}
+\item{\code{name}}{(\code{character(1)})\cr
+Problem name}
 
-\item{\code{id}}{Problem ID}
+\item{\code{id}}{(\code{integer(1)})\cr
+Problem ID}
 
-\item{\code{type}}{Problem type}
+\item{\code{type}}{(\code{integer(1)})\cr
+Problem type}
 
-\item{\code{dim}}{Problem dimension}
+\item{\code{dim}}{(\code{integer(1)})\cr
+Problem dimension}
 
-\item{\code{fun_idx}}{Function index}
+\item{\code{fun_idx}}{(\code{integer(1)})\cr
+Function index}
 
-\item{\code{n_obj}}{Number of objectives}
+\item{\code{n_obj}}{(\code{integer(1)})\cr
+Number of objectives}
 
-\item{\code{n_constr}}{Number of constraints}
+\item{\code{n_constr}}{(\code{integer(1)})\cr
+Number of constraints}
 
-\item{\code{n_int}}{Number of integer variables}
+\item{\code{n_int}}{(\code{integer(1)})\cr
+Number of integer variables}
 
-\item{\code{lower}}{Lower bounds of decision space}
+\item{\code{lower}}{(\code{numeric(dim)})\cr
+Lower bounds of decision space}
 
-\item{\code{upper}}{Upper bounds of decision space}
+\item{\code{upper}}{(\code{numeric(dim)})\cr
+Upper bounds of decision space}
 
-\item{\code{target}}{Target value for the first objective}
+\item{\code{target}}{(\code{numeric(1)})\cr
+Target value for the first objective}
 
-\item{\code{fupper}}{Upper bounds of objective space, only for multi-objective problems}
+\item{\code{fupper}}{(\code{numeric(1)})\cr
+Upper bounds of objective space, only for multi-objective problems}
 }
 \if{html}{\out{</div>}}
 }
@@ -60,9 +75,11 @@ Initialize a new COCO Problem
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{suite}}{The COCO suite}
+\item{\code{suite}}{(\link{CocoSuite})\cr
+The COCO suite}
 
-\item{\code{problem_idx}}{The index of the problem in the suite}
+\item{\code{problem_idx}}{(\code{integer(1)})\cr
+The index of the problem in the suite}
 }
 \if{html}{\out{</div>}}
 }
@@ -71,7 +88,7 @@ Initialize a new COCO Problem
 \if{html}{\out{<a id="method-CocoProblem-eval"></a>}}
 \if{latex}{\out{\hypertarget{method-CocoProblem-eval}{}}}
 \subsection{Method \code{eval()}}{
-Evaluate the problem at a given point
+Evaluate the problem function at a given point
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CocoProblem$eval(x)}\if{html}{\out{</div>}}
 }
@@ -79,19 +96,21 @@ Evaluate the problem at a given point
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{x}}{The point to evaluate}
+\item{\code{x}}{(\code{numeric(dim)})\cr
+The point to evaluate}
 }
 \if{html}{\out{</div>}}
 }
 \subsection{Returns}{
-The function value at x
+(\code{numeric(n_obj)})\cr
+The function value(s) at x
 }
 }
 \if{html}{\out{<hr>}}
 \if{html}{\out{<a id="method-CocoProblem-print"></a>}}
 \if{latex}{\out{\hypertarget{method-CocoProblem-print}{}}}
 \subsection{Method \code{print()}}{
-Print method for the COCO Problem
+Printer.
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CocoProblem$print()}\if{html}{\out{</div>}}
 }

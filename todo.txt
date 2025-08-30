@@ -1,3 +1,14 @@
+* use mlr3 way to doc types in roxygen2
+
+* remove :: for imported packages
+
+* be explicit with rox tags
+
+* check that members of CocoProblem are complete wrt to what exists in C
+
+* CocoProblem: batch eval functions for matrices and dataframes.
+
+* doc options for coco observer
 
 * we need to replace this here:
 "Generic COCO runtime implementation for the C language."

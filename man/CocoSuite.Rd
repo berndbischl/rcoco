@@ -5,25 +5,34 @@
 \title{COCO Suite R6 Class}
 \description{
 R6 class for creating and managing COCO optimization suites.
+These are collections of optimization problems.
 }
 \section{Public fields}{
 \if{html}{\out{<div class="r6-fields">}}
 \describe{
-\item{\code{name}}{The name of the suite}
+\item{\code{name}}{(\code{character(1)})\cr
+The name of the suite}
 
-\item{\code{instance}}{The instance identifier}
+\item{\code{instance}}{(\code{character(1)})\cr
+The instance identifier}
 
-\item{\code{suite_ptr}}{Internal pointer to the C suite object}
+\item{\code{suite_ptr}}{(\code{externalptr})\cr
+Pointer to the C suite object}
 
-\item{\code{observer_ptr}}{Internal pointer to the C observer object}
+\item{\code{observer_ptr}}{(\code{externalptr})\cr
+Pointer to the C observer object}
 
-\item{\code{n_problems}}{Number of problems in the suite}
+\item{\code{n_problems}}{(\code{integer(1)})\cr
+Number of problems in the suite}
 
-\item{\code{data}}{Data frame with problem information}
+\item{\code{data}}{(\code{data.frame()})\cr
+Data frame with problem information}
 
-\item{\code{observer_name}}{The name of the COCO observer}
+\item{\code{observer_name}}{(\code{character(1)})\cr
+The name of the COCO observer}
 
-\item{\code{observer_options}}{Options for the COCO observer}
+\item{\code{observer_options}}{(\code{character(1)})\cr
+Options for the COCO observer}
 }
 \if{html}{\out{</div>}}
 }
@@ -52,13 +61,19 @@ Initialize a new COCO Suite
 \subsection{Arguments}{
 \if{html}{\out{<div class="arguments">}}
 \describe{
-\item{\code{name}}{The name of the suite}
+\item{\code{name}}{(\code{character(1)})\cr
+The name of the suite.
+Valid values are \link{coco_suites}.}
 
-\item{\code{instance}}{The instance identifier}
+\item{\code{instance}}{(\code{character(1)})\cr
+The instance identifier}
 
-\item{\code{observer_name}}{The name of the COCO observer}
+\item{\code{observer_name}}{(\code{character(1)})\cr
+The name of the COCO observer
+Valid values are \link{coco_observers}.}
 
-\item{\code{observer_options}}{Options for the COCO observer}
+\item{\code{observer_options}}{(\code{character(1)})\cr
+Options for the COCO observer}
 }
 \if{html}{\out{</div>}}
 }
@@ -67,7 +82,7 @@ Initialize a new COCO Suite
 \if{html}{\out{<a id="method-CocoSuite-print"></a>}}
 \if{latex}{\out{\hypertarget{method-CocoSuite-print}{}}}
 \subsection{Method \code{print()}}{
-Print method for the COCO Suite
+Printer
 \subsection{Usage}{
 \if{html}{\out{<div class="r">}}\preformatted{CocoSuite$print()}\if{html}{\out{</div>}}
 }

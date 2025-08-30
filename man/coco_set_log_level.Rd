@@ -17,5 +17,4 @@ The previous log level as a character string.
 }
 \description{
 Sets the logging level for COCO operations.
-Valid levels are "error", "warning", "info", and "debug".
 }
