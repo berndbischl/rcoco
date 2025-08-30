@@ -2,7 +2,9 @@
 
 export(CocoProblem)
 export(CocoSuite)
+export(coco_observers)
 export(coco_set_log_level)
+export(coco_suites)
 import(R6)
 import(checkmate)
 import(mlr3misc)

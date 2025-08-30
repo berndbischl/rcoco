@@ -4,6 +4,12 @@
 #' @useDynLib rcoco
 "_PACKAGE"
 
+#' @title COCO Suites
+#' 
+#' @description
+#' List of available COCO suites.
+#' 
+#' @export
 coco_suites = c(
   "bbob",
   "bbob-biobj",
@@ -15,6 +21,12 @@ coco_suites = c(
   "bbob-constrained"
 )
 
+#' @title COCO Observers
+#' 
+#' @description
+#' List of available COCO observers.
+#' 
+#' @export
 coco_observers = c(
   "bbob",
   "bbob-biobj",
