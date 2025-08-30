@@ -1,14 +1,21 @@
-* use mlr3 way to doc types in roxygen2
+* make sure we can jump to problem locations in unit tests by ctrl-click
+options(crayon.enabled = FALSE)
+options(testthat.use_colours = TRUE)
+und 
+~/.config/mimeapps.list
+~/.local/share/applications/cursor.desktop
+in dotfiles
 
-* remove :: for imported packages
 
-* be explicit with rox tags
+* remove :: for imported packages [AJ]
 
-* check that members of CocoProblem are complete wrt to what exists in C
+* check that members of CocoProblem are complete wrt to what exists in C [AJ]
 
-* CocoProblem: batch eval functions for matrices and dataframes.
+* CocoProblem: batch eval functions for matrices and dataframes [AJ]
+  so we can eval multiple points in one go
 
-* doc options for coco observer
+* doc options for coco observer [AJ]
+  best would be to link to coco docs
 
 * we need to replace this here:
 "Generic COCO runtime implementation for the C language."
@@ -29,10 +36,6 @@ COCO INFO: Results will be output to folder exdata/default-0040
 currently the seed seems to be fixed so i get always the same value?
 
 * in eval: nochmal checken dass es ein double 
-
-* evalBatch noch mit matrix
-
-* do we have to copy the coco C files
 
 * doc which fields are read-only
 

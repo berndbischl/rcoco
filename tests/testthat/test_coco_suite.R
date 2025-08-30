@@ -26,7 +26,7 @@ test_that("CocoSuite print method works correctly", {
 
 test_that("CocoSuite handles garbage collection properly", {
   create_and_destroy = function() {
-    suite = CocoSuite$new("bbob", "year,: 2009")
+    suite = CocoSuite$new("bbob", "year: 2009")
     # Return nothing to allow garbage collection
     return(NULL)
   }
