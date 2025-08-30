@@ -89,7 +89,7 @@ CocoSuite = R6::R6Class("CocoSuite",
       #   self$n_problems = nrow(data)
       #   self$data = data
       # } else {
-        .Call("c_coco_suite", name, instance, observer_name, observer_options, self)
+      .Call("c_coco_suite", name, instance, observer_name, observer_options, self)
       # }
     },
 
@@ -106,5 +106,3 @@ CocoSuite = R6::R6Class("CocoSuite",
     }
   )
 )
-
-

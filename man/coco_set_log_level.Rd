@@ -7,11 +7,15 @@
 coco_set_log_level(log_level)
 }
 \arguments{
-\item{log_level}{A character string specifying the log level. Valid values are "error", "warning", "info", "debug", or "" (empty string to not change the level).}
+\item{log_level}{\verb{[character(1)]}\cr
+A character string specifying the log level.
+Valid values are "error", "warning", "info", "debug", or "" (empty string to not change the level).}
 }
 \value{
+\verb{[character(1)]}\cr
 The previous log level as a character string.
 }
 \description{
-Sets the logging level for COCO operations. Valid levels are "error", "warning", "info", and "debug".
+Sets the logging level for COCO operations.
+Valid levels are "error", "warning", "info", and "debug".
 }

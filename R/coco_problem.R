@@ -2,7 +2,7 @@
 #' @description
 #' Represents a COCO optimization problem.
 #' @export
-CocoProblem = R6::R6Class("CocoProblem",
+CocoProblem = R6Class("CocoProblem",
   public = list(
     #' @field problem_ptr Internal pointer to the C problem object
     problem_ptr = NULL,

@@ -10,18 +10,18 @@
 
 
 void suite_finalizer(SEXP s_suite) {
-    SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr");
-    SEXP s_observer_ptr = get_r6_member(s_suite, "observer_ptr");
-    coco_suite_t *suite = R_ExternalPtrAddr(s_suite_ptr);
-    if(!Rf_isNull(s_observer_ptr)) {
-        coco_observer_t *observer = R_ExternalPtrAddr(s_observer_ptr);
-        coco_observer_free(observer);
-        R_ClearExternalPtr(s_observer_ptr);  // avoid double free
-    }
-    if (suite != NULL) {
-        coco_suite_free(suite);
-        R_ClearExternalPtr(s_suite_ptr);  // avoid double free
-    }
+  SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr");
+  SEXP s_observer_ptr = get_r6_member(s_suite, "observer_ptr");
+  coco_suite_t *suite = R_ExternalPtrAddr(s_suite_ptr);
+  if(!Rf_isNull(s_observer_ptr)) {
+    coco_observer_t *observer = R_ExternalPtrAddr(s_observer_ptr);
+    coco_observer_free(observer);
+    R_ClearExternalPtr(s_observer_ptr);  // avoid double free
+  }
+  if (suite != NULL) {
+    coco_suite_free(suite);
+    R_ClearExternalPtr(s_suite_ptr);  // avoid double free
+  }
 }
 
  SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_observer_name, SEXP s_observer_options, SEXP s_self) {
@@ -45,15 +45,15 @@ void suite_finalizer(SEXP s_suite) {
     SEXP s_inst_idx = s_vecint_create_PROTECT(n_problems);
     SEXP s_inst = s_vecint_create_PROTECT(n_problems);
     for (size_t i = 0; i < n_problems; i++) {
-        size_t fun_idx, dim_idx, inst_idx;
-        coco_suite_decode_problem_index(suite, i, &fun_idx, &dim_idx, &inst_idx);
-        INTEGER(s_problem_idx)[i] = (int) i;
-        INTEGER(s_fun_idx)[i] = fun_idx;
-        INTEGER(s_fun)[i] = coco_suite_get_function_from_function_index(suite, fun_idx);
-        INTEGER(s_dim_idx)[i] = dim_idx;
-        INTEGER(s_dim)[i] = coco_suite_get_dimension_from_dimension_index(suite, dim_idx);
-        INTEGER(s_inst_idx)[i] = inst_idx;
-        INTEGER(s_inst)[i] = coco_suite_get_instance_from_instance_index(suite, inst_idx);
+      size_t fun_idx, dim_idx, inst_idx;
+      coco_suite_decode_problem_index(suite, i, &fun_idx, &dim_idx, &inst_idx);
+      INTEGER(s_problem_idx)[i] = (int) i;
+      INTEGER(s_fun_idx)[i] = fun_idx;
+      INTEGER(s_fun)[i] = coco_suite_get_function_from_function_index(suite, fun_idx);
+      INTEGER(s_dim_idx)[i] = dim_idx;
+      INTEGER(s_dim)[i] = coco_suite_get_dimension_from_dimension_index(suite, dim_idx);
+      INTEGER(s_inst_idx)[i] = inst_idx;
+      INTEGER(s_inst)[i] = coco_suite_get_instance_from_instance_index(suite, inst_idx);
     }
 
     // // create data
@@ -76,13 +76,13 @@ void suite_finalizer(SEXP s_suite) {
 
     // create observer -- if requested
     if (!Rf_isNull(s_observer_name)) {
-        const char *observer_name = CHAR(STRING_ELT(s_observer_name, 0));
-        const char *observer_options = CHAR(STRING_ELT(s_observer_options, 0));
-        coco_observer_t *observer = coco_observer(observer_name, observer_options);
-        SEXP s_observer_ptr = PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue));
-        set_r6_member(s_self, "observer_ptr", s_observer_ptr);
-        // observer will be freed by suite_finalizer
-        UNPROTECT(1); // s_observer_ptr
+      const char *observer_name = CHAR(STRING_ELT(s_observer_name, 0));
+      const char *observer_options = CHAR(STRING_ELT(s_observer_options, 0));
+      coco_observer_t *observer = coco_observer(observer_name, observer_options);
+      SEXP s_observer_ptr = PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue));
+      set_r6_member(s_self, "observer_ptr", s_observer_ptr);
+      // observer will be freed by suite_finalizer
+      UNPROTECT(1); // s_observer_ptr
     }
 
     UNPROTECT(10); // s_ptr, s_problem_idx, s_fun_idx, s_fun, s_dim_idx, s_dim, s_inst_idx, s_inst, s_data, s_n_problems

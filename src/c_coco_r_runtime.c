@@ -28,9 +28,8 @@ void coco_error(const char *message, ...) {
  * R analog of coco_warning - uses Rprintf instead of fprintf
  */
 void coco_warning(const char *message, ...) {
-  va_list args;
-
   if (coco_log_level >= COCO_WARNING) {
+    va_list args;
     Rprintf("COCO WARNING: ");
     va_start(args, message);
     Rvprintf(message, args);
@@ -43,9 +42,8 @@ void coco_warning(const char *message, ...) {
  * R analog of coco_info - uses Rprintf instead of fprintf
  */
 void coco_info(const char *message, ...) {
-  va_list args;
-
   if (coco_log_level >= COCO_INFO) {
+    va_list args;
     Rprintf("COCO INFO: ");
     va_start(args, message);
     Rvprintf(message, args);
@@ -58,9 +56,8 @@ void coco_info(const char *message, ...) {
  * R analog of coco_info_partial - uses Rprintf instead of fprintf
  */
 void coco_info_partial(const char *message, ...) {
-  va_list args;
-
   if (coco_log_level >= COCO_INFO) {
+    va_list args;
     va_start(args, message);
     Rvprintf(message, args);
     va_end(args);
@@ -73,7 +70,7 @@ void coco_info_partial(const char *message, ...) {
 void coco_debug(const char *message, ...) {
   va_list args;
 
-  if (coco_log_level >= COCO_DEBUG) {
+  if (coco_log_level >= COCO_DEBUG) {  
     Rprintf("COCO DEBUG: ");
     va_start(args, message);
     Rvprintf(message, args);
