@@ -1,0 +1,12 @@
+---
+alwaysApply: true
+---
+
+The project writes a lightweight C wrapper around the c library coco, in coco.h and coco.c
+We dont use RCPP.
+
+Respect the .lintr file for the generated R code.
+
+@.lintr
+
+
