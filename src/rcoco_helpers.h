@@ -35,4 +35,4 @@ void set_r6_member(SEXP s_obj, const char* member_name, SEXP s_value);
 // get a member variable slot in an R6 object
 SEXP get_r6_member(SEXP s_obj, const char* member_name);
 
-#endif // RCOCO_HELPERS_H 
+#endif // RCOCO_HELPERS_H

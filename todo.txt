@@ -7,6 +7,7 @@ und
 in dotfiles
 
 * try to make the list of recommended / used vscode plugins smaller
+ check again: clang-tidy, c/c++ advanded lint
 
 * jump to def of fun in C, not the declaration in H on ctrl-click
 

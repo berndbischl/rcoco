@@ -15,12 +15,13 @@ coco_log_level_type_e coco_log_level = COCO_INFO;
 void coco_error(const char *message, ...) {
   va_list args;
   char buffer[1024];
-  
+
   strcpy(buffer, "COCO FATAL ERROR: ");
   va_start(args, message);
-  vsnprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), message, args);
+  vsnprintf(buffer + strlen(buffer), sizeof(buffer) - strlen(buffer), message,
+            args);
   va_end(args);
-  
+
   Rf_error("%s", buffer);
 }
 
@@ -70,7 +71,7 @@ void coco_info_partial(const char *message, ...) {
 void coco_debug(const char *message, ...) {
   va_list args;
 
-  if (coco_log_level >= COCO_DEBUG) {  
+  if (coco_log_level >= COCO_DEBUG) {
     Rprintf("COCO DEBUG: ");
     va_start(args, message);
     Rvprintf(message, args);

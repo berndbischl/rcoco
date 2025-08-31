@@ -14,8 +14,8 @@ VSCode / cursor:
   context for the project and what it should always respect
 
   3) recommended plugins:
-  Minimally: EditorConfig, R (installs also R Syntax), Air
-  Recommended: R Debugger, GitLens, C/C++ Advanced Lint, Clang-Tidy, clangd
+  Minimally: EditorConfig, R (installs also R Syntax), Air, clangd
+  Recommended: R Debugger, GitLens
 
 R:
 
@@ -29,5 +29,14 @@ R:
   https://lintr.r-lib.org/
   linting errors should go into the diagnostics panel in vscode automatically,
   or you can run manually: devtools::lint()
+
+C:
+
+  1) formatting: we use vscode-clangd
+  it is configured via .clang-format
+  https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+  auto-formatting is done on-save (see settings.json)
+
+
 
 

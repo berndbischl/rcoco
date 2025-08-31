@@ -20,6 +20,10 @@
 
   // ********** settings for C / C++ **********
 
+  "[c]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+  },
   "c-cpp-flylint.cppcheck.enable": true,
   "c-cpp-flylint.cppcheck.language": "c",          // <- forces C
   // optional, either of these:
