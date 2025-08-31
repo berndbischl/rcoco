@@ -5,7 +5,8 @@
 #' These are collections of optimization problems.
 #'
 #' @export
-CocoSuite = R6::R6Class("CocoSuite",
+CocoSuite = R6::R6Class(
+  "CocoSuite",
   public = list(
     #' @field name (`character(1)`)\cr
     #'   The name of the suite
@@ -51,7 +52,12 @@ CocoSuite = R6::R6Class("CocoSuite",
     #'   Valid values are [coco_observers].
     #' @param observer_options (`character(1)`)\cr
     #'   Options for the COCO observer
-    initialize = function(name, instance = "year: 2009", observer_name = NULL, observer_options = "") {
+    initialize = function(
+      name,
+      instance = "year: 2009",
+      observer_name = NULL,
+      observer_options = ""
+    ) {
       assert_choice(name, coco_suites)
       assert_string(instance, pattern = "^year: \\d{4}$")
       assert_choice(observer_name, coco_observers, null.ok = TRUE)
@@ -124,7 +130,10 @@ CocoSuite = R6::R6Class("CocoSuite",
       catf("* Name: %s", self$name)
       catf("* Instance: %s", self$instance)
       catf("* Number of problems: %i", self$n_problems)
-      catf("* Observer name: %s", ifelse(is.null(self$observer_name), "none", self$observer_name))
+      catf(
+        "* Observer name: %s",
+        ifelse(is.null(self$observer_name), "none", self$observer_name)
+      )
       catf("* Observer options: %s", self$observer_options)
       print(head(self$data))
     }

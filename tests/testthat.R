@@ -12,4 +12,4 @@
 library(testthat)
 library(rcoco)
 
-test_check("rcoco") 
+test_check("rcoco")

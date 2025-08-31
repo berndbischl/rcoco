@@ -5,10 +5,10 @@
 "_PACKAGE"
 
 #' @title COCO Suites
-#' 
+#'
 #' @description
 #' List of available COCO suites.
-#' 
+#'
 #' @export
 coco_suites = c(
   "bbob",
@@ -22,10 +22,10 @@ coco_suites = c(
 )
 
 #' @title COCO Observers
-#' 
+#'
 #' @description
 #' List of available COCO observers.
-#' 
+#'
 #' @export
 coco_observers = c(
   "bbob",
@@ -36,12 +36,12 @@ coco_observers = c(
 #' @title Set COCO Log Level
 #'
 #' @description
-#' Sets the logging level for COCO operations. 
+#' Sets the logging level for COCO operations.
 #'
 #' @param log_level `[character(1)]`\cr
-#'   A character string specifying the log level. 
+#'   A character string specifying the log level.
 #'   Valid values are "error", "warning", "info", "debug", or "" (empty string to not change the level).
-#' @return `[character(1)]`\cr 
+#' @return `[character(1)]`\cr
 #'   The previous log level as a character string.
 #' @export
 coco_set_log_level = function(log_level) {
