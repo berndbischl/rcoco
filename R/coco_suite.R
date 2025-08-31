@@ -1,55 +1,55 @@
 #' @title COCO Suite R6 Class
-#' 
+#'
 #' @description
 #' R6 class for creating and managing COCO optimization suites.
-#' These are collections of optimization problems. 
-#' 
+#' These are collections of optimization problems.
+#'
 #' @export
 CocoSuite = R6::R6Class("CocoSuite",
   public = list(
-    #' @field name (`character(1)`)\cr 
+    #' @field name (`character(1)`)\cr
     #'   The name of the suite
     name = NULL,
 
-    #' @field instance (`character(1)`)\cr 
+    #' @field instance (`character(1)`)\cr
     #'   The instance identifier
     instance = NULL,
 
-    #' @field suite_ptr (`externalptr`)\cr 
+    #' @field suite_ptr (`externalptr`)\cr
     #'   Pointer to the C suite object
     suite_ptr = NULL,
 
-    #' @field observer_ptr (`externalptr`)\cr 
+    #' @field observer_ptr (`externalptr`)\cr
     #'   Pointer to the C observer object
     observer_ptr = NULL,
 
-    #' @field n_problems (`integer(1)`)\cr 
+    #' @field n_problems (`integer(1)`)\cr
     #'   Number of problems in the suite
     n_problems = NULL,
 
-    #' @field data (`data.frame()`)\cr 
+    #' @field data (`data.frame()`)\cr
     #'   Data frame with problem information
     data = NULL,
 
-    #' @field observer_name (`character(1)`)\cr 
+    #' @field observer_name (`character(1)`)\cr
     #'   The name of the COCO observer
     observer_name = NULL,
 
-    #' @field observer_options (`character(1)`)\cr 
+    #' @field observer_options (`character(1)`)\cr
     #'   Options for the COCO observer
     observer_options = NULL,
 
     #' @description
     #' Initialize a new COCO Suite
-    #' @param name (`character(1)`)\cr 
-    #'   The name of the suite. 
+    #' @param name (`character(1)`)\cr
+    #'   The name of the suite.
     #'   Valid values are [coco_suites].
-    #' @param instance (`character(1)`)\cr 
+    #' @param instance (`character(1)`)\cr
     #'   The instance identifier
-    #' @param observer_name (`character(1)`)\cr 
+    #' @param observer_name (`character(1)`)\cr
     #'   The name of the COCO observer
     #'   Valid values are [coco_observers].
-    #' @param observer_options (`character(1)`)\cr 
+    #' @param observer_options (`character(1)`)\cr
     #'   Options for the COCO observer
     initialize = function(name, instance = "year: 2009", observer_name = NULL, observer_options = "") {
       assert_choice(name, coco_suites)

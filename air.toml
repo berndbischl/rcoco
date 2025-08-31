@@ -2,7 +2,7 @@
 line-width = 80
 indent-width = 2
 indent-style = "space"
-line-ending = "auto"
+line-ending = "lf"
 persistent-line-breaks = true
 exclude = []
 default-exclude = true
