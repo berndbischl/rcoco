@@ -5,7 +5,7 @@
   // "c-cpp-flylint.cppcheck.std": "c11",
   "c-cpp-flylint.cppcheck.arguments": ["--std=c11"],
   // disable diagnostics for R, because of the dreaded normalizePath error
-  "r.lsp.diagnostics": false,
+  //"r.lsp.diagnostics": false,
 
   "[r]": {
     "editor.formatOnSave": true,

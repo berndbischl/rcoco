@@ -7,6 +7,9 @@ We dont use RCPP.
 
 Respect the .lintr file for the generated R code.
 
+Never delete files without asking, never install software without asking.
+Never anything outside the current project directory.
+
 @.lintr
 
 
