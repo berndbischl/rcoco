@@ -1,6 +1,3 @@
-library(devtools)
-library(roxygen2)
-roxygenize()
 load_all()
 
 #s = CocoSuite$new("bbob", "year: 2009", observer_name = "bbob", observer_options = "")

@@ -1,6 +1,6 @@
 CompileFlags:
   # Add R include paths - these are typical locations
-  Add: 
+  Add:
     - -I/usr/local/lib/R/include
     - -I/usr/lib/R/include
     - -I/opt/R/include
