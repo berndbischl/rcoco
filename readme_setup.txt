@@ -15,7 +15,8 @@ VSCode / cursor:
 
   3) recommended plugins:
   Minimally: EditorConfig, R (installs also R Syntax), Air, clangd
-  Recommended: R Debugger, GitLens
+  Recommended: R Debugger, GitLens, Clang-Tidy,
+    C/C++ Advanced Lint (also install clang and flawfinder, other linters are turned off)
 
 R:
 
@@ -32,7 +33,11 @@ R:
 
 C:
 
-  1) formatting: we use vscode-clangd
+  1) we use the .clangd file in the project root, to configure the
+  the clangd language server useed by vscode
+  mainly used for "-I include paths"
+
+  2) formatting: we use vscode-clangd
   it is configured via .clang-format
   https://clang.llvm.org/docs/ClangFormatStyleOptions.html
   auto-formatting is done on-save (see settings.json)

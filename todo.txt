@@ -1,10 +1,9 @@
-* make sure we can jump to problem locations in unit tests by ctrl-click
-options(crayon.enabled = FALSE)
-options(testthat.use_colours = TRUE)
-und
-~/.config/mimeapps.list
-~/.local/share/applications/cursor.desktop
-in dotfiles
+* doc the c code -- at least a bit [AJ]
+
+* set up spell checker for comments and docs
+
+* setup a service repo where the C helper files go, BB has more of these. [AJ]
+  set them up as a submodule
 
 * try to make the list of recommended / used vscode plugins smaller
  check again: clang-tidy, c/c++ advanded lint
@@ -33,8 +32,6 @@ COCO INFO: Results will be output to folder exdata/default-0040
 * for the noisy funs, check that there are 2 vals returned?
 
 * actually there seems to be some bbob noisy code in the new code.....
-
-* fix all lintr problems
 
 * noisy: how is seeding actually controlled??
 currently the seed seems to be fixed so i get always the same value?

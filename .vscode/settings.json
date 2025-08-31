@@ -1,4 +1,16 @@
 {
+
+  // ********** General settings **********
+  // Hide attic from Explorer and editor features
+  "files.exclude": {
+    "attic/**": true
+  },
+  // Exclude attic from global search (Ctrl+Shift+F) and Quick Open
+  "search.exclude": {
+    "attic/**": true
+  },
+
+
   // ********** settings git / gitlens **********
 
   // disable "blame hover", to remove visual noise
@@ -26,8 +38,27 @@
   },
   "c-cpp-flylint.cppcheck.enable": true,
   "c-cpp-flylint.cppcheck.language": "c",          // <- forces C
-  // optional, either of these:
-  // "c-cpp-flylint.cppcheck.std": "c11",
-  "c-cpp-flylint.cppcheck.arguments": ["--std=c11"]
+  "c-cpp-flylint.cppcheck.arguments": [
+    "--std=c11",
+    "-i", "${workspaceFolder}/attic",
+    "-I", "/usr/local/lib/R/include",
+    "-I", "/usr/lib/R/include",
+    "-I", "/opt/R/include",
+    "-I", "/usr/share/R/include"
+  ],
+
+  "c-cpp-flylint.clang.enable": true,
+  "c-cpp-flylint.clang.language": "c",
+  "c-cpp-flylint.clang.arguments": [
+    "-std=c11",
+    "-I", "/usr/local/lib/R/include",
+    "-I", "/usr/lib/R/include",
+    "-I", "/opt/R/include",
+    "-I", "/usr/share/R/include"
+  ],
+
+  "c-cpp-flylint.flawfinder.enable": true,
+  "c-cpp-flylint.lizard.enable": false,
+  "c-cpp-flylint.flexelint.enable": false,
 }
 
