@@ -6,6 +6,11 @@ und
 ~/.local/share/applications/cursor.desktop
 in dotfiles
 
+* add an editorconfig, do we use editorconfig or AIR for formatting
+
+* do AIR config file via air.toml
+
+* jump to def of fun in C, not the declaration in H on ctrl-click
 
 * remove :: for imported packages [AJ]
 

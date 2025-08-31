@@ -1,0 +1,15 @@
+{
+  "c-cpp-flylint.cppcheck.enable": true,
+  "c-cpp-flylint.cppcheck.language": "c",          // <- forces C
+  // optional, either of these:
+  // "c-cpp-flylint.cppcheck.std": "c11",
+  "c-cpp-flylint.cppcheck.arguments": ["--std=c11"],
+  // disable diagnostics for R, because of the dreaded normalizePath error
+  "r.lsp.diagnostics": false,
+
+  "[r]": {
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "Posit.air-vscode"
+  }
+}
+
