@@ -1,14 +1,12 @@
 * make sure we can jump to problem locations in unit tests by ctrl-click
 options(crayon.enabled = FALSE)
 options(testthat.use_colours = TRUE)
-und 
+und
 ~/.config/mimeapps.list
 ~/.local/share/applications/cursor.desktop
 in dotfiles
 
-* add an editorconfig, do we use editorconfig or AIR for formatting
-
-* do AIR config file via air.toml
+* try to make the list of recommended / used vscode plugins smaller
 
 * jump to def of fun in C, not the declaration in H on ctrl-click
 
@@ -25,7 +23,7 @@ in dotfiles
 * we need to replace this here:
 "Generic COCO runtime implementation for the C language."
 --> i have provided c_coco_r_runtime for this
-should somehow doc that this required a manual edit to coco.c :( 
+should somehow doc that this required a manual edit to coco.c :(
 
 * i currently see this here in the unit tests
 COCO INFO: Results will be output to folder exdata/default-0040
@@ -40,7 +38,7 @@ COCO INFO: Results will be output to folder exdata/default-0040
 * noisy: how is seeding actually controlled??
 currently the seed seems to be fixed so i get always the same value?
 
-* in eval: nochmal checken dass es ein double 
+* in eval: nochmal checken dass es ein double
 
 * doc which fields are read-only
 
@@ -83,11 +81,11 @@ currently the seed seems to be fixed so i get always the same value?
       Object: ‘coco.o’
     Found ‘stdout’, possibly from ‘stdout’ (C)
       Object: ‘coco.o’
-  
+
   Compiled code should not call entry points which might terminate R nor
   write to stdout/stderr instead of to the console, nor use Fortran I/O
   nor system RNGs nor [v]sprintf.
-  
+
   See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
 
 ❯ checking compilation flags used ... NOTE
@@ -97,7 +95,7 @@ currently the seed seems to be fixed so i get always the same value?
 ------------------------------------------------------
 
 /**
-* observer   
+* observer
 
  * Currently, four observers are supported:
  * - "bbob" is the observer for single-objective (both noisy and noiseless)

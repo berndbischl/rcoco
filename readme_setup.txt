@@ -3,12 +3,19 @@ General:
   1) we use .editorconfig for general editor setup
   https://editorconfig.org
   make sure this is aligned with overrides from other config tools for R and C/C++
+  for vscode: install the EditorConfig plugin
+
+
+VSCode / cursor:
+
+  1) vscode: there is a local .vscode/settings.json file.
 
   2) there is a global "rule" for for cursor to inform cursor/LLM about a static
   context for the project and what it should always respect
 
-  3) vscode: there is a local .vscode/settings.json file.
-
+  3) recommended plugins:
+  Minimally: EditorConfig, R (installs also R Syntax), Air
+  Recommended: R Debugger, GitLens, C/C++ Advanced Lint, Clang-Tidy, clangd
 
 R:
 
