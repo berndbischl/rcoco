@@ -38,27 +38,42 @@
   },
   "c-cpp-flylint.cppcheck.enable": true,
   "c-cpp-flylint.cppcheck.language": "c",          // <- forces C
-  "c-cpp-flylint.cppcheck.arguments": [
-    "--std=c11",
-    "-i", "${workspaceFolder}/attic",
-    "-I", "/usr/local/lib/R/include",
-    "-I", "/usr/lib/R/include",
-    "-I", "/opt/R/include",
-    "-I", "/usr/share/R/include"
+  "c-cpp-flylint.cppcheck.standard": [
+    "c11"
+  ],
+  "c-cpp-flylint.includePaths": [
+    "/usr/share/R/include"
+  ],
+  "c-cpp-flylint.cppcheck.includePaths": [
+    "/usr/share/R/include"
+  ],
+  "c-cpp-flylint.cppcheck.extraArgs": [
+    "--relative-paths=."
   ],
 
   "c-cpp-flylint.clang.enable": true,
   "c-cpp-flylint.clang.language": "c",
-  "c-cpp-flylint.clang.arguments": [
-    "-std=c11",
-    "-I", "/usr/local/lib/R/include",
-    "-I", "/usr/lib/R/include",
-    "-I", "/opt/R/include",
-    "-I", "/usr/share/R/include"
+  "c-cpp-flylint.clang.standard": [
+    "c11"
+  ],
+  "c-cpp-flylint.clang.extraArgs": [
+    "-std=c11"
+  ],
+  "c-cpp-flylint.clang.includePaths": [
+    "/usr/share/R/include"
   ],
 
   "c-cpp-flylint.flawfinder.enable": true,
   "c-cpp-flylint.lizard.enable": false,
   "c-cpp-flylint.flexelint.enable": false,
+  "C_Cpp.default.cStandard": "c11",
+  "C_Cpp.default.includePath": [
+    "/usr/share/R/include"
+  ],
+  "c-cpp-flylint.excludeFromWorkspacePaths": [
+    "${workspaceFolder}/attic",
+    "${workspaceFolder}/coco.c",
+    "${workspaceFolder}/coco.h"
+  ]
 }
 

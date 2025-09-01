@@ -42,6 +42,11 @@ C:
   https://clang.llvm.org/docs/ClangFormatStyleOptions.html
   auto-formatting is done on-save (see settings.json)
 
+  3) linting: we use c-cpp-flylint (see settings.json)
+
+  4) Apparantely neither .cland NOR settings.json support expansion of env vars (WTF!)
+  you have to modify the include paths in both files for R-includes, dont commit these
+
 
 
 

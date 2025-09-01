@@ -12,13 +12,14 @@ extern SEXP c_coco_eval(SEXP, SEXP);
 extern SEXP c_coco_set_log_level(SEXP);
 
 static const R_CallMethodDef CallEntries[] = {
-    {"c_coco_problem", (DL_FUNC)&c_coco_problem, 3},
-    {"c_coco_eval", (DL_FUNC)&c_coco_eval, 2},
-    // {"c_coco_eval_noisy", (DL_FUNC) &c_coco_eval_noisy, 3},
-    // {"c_coco_init_noisy", (DL_FUNC) &c_coco_init_noisy, 0},
-    // {"c_coco_finit_noisy", (DL_FUNC) &c_coco_finit_noisy, 0},
-    {"c_coco_set_log_level", (DL_FUNC)&c_coco_set_log_level, 1},
-    {NULL, NULL, 0},
+  {"c_coco_suite", (DL_FUNC)&c_coco_suite, 5},
+  {"c_coco_problem", (DL_FUNC)&c_coco_problem, 3},
+  {"c_coco_eval", (DL_FUNC)&c_coco_eval, 2},
+  // {"c_coco_eval_noisy", (DL_FUNC) &c_coco_eval_noisy, 3},
+  // {"c_coco_init_noisy", (DL_FUNC) &c_coco_init_noisy, 0},
+  // {"c_coco_finit_noisy", (DL_FUNC) &c_coco_finit_noisy, 0},
+  {"c_coco_set_log_level", (DL_FUNC)&c_coco_set_log_level, 1},
+  {NULL, NULL, 0},
 };
 
 void R_init_rcoco(DllInfo *dll) {

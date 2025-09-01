@@ -1,3 +1,4 @@
+
 * doc the c code -- at least a bit [AJ]
 
 * set up spell checker for comments and docs

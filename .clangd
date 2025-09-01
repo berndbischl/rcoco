@@ -1,8 +1,5 @@
 CompileFlags:
-  # Add R include paths - these are typical locations
+  # Add R include path via environment variable for portability
   Add:
-    - -I/usr/local/lib/R/include
-    - -I/usr/lib/R/include
-    - -I/opt/R/include
+    - -std=c11
     - -I/usr/share/R/include
-    - -I/Applications/R.framework/Headers  # macOS

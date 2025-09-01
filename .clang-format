@@ -5,7 +5,6 @@ BasedOnStyle: LLVM          # start from LLVM defaults
 UseTab: Never               # never use tabs; always spaces
 IndentWidth: 2              # 2-space indentation
 ContinuationIndentWidth: 2  # wrapped lines indent by 2 spaces
-BlockIndentWidth: 2
 
 # Line length
 ColumnLimit: 120            # max line length
@@ -18,7 +17,6 @@ AlignAfterOpenBracket: DontAlign  # don't align under the opening bracket
 
 # Braced initializer lists: break and indent by 2
 Cpp11BracedListStyle: true
-BinPackLongBracedList: false
 
 # One-line statements
 AllowShortIfStatementsOnASingleLine: true  # allow 'if (x) return;' on one line

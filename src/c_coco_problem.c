@@ -12,8 +12,7 @@ SEXP c_coco_eval(SEXP s_problem, SEXP s_x) {
   unsigned int dim = Rf_asInteger(get_r6_member(s_problem, "dim"));
   unsigned int n_obj = Rf_asInteger(get_r6_member(s_problem, "n_obj"));
   if (Rf_length(s_x) != dim) {
-    Rf_error("Input vector length %d does not match problem dimension %u",
-             Rf_length(s_x), dim);
+    Rf_error("Input vector length %d does not match problem dimension %u", Rf_length(s_x), dim);
   }
   double *x = REAL(s_x);
   SEXP s_y = s_vecdbl_create_PROTECT(n_obj);
@@ -38,8 +37,7 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
   coco_suite_t *suite = (coco_suite_t *)R_ExternalPtrAddr(s_suite_ptr);
   // create problem + external pointer
   coco_problem_t *problem = coco_suite_get_problem(suite, problem_idx);
-  if (problem == NULL)
-    Rf_error("Failed to create COCO problem");
+  if (problem == NULL) Rf_error("Failed to create COCO problem");
   SEXP s_problem = PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue));
   R_RegisterCFinalizer(s_problem, (R_CFinalizer_t)problem_finalizer);
 
@@ -74,8 +72,7 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
 
   // get fupper if problem is multi-objective
   if (n_obj > 1) {
-    const double *fupper =
-        coco_problem_get_largest_fvalues_of_interest(problem);
+    const double *fupper = coco_problem_get_largest_fvalues_of_interest(problem);
     SEXP s_fupper = s_vecdbl_create_init_PROTECT(n_obj, fupper);
     set_r6_member(s_self, "fupper", s_fupper);
     UNPROTECT(1); // s_fupper
