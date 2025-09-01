@@ -7,6 +7,13 @@
 #include "rcoco_helpers.h"
 
 SEXP c_coco_eval(SEXP s_problem, SEXP s_x) {
+  /* Evaluates a candidate point on the target function of a COCO problem
+   * Input:
+   *    - s_problem: A COCO problem
+   *    - s_x: A candidate point
+   * Output:
+   *    - Value of the target function at s_x
+   */
   SEXP s_problem_ptr = get_r6_member(s_problem, "problem_ptr");
   coco_problem_t *problem = (coco_problem_t *)R_ExternalPtrAddr(s_problem_ptr);
   unsigned int dim = Rf_asInteger(get_r6_member(s_problem, "dim"));
@@ -23,6 +30,12 @@ SEXP c_coco_eval(SEXP s_problem, SEXP s_x) {
 }
 
 void problem_finalizer(SEXP extptr) {
+  /* Frees up the memory allocated to a COCO problem
+   * Input:
+   *    - extptr: A given COCO problem
+   * Output:
+   *    - None
+   */
   coco_problem_t *p = R_ExternalPtrAddr(extptr);
   if (p != NULL) {
     coco_problem_free(p);
@@ -31,8 +44,15 @@ void problem_finalizer(SEXP extptr) {
 }
 
 SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
-  // get suite
-  SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr");
+  /* Retrieves a problem from a suite and populates an R6 CocoProblem object
+   * Input:
+   *    - s_suite: The suite that contains the problem
+   *    - s_problem_idx: Index of the problem in the suite
+   *    - s_self: A CocoProblem object to be populated (Defined in coco_problem.R)
+   * Output:
+   *    - R_NilValue (the function works by side effect, populates s_self)
+   */
+  SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr"); // get suite
   const int problem_idx = Rf_asInteger(s_problem_idx);
   coco_suite_t *suite = (coco_suite_t *)R_ExternalPtrAddr(s_suite_ptr);
   // create problem + external pointer
