@@ -26,3 +26,4 @@ Language: en-US
 NeedsCompilation: yes
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
+Config/build/compilation-database: true

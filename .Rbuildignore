@@ -21,3 +21,5 @@
 ^tests/testthat/exdata
 ^tests/testthat/_snaps
 ^bbob.v15.03
+^compile_commands\.json$
+^\.cache$
