@@ -12,3 +12,5 @@ bbob.v15.03
 inst/doc
 /doc/
 /Meta/
+/src/coco.h
+/src/coco.c
