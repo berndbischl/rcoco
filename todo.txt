@@ -1,7 +1,19 @@
 
+* [AJ]
+  try to expose the coco_version
+  include some simple tests already for the stochastic suite, look at the, play around a bit
+  expose all mulionjective stuff, unit test, vignette
+  https://cran.r-project.org/web/packages/mco/index.html
+  test that the coco visualization can be run after we use the r package, include a show code in the vignette
+  work with the constrined suite. unit test, include in vignette. simply make sure it works, as for MOO
+
+* maybe: write a small parser so we can get the logged evals from coco as a n R dataframe [AJ]
+
+* figure out what coco_arhive is, wther we log into mem here and can expose this to R [BB]
+
 * doc the c code -- at least a bit [AJ]
 
-* set up spell checker for comments and docs
+* set up spell checker for comments and docs [BB]
 
 * setup a service repo where the C helper files go, BB has more of these. [AJ]
   set them up as a submodule
