@@ -64,6 +64,4 @@ void set_r6_member(SEXP s_obj, const char *member_name, SEXP s_value) {
   UNPROTECT(1); // s_member_sym
 }
 
-SEXP get_r6_member(SEXP s_obj, const char *member_name) {
-  return findVarInFrame(s_obj, install(member_name));
-}
+SEXP get_r6_member(SEXP s_obj, const char *member_name) { return findVarInFrame(s_obj, install(member_name)); }

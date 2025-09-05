@@ -1,7 +1,25 @@
+
 #include <R.h>
 #include <R_ext/Rdynload.h>
 #include <Rinternals.h>
 #include <stdlib.h> // for NULL
+
+/* R package native routine registration
+ *
+ * This file registers C functions with R so they can be called from .Call()
+ *
+ * Functions registered:
+ *    - c_coco_suite: Creates a COCO suite and returns problem information
+ *    - c_coco_problem: Retrieves a problem from a suite
+ *    - c_coco_eval: Evaluates a candidate point on a COCO problem
+ *    - c_coco_set_log_level: Sets the COCO logging level
+ *
+ * Registration mechanism:
+ *   - R_registerRoutines(): Registers C functions for .Call() interface
+ *   - R_useDynamicSymbols(FALSE): Prevents lookup of unregistered symbols
+ *
+ * This file is automatically processed by R during package installation
+ */
 
 extern SEXP c_coco_suite(SEXP, SEXP, SEXP, SEXP, SEXP);
 extern SEXP c_coco_problem(SEXP, SEXP, SEXP);

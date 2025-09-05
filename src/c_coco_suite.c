@@ -9,6 +9,12 @@
 #include "rcoco_helpers.h"
 
 void suite_finalizer(SEXP s_suite) {
+  /* Frees up the memory allocated to a COCO suite and its observer
+   * Input:
+   *    - s_suite: A CocoSuite object (Defined in coco_suite.R)
+   * Output:
+   *    - None
+   */
   SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr");
   SEXP s_observer_ptr = get_r6_member(s_suite, "observer_ptr");
   coco_suite_t *suite = R_ExternalPtrAddr(s_suite_ptr);
@@ -23,15 +29,23 @@ void suite_finalizer(SEXP s_suite) {
   }
 }
 
-SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_observer_name,
-                  SEXP s_observer_options, SEXP s_self) {
+SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_observer_name, SEXP s_observer_options, SEXP s_self) {
+  /* Retrieves a COCO suite and populates a CocoSuite object with suite information.
+   * Input:
+   *    - s_name: Name of the suite
+   *    - s_instance: Instance of the suite
+   *    - s_observer_name: Name of the observer (optional)
+   *    - s_observer_options: Observer options (required only if s_observer_name is provided)
+   *    - s_self: A CocoSuite object to be populated (Defined in coco_suite.R)
+   * Output:
+   *    - R_NilValue (the function works by side effect, populates s_self)
+   */
   const char *name = CHAR(STRING_ELT(s_name, 0));
   const char *instance = CHAR(STRING_ELT(s_instance, 0));
 
   // create suite and get number of problems
   coco_suite_t *suite = coco_suite(name, instance, NULL);
-  if (suite == NULL)
-    Rf_error("Failed to create COCO suite");
+  if (suite == NULL) Rf_error("Failed to create COCO suite");
   // make sure free is called when the external pointer is garbage collected
   SEXP s_ptr = PROTECT(R_MakeExternalPtr(suite, R_NilValue, R_NilValue));
   R_RegisterCFinalizer(s_self, (R_CFinalizer_t)suite_finalizer);
@@ -61,8 +75,7 @@ SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_observer_name,
   }
 
   // // create data
-  const char *data_col_names[] = {"problem_idx", "fun_idx",  "fun", "dim_idx",
-                                  "dim",         "inst_idx", "inst"};
+  const char *data_col_names[] = {"problem_idx", "fun_idx", "fun", "dim_idx", "dim", "inst_idx", "inst"};
   SEXP s_data = s_df_create_PROTECT(n_problems, 7, data_col_names);
   SET_VECTOR_ELT(s_data, 0, s_problem_idx);
   SET_VECTOR_ELT(s_data, 1, s_fun_idx);
@@ -83,8 +96,7 @@ SEXP c_coco_suite(SEXP s_name, SEXP s_instance, SEXP s_observer_name,
     const char *observer_name = CHAR(STRING_ELT(s_observer_name, 0));
     const char *observer_options = CHAR(STRING_ELT(s_observer_options, 0));
     coco_observer_t *observer = coco_observer(observer_name, observer_options);
-    SEXP s_observer_ptr =
-        PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue));
+    SEXP s_observer_ptr = PROTECT(R_MakeExternalPtr(observer, R_NilValue, R_NilValue));
     set_r6_member(s_self, "observer_ptr", s_observer_ptr);
     // observer will be freed by suite_finalizer
     UNPROTECT(1); // s_observer_ptr
