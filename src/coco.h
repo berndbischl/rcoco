@@ -2,7 +2,7 @@
 /************************************************************************
  * WARNING
  *
- * This file is an auto-generated amalgamation.
+ * This file is an auto-generated amalgamation. 
  *
  * DO *NOT* EDIT! ALL CHANGES WILL BE LOST!
  ************************************************************************/
@@ -15,7 +15,7 @@
  * It is the authoritative reference, if any function deviates from the documented behavior it is considered
  * a bug. See the function definitions for their detailed descriptions.
  */
-
+ 
 #ifndef __COCO_H__
 #define __COCO_H__
 
@@ -24,7 +24,7 @@
 /* Macro to tag function declarations:
  *
  * COCO_NORETURN:
- *   Function never returns. Mainly useful for linters and static analysis
+ *   Function never returns. Mainly useful for linters and static analysis 
  *   tools.
  *
  * COCO_UNUSED:
@@ -34,7 +34,7 @@
  * lead to much bette code generation and ultimately faster runtimes.
  *
  * COCO_LIKELY(e):
- *   Mark expression `e` as likely true. Usually used in if() or while()
+ *   Mark expression `e` as likely true. Usually used in if() or while() 
  *   statements to give the compiler a hint.
  *
  * COCO_UNLIKELY(e):
@@ -57,7 +57,7 @@
 #define COCO_LIKELY(x) (x)
 #define COCO_UNLIKELY(x) (x)
 #else
-#define COCO_NORETURN
+#define COCO_NORETURN 
 #define COCO_UNUSED
 #define COCO_LIKELY(x) (x)
 #define COCO_UNLIKELY(x) (x)
@@ -139,8 +139,8 @@ typedef enum {
 
 /**
  * @brief The extra argument to be passed to the step ellipsoid function
- * only penalty scale, because in the legacy code is different
- * between the noisy and the noise free implementations
+ * only penalty scale, because in the legacy code is different 
+ * between the noisy and the noise free implementations 
  */
 typedef struct{
   double penalty_scale;
@@ -148,8 +148,8 @@ typedef struct{
 
 /**
  * @brief The extra argument to be passed to the step ellipsoid function
- * only conditioning, because in the legacy code is different
- * between the noisy and the noise free implementations
+ * only conditioning, because in the legacy code is different 
+ * between the noisy and the noise free implementations 
  */
 typedef struct{
   double conditioning;
@@ -157,8 +157,8 @@ typedef struct{
 
 /**
  * @brief The extra argument to be passed to the step ellipsoid function
- * conditioning and penalty scale, because in the legacy code were different
- * between the noisy and the noise free implementations
+ * conditioning and penalty scale, because in the legacy code were different 
+ * between the noisy and the noise free implementations 
  */
 typedef struct{
   double conditioning;
@@ -167,8 +167,8 @@ typedef struct{
 
 /**
  * @brief The extra argument to be passed to the step ellipsoid function
- * facftrue, because in the legacy code is different
- * between the noisy and the noise free implementations
+ * facftrue, because in the legacy code is different 
+ * between the noisy and the noise free implementations 
  */
 typedef struct{
   double facftrue;
@@ -176,8 +176,8 @@ typedef struct{
 
 /**
  * @brief The extra argument to be passed to the step ellipsoid function
- * facftrue, because in the legacy code is different
- * between the noisy and the noise free implementations
+ * facftrue, because in the legacy code is different 
+ * between the noisy and the noise free implementations 
  */
 typedef struct{
   size_t number_of_peaks;
@@ -229,7 +229,7 @@ struct coco_random_state_s;
 /**
  * @brief The COCO random state type.
  *
- * See coco_random_state_s for more information on its fields.
+ * See coco_random_state_s for more information on its fields. 
  */
 typedef struct coco_random_state_s coco_random_state_t;
 
@@ -394,7 +394,7 @@ coco_problem_t *coco_problem_add_observer(coco_problem_t *problem, coco_observer
 coco_problem_t *coco_problem_remove_observer(coco_problem_t *problem, coco_observer_t *observer);
 
 /**
- * @brief Returns result folder name, where logger output is written.
+ * @brief Returns result folder name, where logger output is written. 
  */
 const char *coco_observer_get_result_folder(const coco_observer_t *observer);
 
