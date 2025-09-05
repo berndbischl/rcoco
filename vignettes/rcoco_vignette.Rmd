@@ -1,0 +1,77 @@
+---
+title: "RCOCO"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{RCOCO}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+The `RCOCO` package ports the implementation of the `COCO` (COmparing Continuous Optimizers) library from the C programming language to R.
+It allows the user to retrieve a test suite from the `COCO` library and a problem from that suite, which can be used for function evaluation in an optimization algorithm.
+Currently, `RCOCO` consists of R scripts `coco_suite.R` and `coco_problem.R`, which are used for retrieving a `COCO` suite and a problem from that suite, respectively.
+
+The scripts `coco_suite.R` and `coco_problem.R` depend on various C programs, which depend on the C implementation of the `COCO` library in turn, and can be found in the `src/` directory of the project.
+
+## Example: Random Search on the BBOB Test Suite
+
+In the following example, we show how one can use `RCOCO` to retrieve an instance of the `BBOB` (Black-Box Optimization Benchmarking) test suite from `COCO` and run a random search optimizer on every problem of this suite:
+
+```{r, echo=TRUE, results='hide'}
+library(rcoco)
+library(R6)
+library(checkmate)
+
+suite <- CocoSuite$new(name = 'bbob', instance = 'year: 2009')
+
+num_problems <- nrow(suite$data)
+
+random_search <- function(problem, max_evaluations)
+{
+    cat(sprintf("Optimizing %s with target value %.6f.\n", problem$name, problem$target))
+    dimension <- problem$dim
+    lower_bounds <- problem$lower
+    upper_bounds <- problem$upper
+    best_value <- Inf
+    best_solution <- NULL
+    evaluations <- 0
+    while(evaluations < max_evaluations)
+    {
+        solution <- runif(dimension, lower_bounds, upper_bounds)
+        value <- problem$eval(solution)
+        if(value < best_value){
+            best_value <- value
+            best_solution <- solution
+        }
+        evaluations <- evaluations + 1
+        if(evaluations %% 10 == 0)
+        {
+            cat(sprintf("Evaluation %d done. Best value is %.6f so far.\n", evaluations, best_value))
+        }
+    }
+    print("Best solution:")
+    print(best_solution)
+    print("Best value:")
+    print(best_value)
+}
+
+for(i in 1:num_problems){
+    problem <- CocoProblem$new(suite = suite, problem_idx = i - 1)
+    random_search(problem, 100)
+    readline()
+}
+```
+
+Here, we are retrieving an instance of the `BBOB` test suite by creating a `CocoSuite` object and passing `'bbob'` as its `name` attribute.
+Also, note that we are retrieving the problem instances of the 2009 BBOB workshop by passing `'year: 2009'` as the `instance` attribute.
+
+The `random_search` function here is just a simple implementation of random search that samples candidate solutions from a uniform distribution, and evaluates each candidate solution on a given problem, until a number of evaluations is reached.
+
+Finally, note that at the end of this example, we are looping over all problems of the retrieved `BBOB` suite by creating a `CocoProblem` object in each iteration and giving it a problem index, which retrieves a particular problem of the test suite created earlier. Then, we call `random_search` on that problem and evaluate 100 candidate solutions.

@@ -9,3 +9,6 @@ exdata
 .RData
 ..Rcheck
 bbob.v15.03
+inst/doc
+/doc/
+/Meta/
