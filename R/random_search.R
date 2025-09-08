@@ -21,6 +21,9 @@ random_search <- function(problem, max_evaluations) {
   while (evaluations < max_evaluations) {
     solution <- runif(dimension, lower_bounds, upper_bounds)
     value <- problem$eval(solution)
+    ver = problem$ver()
+    print(ver)
+    readline()
     if (value < best_value) {
       best_value <- value
       best_solution <- solution

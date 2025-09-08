@@ -90,6 +90,10 @@ CocoProblem = R6Class(
       .Call("c_coco_eval", self, x)
     },
 
+    ver = function() {
+      .Call("c_coco_get_version")
+    },
+
     #' @description
     #' Printer.
     print = function() {

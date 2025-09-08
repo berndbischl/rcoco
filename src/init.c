@@ -28,6 +28,7 @@ extern SEXP c_coco_eval(SEXP, SEXP);
 // extern SEXP c_coco_init_noisy();
 // extern SEXP c_coco_finit_noisy();
 extern SEXP c_coco_set_log_level(SEXP);
+extern SEXP c_coco_get_version();
 
 static const R_CallMethodDef CallEntries[] = {
   {"c_coco_suite", (DL_FUNC)&c_coco_suite, 5},
@@ -37,6 +38,7 @@ static const R_CallMethodDef CallEntries[] = {
   // {"c_coco_init_noisy", (DL_FUNC) &c_coco_init_noisy, 0},
   // {"c_coco_finit_noisy", (DL_FUNC) &c_coco_finit_noisy, 0},
   {"c_coco_set_log_level", (DL_FUNC)&c_coco_set_log_level, 1},
+  {"c_coco_get_version", (DL_FUNC)&c_coco_get_version, 0},
   {NULL, NULL, 0},
 };
 
