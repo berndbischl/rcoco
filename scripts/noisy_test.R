@@ -6,18 +6,7 @@ source("R/coco_problem.R")
 source("R/coco_suite.R")
 source("R/zzz.R")
 
-suite = CocoSuite$new(
-  name = 'bbob',
-  instance = 'year: 2009',
-  observer_name = 'bbob',
-  observer_options = paste(
-    'result_folder: my_results',
-    'algorithm_name: RandomSearch',
-    'algorithm_info: "Random search implementation in R"',
-    'record_time: 1',
-    sep = " "
-  )
-)
+suite = CocoSuite$new(name = 'bbob-constrained', instance = 'year: 2009')
 
 num_problems = nrow(suite$data)
 
@@ -37,18 +26,18 @@ random_search = function(problem, max_evaluations) {
       best_solution = solution
     }
     evaluations = evaluations + 1
-    # if (evaluations %% 10 == 0) {
-    # cat(sprintf("Evaluation %d done. Best value is %.6f so far.\n", evaluations, best_value))
-    # }
+    if (evaluations %% 10 == 0) {
+      cat(sprintf("Evaluation %d done. Best value is %.6f so far.\n", evaluations, best_value))
+    }
   }
-  # print("Best solution:")
-  # print(best_solution)
-  # print("Best value:")
-  # print(best_value)
+  print("Best solution:")
+  print(best_solution)
+  print("Best value:")
+  print(best_value)
 }
 
 for (i in 1:num_problems) {
   problem = CocoProblem$new(suite = suite, problem_idx = i - 1)
   random_search(problem, 100)
-  problem$finalize()
+  readline()
 }

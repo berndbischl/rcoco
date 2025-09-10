@@ -53,11 +53,21 @@ SEXP c_coco_problem(SEXP s_suite, SEXP s_problem_idx, SEXP s_self) {
    *    - R_NilValue (the function works by side effect, populates s_self)
    */
   SEXP s_suite_ptr = get_r6_member(s_suite, "suite_ptr"); // get suite
+  SEXP s_observer_ptr = get_r6_member(s_suite, "observer_ptr");
   const int problem_idx = Rf_asInteger(s_problem_idx);
   coco_suite_t *suite = (coco_suite_t *)R_ExternalPtrAddr(s_suite_ptr);
   // create problem + external pointer
   coco_problem_t *problem = coco_suite_get_problem(suite, problem_idx);
   if (problem == NULL) Rf_error("Failed to create COCO problem");
+
+  // Attach observer to problem if observer exists
+  if (!Rf_isNull(s_observer_ptr)) {
+    coco_observer_t *observer = (coco_observer_t *)R_ExternalPtrAddr(s_observer_ptr);
+    if (observer != NULL) {
+      problem = coco_problem_add_observer(problem, observer);
+      if (problem == NULL) Rf_error("Failed to add observer to COCO problem");
+    }
+  }
   SEXP s_problem = PROTECT(R_MakeExternalPtr(problem, R_NilValue, R_NilValue));
   R_RegisterCFinalizer(s_problem, (R_CFinalizer_t)problem_finalizer);
 

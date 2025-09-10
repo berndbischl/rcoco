@@ -90,6 +90,13 @@ CocoProblem = R6Class(
       .Call("c_coco_eval", self, x)
     },
 
+    finalize = function() {
+      if (!is.null(self$problem_ptr)) {
+        .Call("c_coco_problem_finalize", self$problem_ptr)
+        self$problem_ptr = NULL
+      }
+    },
+
     #' @description
     #' Printer.
     print = function() {
