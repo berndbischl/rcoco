@@ -24,54 +24,64 @@ The scripts `coco_suite.R` and `coco_problem.R` depend on various C programs, wh
 
 In the following example, we show how one can use `RCOCO` to retrieve an instance of the `BBOB` (Black-Box Optimization Benchmarking) test suite from `COCO` and run a random search optimizer on every problem of this suite:
 
-```{r, echo=TRUE, results='hide'}
+```{r, eval=FALSE}
 library(rcoco)
 library(R6)
 library(checkmate)
 
-suite <- CocoSuite$new(name = 'bbob', instance = 'year: 2009')
+source("R/coco_problem.R")
+source("R/coco_suite.R")
+source("R/zzz.R")
 
-num_problems <- nrow(suite$data)
+suite = CocoSuite$new(
+  name = 'bbob',
+  instance = 'year: 2009',
+  observer_name = 'bbob',
+  observer_options = paste(
+    'result_folder: bbob_results',
+    'algorithm_name: RandomSearch',
+    'algorithm_info: "Random search implementation in R"',
+    sep = " "
+  )
+)
 
-random_search <- function(problem, max_evaluations)
-{
-    cat(sprintf("Optimizing %s with target value %.6f.\n", problem$name, problem$target))
-    dimension <- problem$dim
-    lower_bounds <- problem$lower
-    upper_bounds <- problem$upper
-    best_value <- Inf
-    best_solution <- NULL
-    evaluations <- 0
-    while(evaluations < max_evaluations)
-    {
-        solution <- runif(dimension, lower_bounds, upper_bounds)
-        value <- problem$eval(solution)
-        if(value < best_value){
-            best_value <- value
-            best_solution <- solution
-        }
-        evaluations <- evaluations + 1
-        if(evaluations %% 10 == 0)
-        {
-            cat(sprintf("Evaluation %d done. Best value is %.6f so far.\n", evaluations, best_value))
-        }
+num_problems = nrow(suite$data)
+
+random_search = function(problem, max_evaluations) {
+  cat(sprintf("Optimizing %s with target value %.6f.\n", problem$name, problem$target))
+  dimension = problem$dim
+  lower_bounds = problem$lower
+  upper_bounds = problem$upper
+  best_value = Inf
+  evaluations = 0
+  while (evaluations < max_evaluations) {
+    solution = runif(dimension, lower_bounds, upper_bounds)
+    value = problem$eval(solution)
+    if (value < best_value) {
+      best_value = value
     }
-    print("Best solution:")
-    print(best_solution)
-    print("Best value:")
-    print(best_value)
+    evaluations = evaluations + 1
+    if (evaluations %% 10 == 0) {
+      cat(sprintf("Evaluation %d done. Best value is %.6f so far.\n", evaluations, best_value))
+    }
+  }
 }
 
-for(i in 1:num_problems){
-    problem <- CocoProblem$new(suite = suite, problem_idx = i - 1)
-    random_search(problem, 100)
-    readline()
+for (i in 1:num_problems) {
+  problem = CocoProblem$new(suite = suite, problem_idx = i - 1)
+  random_search(problem, 100)
+  problem$finalize()
 }
 ```
 
-Here, we are retrieving an instance of the `BBOB` test suite by creating a `CocoSuite` object and passing `'bbob'` as its `name` attribute.
-Also, note that we are retrieving the problem instances of the 2009 BBOB workshop by passing `'year: 2009'` as the `instance` attribute.
+Here, we are retrieving an instance of the `BBOB` test suite by creating a `CocoSuite` object and passing `'bbob'` as its `name` attribute. Specifically, we are retrieving the problem instances of the 2009 BBOB workshop by passing `'year: 2009'` as the `instance` attribute. We are also passing `'bbob'` as the `observer_name` attribute, which means that the `BBOB` observer will be used to log the results of the optimization algorithm.
+
+The `observer_options` attribute is used to specify various options for the observer, such as the folder where the benchmarking results will be stored, the name of the algorithm that will be used in the plots, and a short description of that algorithm. You can learn more about the various possibilities of the `observer_options` attribute [here](https://numbbo.github.io/coco-doc/C/coco__observer_8c.html), under "Function Documentation". Also, it is possible to display the benchmarking results by the same procedure outlined [here](https://coco-platform.org/getting-started/#postprocess).
 
 The `random_search` function here is just a simple implementation of random search that samples candidate solutions from a uniform distribution, and evaluates each candidate solution on a given problem, until a number of evaluations is reached.
 
-Finally, note that at the end of this example, we are looping over all problems of the retrieved `BBOB` suite by creating a `CocoProblem` object in each iteration and giving it a problem index, which retrieves a particular problem of the test suite created earlier. Then, we call `random_search` on that problem and evaluate 100 candidate solutions.
+At the end of this example, we are looping over all problems of the retrieved `BBOB` suite by creating a `CocoProblem` object in each iteration and giving it a problem index, which retrieves a particular problem of the test suite created earlier. Then, we call `random_search` on that problem and evaluate 100 candidate solutions. At the end, we deallocate the resources used by that problem by calling its `finalize` method.
+
+Finally, note that we could have done the exact same procedure on the stochastic functions of the `BBOB` test suite by just changing the `name` attribute of the `CocoSuite` object to `'bbob-noisy'`.
+
+
